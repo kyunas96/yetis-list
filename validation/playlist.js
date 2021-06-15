@@ -11,6 +11,10 @@ module.exports = function validatePlaylistInput(data) {
 		errors.title = 'Title field is required';
 	}
 
+	if (Validator.isEmpty(data.userId)) {
+		errors.userId = 'userId is required';
+	}
+
 	return {
 		errors,
 		isValid: Object.keys(errors).length === 0,

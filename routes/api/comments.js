@@ -6,75 +6,84 @@ const validateCommentInput = require('../../validation/comment');
 
 // create comment
 router.post('/', (req, res) => {
-    const comment = Object.assign({}, req.body);
-    comment.playlistId = req.body.playlistId;
-    console.log(comment)
-	const { errors, isValid } = validateCommentInput(comment);
+	const { errors, isValid } = validateCommentInput(req.body);
 
-	if (!isValid) {
-		return res.status(400).json(errors);
-	}
+	if (!isValid) return res.status(400).json(errors);
 
-	let newComment = new Comment(comment);
+	let newComment = new Comment(req.body);
 
-	Playlist.findOne(req.params.playlistId)
-		.then((playlist) => playlist.comments.push(newComment))
-		.catch((err) => console.log(err));
+	newComment.save().then((comment) => {
 
-	newComment.save().then((comment) => res.json(comment));
+		// adds comment to playlist's comments array
+		Playlist.findOne({_id: comment.playlistId}).then(playlist => {
+			playlist.comments.push({id: comment._id, title: comment.text})
+			playlist.save()
+		}).catch(() => res.json('could not find playlist'))
+		res.json(comment)
+	}).catch(() => res.json('could not save comment'))
 });
 
-// // get all playlists from every user
-// router.get('/', (req, res) => {
-// 	Playlist.find()
-// 		.sort({ date: -1 })
-// 		.then((playlists) => res.json(playlists))
-// 		.catch((err) =>
-// 			res.status(404).json({ noPlaylistsFound: 'No playlists found' })
-// 		);
-// });
+// get comment by id
+router.get('/:id', (req, res) => {
+	Comment.findById(req.params.id)
+		.then((comment) => res.json(comment))
+		.catch((err) =>
+			res
+				.status(404)
+				.json({ nocommentFound: 'No comment found with that ID' })
+		);
+});
 
-// // get all playlists for a user
-// router.get('/user/:user_id', (req, res) => {
-// 	console.log(req.params);
-// 	Playlist.find({ userId: req.params.user_id })
-// 		.then((playlists) => res.json(playlists))
-// 		.catch((err) =>
-// 			res
-// 				.status(404)
-// 				.json({ noPlaylistsFound: 'No playlists found from that user' })
-// 		);
-// });
+// delete comment
+router.delete('/:id', (req, res) => {
+	Comment.findById(req.params.id)
+		.then((comment) => {
 
-// // get playlist by id
-// router.get('/:id', (req, res) => {
-// 	Playlist.findById(req.params.id)
-// 		.then((playlist) => res.json(playlist))
-// 		.catch((err) =>
-// 			res
-// 				.status(404)
-// 				.json({ noPlaylistFound: 'No playlist found with that ID' })
-// 		);
-// });
+			// delete commment from playlist
+			Playlist.findById(comment.playlistId).then((playlist) => {
 
-// // delete playlist
-// router.delete('/:id', (req, res) => {
-// 	Playlist.deleteOne({ _id: req.params.id })
-// 		.then(() => res.json({ success: 'playlist deleted' }))
-// 		.catch((err) =>
-// 			res.status(500).json({ couldNotDelete: 'could not delete playlist' })
-// 		);
-// });
+				playlist.comments.forEach(com => {
+					if (com.id === req.params.id) {
+						const indx = playlist.comments.indexOf(com);
+						playlist.comments.splice(indx, 1);
+						playlist.save();
+					}
+				})
+			}).then(() => {
+				Comment.deleteOne({_id: req.params.id}).then(() => {
+					res.json({commentDeleted: 'successfully deleted comment'})
+				})
+			})
+		})
+		.catch((err) =>
+			res.status(500).json({ couldNotDelete: 'could not delete comment' })
+		);
+});
 
-// // update playlists
-// router.patch('/:id', (req, res) => {
-// 	Playlist.findById(req.params.id).then((playlist) =>
-// 		Playlist.updateOne(req.body)
-// 			.then((playlist) => res.json(playlist))
-// 			.catch((err) =>
-// 				res.status(500).json({ couldNotupdate: 'could not update playlist' })
-// 			)
-// 	);
-// });
+// update comments
+router.patch('/:id', (req, res) => {
+	Comment.updateOne(req.body)
+		.then(() => {
+			const comment = req.body;
+			comment._id = req.params.id;
+
+			// adds updated comment to playlist
+			Playlist.findById(comment.playlistId).then((playlist) => {
+
+				playlist.comments.forEach(com => {
+					if (com.id === comment._id) {
+						const indx = playlist.comments.indexOf(com);
+						playlist.comments.splice(indx, 1);
+						playlist.comments.push({id: comment._id, title: comment.text});
+						playlist.save();
+					}
+				})
+				res.json(comment)
+			})
+		})
+		.catch((err) =>
+			res.status(500).json({ couldNotupdate: 'could not update comment' })
+		)
+});
 
 module.exports = router;

@@ -14,6 +14,14 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	playlists: {
+		type: Array,
+		required: false,
+	},
+	comments: {
+		type: Array,
+		required: false,
+	},
 	date: {
 		type: Date,
 		default: Date.now,

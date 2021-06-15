@@ -1,19 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const Playlist = require('../../models/Playlist');
+const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
 
 // create playlist
 router.post('/', (req, res) => {
 	const { errors, isValid } = validatePlaylistInput(req.body);
 
-	if (!isValid) {
-		return res.status(400).json(errors);
-	}
+	if (!isValid) return res.status(400).json(errors);
 
 	let newPlaylist = new Playlist(req.body);
 
-	newPlaylist.save().then((playlist) => res.json(playlist));
+	newPlaylist.save().then((playlist) => {
+
+		// adds playlist to users playlists array
+		User.findOne({_id: playlist.userId}).then(user => {
+			user.playlists.push({id: playlist._id, title: playlist.title})
+			user.save()
+		}).catch(() => res.json('could not find user'))
+		res.json(playlist)
+	}).catch(() => res.json('could not save playlist'))
 });
 
 // get all playlists from every user

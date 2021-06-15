@@ -20,7 +20,13 @@ router.get(
 	}
 );
 
-router.post('/register', (req, res) => {
+router.get('/:id', (req, res) => {
+	User.findOne({_id: req.params.id}).then(user => {
+		res.json(user)
+	})}
+);
+
+router.post('/signup', (req, res) => {
 	const { errors, isValid } = validateRegisterInput(req.body);
 
 	if (!isValid) {
