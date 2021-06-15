@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PlaylistSchema = new Schema({
-    title: {
+	title: {
 		type: String,
 		required: true,
 	},
@@ -10,10 +10,10 @@ const PlaylistSchema = new Schema({
 		type: String,
 		required: true,
 	},
-    userId: {
-        type: String,
-        required: true,
-    },
+	userId: {
+		type: String,
+		required: true,
+	},
 	songs: {
 		type: Array,
 		required: false,

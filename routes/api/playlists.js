@@ -4,7 +4,11 @@ const Playlist = require('../../models/Playlist');
 const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
 
+
 // create playlist
+// needs...
+// in body: title, userId, optional: description
+// in params: nothing
 router.post('/', (req, res) => {
 	const { errors, isValid } = validatePlaylistInput(req.body);
 
@@ -24,6 +28,9 @@ router.post('/', (req, res) => {
 });
 
 // get all playlists from every user
+// needs...
+// in body: nothing
+// in params: nothing
 router.get('/', (req, res) => {
 	Playlist.find()
 		.sort({ date: -1 })
@@ -34,6 +41,9 @@ router.get('/', (req, res) => {
 });
 
 // get all playlists for a user
+// needs...
+// in body: nothing
+// in params: userId
 router.get('/user/:user_id', (req, res) => {
 	Playlist.find({ userId: req.params.user_id })
 		.then((playlists) => res.json(playlists))
@@ -45,6 +55,9 @@ router.get('/user/:user_id', (req, res) => {
 });
 
 // get playlist by id
+// needs...
+// in body: nothing
+// in params: playlist id
 router.get('/:id', (req, res) => {
 	Playlist.findById(req.params.id)
 		.then((playlist) => res.json(playlist))
@@ -56,6 +69,9 @@ router.get('/:id', (req, res) => {
 });
 
 // delete playlist
+// needs...
+// in body: nothing
+// in params: playlist id
 router.delete('/:id', (req, res) => {
 	Playlist.findById(req.params.id).then((playlist) => {
 		Playlist.deleteOne({ _id: req.params.id }).then(() => {
@@ -78,6 +94,9 @@ router.delete('/:id', (req, res) => {
 });
 
 // update playlists
+// needs...
+// in body: title, userId, optional: description
+// in params: playlist id
 router.patch('/:id', (req, res) => {
 	Playlist.findOneAndUpdate({_id: req.params.id}, req.body)
 		.then(() => {

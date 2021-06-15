@@ -5,6 +5,9 @@ const Playlist = require('../../models/Playlist');
 const validateCommentInput = require('../../validation/comment');
 
 // create comment
+// needs...
+// in body: text, userId, playlistId
+// in params: nothing
 router.post('/', (req, res) => {
 	const { errors, isValid } = validateCommentInput(req.body);
 
@@ -24,6 +27,9 @@ router.post('/', (req, res) => {
 });
 
 // get comment by id
+// needs...
+// in body: nothing
+// in params: comment id
 router.get('/:id', (req, res) => {
 	Comment.findById(req.params.id)
 		.then((comment) => res.json(comment))
@@ -35,6 +41,9 @@ router.get('/:id', (req, res) => {
 });
 
 // delete comment
+// needs...
+// in body: nothing
+// in params: comment id
 router.delete('/:id', (req, res) => {
 	Comment.findById(req.params.id).then((comment) => {
 		Comment.deleteOne({_id: req.params.id}).then(() => {
@@ -57,6 +66,9 @@ router.delete('/:id', (req, res) => {
 });
 
 // update comments
+// needs...
+// in body: text, userId, playlistId
+// in params: comment id
 router.patch('/:id', (req, res) => {
 	Comment.findOneAndUpdate({_id: req.params.id}, req.body)
 		.then(() => {

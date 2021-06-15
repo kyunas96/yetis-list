@@ -20,12 +20,19 @@ router.get(
 	}
 );
 
+// needs...
+// in body: nothing
+// in params: users id
 router.get('/:id', (req, res) => {
-	User.findOne({_id: req.params.id}).then(user => {
-		res.json(user)
-	})}
-);
+	User.findOne({ _id: req.params.id }).then((user) => {
+		res.json(user);
+	});
+});
 
+
+// needs...
+// in body: email, username, password
+// in params: nothing
 router.post('/signup', (req, res) => {
 	const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -64,6 +71,9 @@ router.post('/signup', (req, res) => {
 	});
 });
 
+// needs...
+// in body: email, password
+// in params: nothing
 router.post('/login', (req, res) => {
 	const { errors, isValid } = validateLoginInput(req.body);
 
