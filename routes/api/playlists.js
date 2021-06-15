@@ -35,7 +35,6 @@ router.get('/', (req, res) => {
 
 // get all playlists for a user
 router.get('/user/:user_id', (req, res) => {
-	console.log(req.params);
 	Playlist.find({ userId: req.params.user_id })
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
@@ -58,22 +57,50 @@ router.get('/:id', (req, res) => {
 
 // delete playlist
 router.delete('/:id', (req, res) => {
-	Playlist.deleteOne({ _id: req.params.id })
+	Playlist.findById(req.params.id).then((playlist) => {
+		Playlist.deleteOne({ _id: req.params.id }).then(() => {
+			
+			User.findById(playlist.userId).then((user) => {
+				user.playlists.forEach(ply => {
+					if (ply.id.toString() === playlist._id.toString()) {
+						const indx = user.playlists.indexOf(ply)
+						user.playlists.splice(indx, 1);
+						user.save();
+					}
+				})
+			})
+		})
 		.then(() => res.json({ success: 'playlist deleted' }))
 		.catch((err) =>
 			res.status(500).json({ couldNotDelete: 'could not delete playlist' })
 		);
+	})
 });
 
 // update playlists
 router.patch('/:id', (req, res) => {
-	Playlist.findById(req.params.id).then((playlist) =>
-		Playlist.updateOne(req.body)
-			.then((playlist) => res.json(playlist))
-			.catch((err) =>
-				res.status(500).json({ couldNotupdate: 'could not update playlist' })
-			)
-	);
+	Playlist.findOneAndUpdate({_id: req.params.id}, req.body)
+		.then(() => {
+			const playlist = req.body;
+			playlist._id = req.params.id;
+
+			// adds updated playlist to user playlists
+			User.findById(playlist.userId).then((user) => {
+				user.playlists.forEach(ply => {
+					if (ply.id.toString() === playlist._id.toString()) {
+						const indx = user.playlists.indexOf(ply)
+						user.playlists.splice(indx, 1);
+						user.playlists.push({id: playlist._id, title: playlist.title});
+						user.save();
+					}
+				})
+			}).then(() => {
+				res.json(playlist)
+			})
+		})
+		.catch((err) =>
+			res.status(500).json({ couldNotupdate: 'could not update playlist' })
+		)
 });
 
 module.exports = router;

@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 
 		// adds comment to playlist's comments array
 		Playlist.findOne({_id: comment.playlistId}).then(playlist => {
-			playlist.comments.push({id: comment._id, title: comment.text})
+			playlist.comments.push({id: comment._id, text: comment.text, userId: comment.userId})
 			playlist.save()
 		}).catch(() => res.json('could not find playlist'))
 		res.json(comment)
@@ -36,33 +36,29 @@ router.get('/:id', (req, res) => {
 
 // delete comment
 router.delete('/:id', (req, res) => {
-	Comment.findById(req.params.id)
-		.then((comment) => {
+	Comment.findById(req.params.id).then((comment) => {
+		Comment.deleteOne({_id: req.params.id}).then(() => {
 
-			// delete commment from playlist
 			Playlist.findById(comment.playlistId).then((playlist) => {
-
 				playlist.comments.forEach(com => {
-					if (com.id === req.params.id) {
+					if (com.id.toString() === comment._id.toString()) {
 						const indx = playlist.comments.indexOf(com);
 						playlist.comments.splice(indx, 1);
 						playlist.save();
 					}
 				})
-			}).then(() => {
-				Comment.deleteOne({_id: req.params.id}).then(() => {
-					res.json({commentDeleted: 'successfully deleted comment'})
-				})
 			})
 		})
+		.then(() => res.json({ success: 'comment deleted' }))
 		.catch((err) =>
 			res.status(500).json({ couldNotDelete: 'could not delete comment' })
 		);
+	})
 });
 
 // update comments
 router.patch('/:id', (req, res) => {
-	Comment.updateOne(req.body)
+	Comment.findOneAndUpdate({_id: req.params.id}, req.body)
 		.then(() => {
 			const comment = req.body;
 			comment._id = req.params.id;
@@ -71,13 +67,14 @@ router.patch('/:id', (req, res) => {
 			Playlist.findById(comment.playlistId).then((playlist) => {
 
 				playlist.comments.forEach(com => {
-					if (com.id === comment._id) {
+					if (com.id.toString() === comment._id.toString()) {
 						const indx = playlist.comments.indexOf(com);
 						playlist.comments.splice(indx, 1);
-						playlist.comments.push({id: comment._id, title: comment.text});
+						playlist.comments.push({id: comment._id, text: comment.text, userId: comment.userId});
 						playlist.save();
 					}
 				})
+			}).then(() => {
 				res.json(comment)
 			})
 		})
@@ -85,5 +82,6 @@ router.patch('/:id', (req, res) => {
 			res.status(500).json({ couldNotupdate: 'could not update comment' })
 		)
 });
+
 
 module.exports = router;
