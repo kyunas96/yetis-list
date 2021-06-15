@@ -13,12 +13,13 @@ class SessionForm extends React.Component {
     }
 
     update(field) {
-        return e => this.handleSubmit.setState({
+        return e => this.setState({
             [field]: e.currentTarget.value
         });
     }
 
     handleSubmit(e) {
+        console.log('getting hit')
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user).then(this.props.closeModal)
@@ -37,6 +38,8 @@ class SessionForm extends React.Component {
     }
 
     render() {
+        
+
         let username_input;
         if (this.props.formType === 'signup') {
             username_input = ( 
@@ -50,14 +53,15 @@ class SessionForm extends React.Component {
         }
         return (
             <div className="login-form-container">
-                <form onSubmit={this.handleSubmit} className="login-form-box">
+                <form onSubmit={() => this.handleSubmit} className="login-form-box">
                     Welcome to Yeti's List!
                 
                 Please {this.props.formType} or {this.props.otherForm}
                     <div onClick={this.props.closeModal} className="close-x">
                         X
                     </div>
-                    {this.renderErrors()}
+                    
+                    {this.props.errors ?  this.renderErrors() : <ul></ul>}
                     <div className ='login-form'>
                        <br/> 
                         {username_input}

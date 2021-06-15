@@ -4,6 +4,7 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import SessionForm from './session_form'
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     errors: state.errors.session,
     formType: 'signup'
