@@ -11,14 +11,9 @@ router.post('/', (req, res) => {
 		return res.status(400).json(errors);
 	}
 
-	let newPlaylist;
+	let newPlaylist = new Playlist(req.body);
 
 	newPlaylist.save().then((playlist) => res.json(playlist));
-});
-
-// delete playlist 
-router.get('/user/:user_id', (req, res) => {
-	
 });
 
 // get all playlists from every user
@@ -27,18 +22,19 @@ router.get('/', (req, res) => {
 		.sort({ date: -1 })
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
-			res.status(404).json({ noplaylistsfound: 'No playlists found' })
+			res.status(404).json({ noPlaylistsFound: 'No playlists found' })
 		);
 });
 
 // get all playlists for a user
 router.get('/user/:user_id', (req, res) => {
-	Playlist.find({ user: req.params.user_id })
+	console.log(req.params);
+	Playlist.find({ userId: req.params.user_id })
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
 			res
 				.status(404)
-				.json({ noplaylistsfound: 'No playlists found from that user' })
+				.json({ noPlaylistsFound: 'No playlists found from that user' })
 		);
 });
 
@@ -49,8 +45,28 @@ router.get('/:id', (req, res) => {
 		.catch((err) =>
 			res
 				.status(404)
-				.json({ noplaylistfound: 'No playlist found with that ID' })
+				.json({ noPlaylistFound: 'No playlist found with that ID' })
 		);
+});
+
+// delete playlist
+router.delete('/:id', (req, res) => {
+	Playlist.deleteOne({ _id: req.params.id })
+		.then(() => res.json({ success: 'playlist deleted' }))
+		.catch((err) =>
+			res.status(500).json({ couldNotDelete: 'could not delete playlist' })
+		);
+});
+
+// update playlists
+router.patch('/:id', (req, res) => {
+	Playlist.findById(req.params.id).then((playlist) =>
+		Playlist.updateOne(req.body)
+			.then((playlist) => res.json(playlist))
+			.catch((err) =>
+				res.status(500).json({ couldNotupdate: 'could not update playlist' })
+			)
+	);
 });
 
 module.exports = router;

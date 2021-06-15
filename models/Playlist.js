@@ -18,6 +18,10 @@ const PlaylistSchema = new Schema({
 		type: Array,
 		required: false,
 	},
+	comments: {
+		type: Array,
+		required: false,
+	},
 	date: {
 		type: Date,
 		default: Date.now,
