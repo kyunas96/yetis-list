@@ -40,9 +40,9 @@ router.post('/register', (req, res) => {
 				password: req.body.password,
 			});
 
-			collection
-				.insertOne(newUser)
-				.then((res) => console.log(`successfuly added ${res}!`));
+			// collection
+			// 	.insertOne(newUser)
+			// 	.then((res) => console.log(`successfuly added ${res}!`));
 
 			bcrypt.genSalt(10, (err, salt) => {
 				bcrypt.hash(newUser.password, salt, (err, hash) => {

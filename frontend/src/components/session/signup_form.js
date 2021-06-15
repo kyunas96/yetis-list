@@ -10,7 +10,7 @@ class SignupForm extends React.Component {
       password: '',
       errors: {}
     };
-
+    console.log(props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
@@ -37,7 +37,7 @@ class SignupForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.signup(user, this.props.history); 
+    this.props.signup(user); 
   }
 
   renderErrors() {
