@@ -1,6 +1,6 @@
 import React from 'react';
 
-class UserHomePage extends React.Component {
+class UserProfilePage extends React.Component {
 	render() {
 		return (
 			<div>
@@ -13,4 +13,4 @@ class UserHomePage extends React.Component {
 }
 
 
-export default UserHomePage
+export default UserProfilePage

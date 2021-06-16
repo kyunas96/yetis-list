@@ -1,6 +1,7 @@
 import React from 'react';
-import { logout } from '../../actions/session_actions';
+import { logout } from '../../../actions/session_actions';
 import { connect } from 'react-redux';
+import UserProfilePage from './user_profile'
 
 const mSTP = (state, ownProps) => {
 	return {
@@ -14,4 +15,4 @@ const mDTP = (dispatch) => {
 	};
 };
 
-export default connect(mSTP, mDTP)(UserHomePage);
+export default connect(mSTP, mDTP)(UserProfilePage);
