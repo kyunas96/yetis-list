@@ -9,12 +9,19 @@ const users = require('./routes/api/users');
 const playlists = require('./routes/api/playlists');
 const comments = require('./routes/api/comments');
 const songs = require('./routes/api/songs');
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('frontend/build'));
+	app.get('/', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+	});
+}
 
 mongoose
 	.connect(db, { useNewUrlParser: true })
 	.then(() => console.log('Connected to MongoDB successfully'))
 	.catch((err) => console.log(err));
-
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
