@@ -1,6 +1,7 @@
 import React from 'react';
 import { openModal } from '../../actions/modal_actions'
 import {connect} from 'react-redux'
+import PlaylistIndexContainer from '../playlist/playlist_index_container'
 import './main.css'
 
 class MainPage extends React.Component {
@@ -14,6 +15,10 @@ class MainPage extends React.Component {
             {this.props.openSignup}
             {this.props.openLogin}
           </div>
+          <br />
+          <br />
+          <br />
+          <PlaylistIndexContainer />
         <footer className="footer">
           Copyright &copy; 2021 YeticorpLLC
         </footer>
