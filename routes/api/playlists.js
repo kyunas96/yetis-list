@@ -3,6 +3,7 @@ const router = express.Router();
 const Playlist = require('../../models/Playlist');
 const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
+const Search = require('../../spotifyAPI/search/search');
 
 
 // create playlist
@@ -121,5 +122,20 @@ router.patch('/:id', (req, res) => {
 			res.status(500).json({ couldNotupdate: 'could not update playlist' })
 		)
 });
+
+router.post('/generate', (req, res) => {
+	res.json("Nice job generating")
+})
+
+router.post('/getlist', (req, res) => {
+	// console.log(req.body)
+	const { searchValue, seedType } = req.body
+	console.log(searchValue, seedType)
+	Search(searchValue, seedType, res)
+})
+
+
+
+
 
 module.exports = router;
