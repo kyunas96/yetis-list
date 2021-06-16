@@ -2,6 +2,7 @@ import * as APIUtil from '../util/playlists_api_util';
 
 export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';
 export const RECEIVE_PLAYLIST_ID = 'RECEIVE_PLAYLIST_ID';
+export const REMOVE_PLAYLIST_ID = 'REMOVE_PLAYLIST_ID';
 
 
 export const receivePlaylists = (playlists) => {
@@ -16,6 +17,12 @@ export const sendPlaylistId = (playlistId) => {
     return {
 	    type: RECEIVE_PLAYLIST_ID,
 	    playlistId,
+    }
+};
+
+export const removePlaylistId = () => {
+    return {
+	    type: REMOVE_PLAYLIST_ID,
     }
 };
 

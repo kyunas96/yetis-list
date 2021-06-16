@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
-import { updatePlaylist } from '../../actions/playlist_actions';
+import { updatePlaylist, removePlaylistId, fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 
 class UpdatePlaylist extends React.Component {
 	constructor(props) {
 		super(props);
-		const userId = '60c9726892db9700be164c14';
+		const userId = this.props.currentUserId;
         const {title, description} = this.getPlaylistInfo()
 		this.state = {
 			userId,
@@ -39,7 +39,12 @@ class UpdatePlaylist extends React.Component {
 		e.preventDefault();
 		this.props
 			.updatePlaylist({ data: this.state, id: this.props.playlistId })
-			.then(() => this.props.closeModal());
+			.then(() => {
+				this.props.closeModal();
+				this.props.removePlaylistId()
+				this.props.fetchPlaylists(this.props.currentUserId)
+			});
+
 	}
 
 	render() {
@@ -76,7 +81,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		updatePlaylist: (item) => dispatch(updatePlaylist(item)),
+		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
+		removePlaylistId: () => dispatch(removePlaylistId()),
 	};
 };
 

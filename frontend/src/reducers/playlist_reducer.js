@@ -1,4 +1,4 @@
-import { RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST_ID } from '../actions/playlist_actions';
+import { RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST_ID, REMOVE_PLAYLIST_ID } from '../actions/playlist_actions';
 
 const _initialState = {
 	playlists: [],
@@ -15,6 +15,9 @@ const playlistReducer = (state = _initialState, action) => {
 			return newState;
 		case RECEIVE_PLAYLIST_ID:
 			newState.id = action.playlistId;
+			return newState;
+		case REMOVE_PLAYLIST_ID:
+			newState.id = null;
 			return newState;
 		default:
 			return state;
