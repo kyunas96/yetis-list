@@ -29,7 +29,6 @@ router.get('/:id', (req, res) => {
 	});
 });
 
-
 // needs...
 // in body: email, username, password
 // in params: nothing
@@ -63,7 +62,7 @@ router.post('/signup', (req, res) => {
 					newUser.password = hash;
 					newUser
 						.save()
-						.then((user) => res.json(user))
+						.then(() => res.json(newUser))
 						.catch((err) => console.log(err));
 				});
 			});
@@ -102,6 +101,7 @@ router.post('/login', (req, res) => {
 						res.json({
 							success: true,
 							token: 'Bearer ' + token,
+							user,
 						});
 					}
 				);
