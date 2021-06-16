@@ -5,7 +5,7 @@ import NavBarContainer from './nav/navbar_container';
 
 import MainPage from './main/main_page';
 import Modal from './modal/modal';
-import PlaylistIndexContainer from './playlist/playlist_index_container';
+import UserHomePage from './user/main/user_main';
 import './css/fonts.css'
 
 const App = () => (
