@@ -1,17 +1,21 @@
 import React from 'react';
 import { openModal } from '../../actions/modal_actions'
 import {connect} from 'react-redux'
+import './main.css'
 
 class MainPage extends React.Component {
 
   render() {
     return (
       <div>
-        <h1>Yeti's List</h1>
-        {this.props.openLogin}
-        {this.props.openSignup}
-        <footer>
-          Copyright &copy; 2021 Arctech
+        <h1 className="main-title">Yeti's List</h1>
+          <div className="site-info">Yeti help friend make music playlist. Please sign up and tell Yeti song/album/genre you like, and Yeti help friend!</div>
+          <div className="buttons">
+            {this.props.openSignup}
+            {this.props.openLogin}
+          </div>
+        <footer className="footer">
+          Copyright &copy; 2021 YeticorpLLC
         </footer>
       </div>
     );
@@ -20,8 +24,8 @@ class MainPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    openLogin:  <button onClick={() => dispatch(openModal('login'))}>login</button>,
-    openSignup: <button onClick={() => dispatch(openModal('signup'))}>Sign Up</button>
+    openLogin:  <button className="login-button" onClick={() => dispatch(openModal('login'))}>login</button>,
+    openSignup: <button className="signup-button" onClick={() => dispatch(openModal('signup'))}>Sign Up</button>
 
   }
 }

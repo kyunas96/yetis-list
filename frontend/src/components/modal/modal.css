@@ -15,3 +15,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+@keyframes modal-animation {
+  from {
+    top: -100%;
+    bottom: -100%;
+  }
+  to {
+    top: 50%;
+    bottom: 0%;
+  }
+}
