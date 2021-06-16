@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import './navbar.css'
 
 
 class NavBar extends React.Component {
@@ -13,24 +14,32 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <Link to={'/'}>Make a playlist</Link> 
-                <Link to={'/profile'}>Profile</Link>
+            <ul className="logged-in-nav">
+              <li>
+                <Link to={'/'} className="playlist-make-nav">Make a playlist</Link> 
+              </li>
+              <li>
+                <Link to={'/profile'} className="profile-nav-link">Profile</Link>
+              </li>
+              <li>
                 <button onClick={() => this.props.logout()}>Logout</button>
-            </div>
+              </li>
+            </ul>
         );
       } else {
         return (
-            <div>
-            </div>
+            <ul>
+            </ul>
         );
       }
   }
 
   render() {
       return (
-        <div>
-            <h1>Yeti's List</h1>
+        <div className="navbar-container">
+            <div className="nav-title">
+              Yeti's List
+            </div>
             { this.getLinks() }
         </div>
       );
