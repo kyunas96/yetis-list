@@ -1,5 +1,5 @@
 import React from 'react';
-import { openModal, closeModal } from '../../actions/modal_actions'
+import { openModal } from '../../actions/modal_actions'
 import {connect} from 'react-redux'
 
 class MainPage extends React.Component {

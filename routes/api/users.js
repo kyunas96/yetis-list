@@ -21,10 +21,10 @@ router.get(
 );
 
 router.get('/:id', (req, res) => {
-	User.findOne({_id: req.params.id}).then(user => {
-		res.json(user)
-	})}
-);
+	User.findOne({ _id: req.params.id }).then((user) => {
+		res.json(user);
+	});
+});
 
 router.post('/signup', (req, res) => {
 	const { errors, isValid } = validateRegisterInput(req.body);
@@ -56,7 +56,7 @@ router.post('/signup', (req, res) => {
 					newUser.password = hash;
 					newUser
 						.save()
-						.then((user) => res.json(user))
+						.then(() => res.json(newUser))
 						.catch((err) => console.log(err));
 				});
 			});
@@ -92,6 +92,7 @@ router.post('/login', (req, res) => {
 						res.json({
 							success: true,
 							token: 'Bearer ' + token,
+							user,
 						});
 					}
 				);
