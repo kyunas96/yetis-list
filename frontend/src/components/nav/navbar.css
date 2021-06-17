@@ -36,6 +36,15 @@ li {
   z-index: 5;
 }
 
+.logout-button {
+  border-radius: 3px;
+  border: #ccc 1pt solid;
+  color: rgb(99, 81, 21);
+  background-color: rgb(50, 216, 78);
+  font-family: 'Pangolin', cursive;
+  border-radius: 8px;
+}
+
 /* trying backing animation */
 
 .playlist-make-nav::before, .profile-nav-link::before {  
@@ -63,16 +72,16 @@ li {
   position: relative;
 }
 
-html {
+/* html {
   block-size: 100%;
   inline-size: 100%;
-}
+} */
 
 body {
-  min-inline-size: 100%;
+  /* min-inline-size: 100%; */
   margin: 0;
   box-sizing: border-box;
-  display: grid;
+  /* display: grid; */
   place-content: center;
   font-family: system-ui, sans-serif;
 }

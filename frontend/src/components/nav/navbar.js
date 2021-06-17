@@ -48,7 +48,7 @@ class NavBar extends React.Component {
                 <Link to={'/profile'} className="profile-nav-link">Profile</Link>
               </li>
               <li>
-                <button onClick={() => this.props.logout()}>Logout</button>
+                <button className="logout-button" onClick={() => this.props.logout()}>Logout</button>
               </li>
             </ul>
             { this.getLinks() }
