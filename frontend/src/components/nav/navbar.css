@@ -11,7 +11,7 @@ li {
 .navbar-container {
   display: flex;
   height: 45px;
-  background-color: rgb(224, 187, 2);
+  background-color: rgb(244, 206, 18);
 }
 
 .nav-title {
@@ -29,11 +29,15 @@ li {
   margin-right: 20px;
   border-right:rgb(76, 211, 245) 1px;
   z-index: 5;
+  color: rgb(99, 81, 21);
+  font-family: 'Pangolin', cursive;
 }
 
 .profile-nav-link {
   margin-right: 20px;
   z-index: 5;
+  color: rgb(99, 81, 21);
+  font-family: 'Pangolin', cursive;
 }
 
 .logout-button {
@@ -43,6 +47,14 @@ li {
   background-color: rgb(50, 216, 78);
   font-family: 'Pangolin', cursive;
   border-radius: 8px;
+  transition-duration: 0.4s;
+  margin-bottom: 3px;
+}
+
+.logout-button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  cursor: pointer;
 }
 
 /* trying backing animation */
