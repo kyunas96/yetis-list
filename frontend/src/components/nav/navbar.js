@@ -14,11 +14,17 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <Link to={`/user/${this.props.userId}/playlists-index`}>Go to Playlists</Link> 
-                <Link to={`/user/${this.props.userId}/profile`}>Profile</Link>
-                <button onClick={() => this.props.logout()}>Logout</button>
-            </div>
+            <ul className="logged-in-nav">
+              <li>
+                <Link to={'/'} className="playlist-make-nav">Make a playlist</Link> 
+              </li>
+              <li>
+                <Link to={'/profile'} className="profile-nav-link">Profile</Link>
+              </li>
+              <li>
+                <button className="logout-button" onClick={() => this.props.logout()}>Logout</button>
+              </li>
+            </ul>
         );
       } else {
         return (
@@ -34,17 +40,6 @@ class NavBar extends React.Component {
             <div className="nav-title">
               Yeti's List
             </div>
-            <ul className="logged-in-nav">
-              <li>
-                <Link to={'/'} className="playlist-make-nav">Make a playlist</Link> 
-              </li>
-              <li>
-                <Link to={'/profile'} className="profile-nav-link">Profile</Link>
-              </li>
-              <li>
-                <button className="logout-button" onClick={() => this.props.logout()}>Logout</button>
-              </li>
-            </ul>
             { this.getLinks() }
         </div>
       );
