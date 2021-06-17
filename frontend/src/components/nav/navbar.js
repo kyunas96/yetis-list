@@ -22,7 +22,7 @@ class NavBar extends React.Component {
                 <Link to={'/profile'} className="profile-nav-link">Profile</Link>
               </li>
               <li>
-                <button onClick={() => this.props.logout()}>Logout</button>
+                <button className="logout-button" onClick={() => this.props.logout()}>Logout</button>
               </li>
             </ul>
         );
@@ -40,6 +40,17 @@ class NavBar extends React.Component {
             <div className="nav-title">
               Yeti's List
             </div>
+            <ul className="logged-in-nav">
+              <li>
+                <Link to={'/'} className="playlist-make-nav">Make a playlist</Link> 
+              </li>
+              <li>
+                <Link to={'/profile'} className="profile-nav-link">Profile</Link>
+              </li>
+              <li>
+                <button onClick={() => this.props.logout()}>Logout</button>
+              </li>
+            </ul>
             { this.getLinks() }
         </div>
       );
