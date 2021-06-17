@@ -1,10 +1,27 @@
 import React from 'react';
 import { openModal } from '../../actions/modal_actions'
 import {connect} from 'react-redux'
+import {login} from '../../actions/session_actions'
 import Yeti from '../svg/yeti-component'
+import Tree from '../svg/tree-component'
 import './main.css'
+import yeti from '../svg/yeti-component';
 
 class MainPage extends React.Component {
+
+  constructor (props) {
+    super(props);
+
+    this.handleDemo = this.handleDemo.bind(this)
+  }
+
+  handleDemo () {
+    var demoUser = this.props.demoUsers[Math.floor(Math.random()*this.props.demoUsers.length)];
+    this.props.demoLogin(demoUser)
+      .then((data) => {
+        this.props.history.push(`/users/${data._id}`)
+      })
+  }
 
   render() {
     return (
@@ -15,7 +32,11 @@ class MainPage extends React.Component {
             {this.props.openSignup}
             {this.props.openLogin}
           </div>
+          <button onClick={this.handleDemo} className='demo-button'>Sign in with demo user</button>
+          <div className="happy-place">
           <Yeti />
+          <Tree />
+          </div>
         <footer className="footer">
           Copyright &copy; 2021 YeticorpLLC
         </footer>
@@ -24,8 +45,36 @@ class MainPage extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    demoUsers: [{
+      email: "yeti@yeti.gov",
+      password: "43284423sf"
+    },{
+      email: "bigfoot@bigfoot.gov",
+      password: "47289374jjks"
+    // },{
+    //   email: "sasquatch@sasquatch.gov",
+    //   password: "4328749237fj"
+    // },{
+    //   email: "sasssssquatch@sasssssquatch.gov",
+    //   password: "34892739jf"
+    // },{
+    //   email: "smallfoot@smallfoot.gov",
+    //   password: "432847hf"
+    // },{
+    //   email: "abomidable@abomidable.gov",
+    //   password: "324u348"
+    // },{
+    //   email: "chewbacca@chewbacca.gov",
+    //   password: "342304fs"
+    }]
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
+    demoLogin: (user) => dispatch(login(user)),
     openLogin:  <button className="login-button" onClick={() => dispatch(openModal('login'))}>login</button>,
     openSignup: <button className="signup-button" onClick={() => dispatch(openModal('signup'))}>Sign Up</button>
 
@@ -34,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(MainPage);
 
