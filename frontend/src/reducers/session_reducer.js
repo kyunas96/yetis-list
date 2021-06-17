@@ -3,7 +3,7 @@ import { RECEIVE_USER_LOGOUT, RECEIVE_CURRENT_USER } from '../actions/session_ac
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: null
 };
 
 const sessionReducer = (state = initialState, action) => {
