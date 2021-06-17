@@ -1,3 +1,7 @@
+var SpotifyWebApi = require("spotify-web-api-node");
+var spotifyKeys = require("../keys/keys");
+var playlistUtils = require('../list/playlist');
+
 module.exports = function makeplaylist(playlistQueryObject, res) {
   // Create the api object with the credentials
   var spotifyApi = new SpotifyWebApi({
@@ -14,9 +18,9 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
     spotifyApi.setAccessToken(data.body["access_token"]);
 
     spotifyApi.getRecommendations(playlistQueryObject).then(
-      (playlist) => {
-        let returnPlaylist = playlistUtils.extractForPlaylist(playlist);
-        res.json(returnPlaylist);
+      (data) => {
+        let playlist = playlistUtils.playlistToJSON(data);
+        res.json(playlist);
       },
       function (err) {
         console.log(

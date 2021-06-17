@@ -1,3 +1,4 @@
+
 import React from "react";
 import List from "./list";
 
@@ -9,6 +10,7 @@ class SearchBar extends React.Component {
       selectedSeed: "",
       seedType: "track",
     };
+    console.log(this.props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.updateSeedType = this.updateSeedType.bind(this);
@@ -18,16 +20,13 @@ class SearchBar extends React.Component {
   updateSearchValue(e) {
     e.preventDefault();
     console.log("Updating search value");
-    if (e.currentTarget.value === "") {
-      this.props.clearListItems();
-    } else {
-      this.setState({ searchValue: e.currentTarget.value }, () => {
-        this.props.requestListItems({
-          searchValue: this.state.searchValue,
-          seedType: this.state.seedType,
-        });
+    console.log(this.state);
+    this.setState({ searchValue: e.currentTarget.value }, () => {
+      this.props.requestListItems({
+        searchValue: this.state.searchValue,
+        seedType: this.state.seedType,
       });
-    }
+    });
   }
 
   updateSeedType(e) {
@@ -38,16 +37,28 @@ class SearchBar extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.sendSeed([
+    this.props.sendSeed(
       {
-        value: this.state.selectedSeed,
-        type: this.state.seedType,
-      },
-    ]);
+        seeds: [
+          {value: this.state.selectedSeed, type: this.state.seedType}
+        ],
+        options: {}
+      }
+    );
+    // add redirect to go to playlist show page
   }
 
-  setSeed(seed) {
-    this.setState({ selectedSeed: seed }, console.log(this.state));
+  setSeed(seed, name) {
+    this.setState(
+      {
+        selectedSeed: seed,
+        searchValue: name,
+      },
+      () => {
+        console.log(this.state);
+        this.props.clearListItems();
+      }
+    );
   }
 
   // componentWillUnmount(){
@@ -55,16 +66,20 @@ class SearchBar extends React.Component {
   // }
 
   render() {
+    let list =
+      this.state.searchValue !== "" ? (
+        <List items={this.props.listItems} action={this.setSeed} />
+      ) : null;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <input
           name="searchValue"
           type="text"
           onChange={this.updateSearchValue}
+          value={this.state.searchValue}
         />
-        <div className="search-list-dropdown">
-          <List items={this.props.listItems} action={this.setSeed} />
-        </div>
+        <div className="search-list-dropdown">{list}</div>
         <select onChange={this.updateSeedType}>
           <option value="track">Track</option>
           <option value="artist">Artist</option>

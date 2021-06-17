@@ -6,7 +6,7 @@ function getArtistsForList(data){
 function getListInfoForArtist(data){
   let artistInfo = {};
   artistInfo.name = getArtist(data)
-  artistInfo.portrait = getPortrait(data);
+  artistInfo.image = getPortrait(data);
   artistInfo.id = getArtistId(data);
   return artistInfo;
 }

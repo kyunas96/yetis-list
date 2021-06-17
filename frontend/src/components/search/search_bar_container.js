@@ -13,4 +13,5 @@ const mDTP = (dispatch) => ({
   sendSeed: (seed) => dispatch(sendSeed(seed)),
   clearListItems: () => dispatch(clearListItems())
 });
+
 export default connect(mSTP, mDTP)(SearchBar);

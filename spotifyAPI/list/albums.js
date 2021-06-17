@@ -7,7 +7,7 @@ function getListInfoForAlbum(data){
   let albumInfo = {};
   albumInfo.name = getName(data);
   albumInfo.artist = getArtists(data);
-  albumInfo.artwork = getAlbumArtwork(data);
+  albumInfo.image = getAlbumArtwork(data);
   albumInfo.id = getAlbumId(data)
   return albumInfo;
 }

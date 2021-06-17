@@ -5,6 +5,7 @@ const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
 const Search = require('../../spotifyAPI/search/search');
 const makePlaylist = require('../../spotifyAPI/makePlaylist/makeplaylist');
+const packageQueryObject = require('../../spotifyApi/makePlaylist/packagers');
 
 
 // create playlist
@@ -126,8 +127,8 @@ router.patch('/:id', (req, res) => {
 
 router.post('/generate', (req, res) => {
 	console.log("req body:" + JSON.stringify(req.body));
-	// let queryObject = packageQueryObject(req.body);
-	// makePlaylist(queryObject, res)
+	let queryObject = packageQueryObject(req.body);
+	makePlaylist(queryObject, res)
 })
 
 router.post('/getlist', (req, res) => {
@@ -138,3 +139,8 @@ router.post('/getlist', (req, res) => {
 })
 
 module.exports = router;
+
+// {
+// 	seeds: [],
+// 	options: {}
+// }
