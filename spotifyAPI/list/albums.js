@@ -8,7 +8,7 @@ function getListInfoForAlbum(data){
   albumInfo.name = getName(data);
   albumInfo.artist = getArtists(data);
   albumInfo.artwork = getAlbumArtwork(data);
-  albumInfo.albumId = getAlbumId(data)
+  albumInfo.id = getAlbumId(data)
   return albumInfo;
 }
 

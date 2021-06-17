@@ -1,5 +1,6 @@
 var SpotifyWebApi = require("spotify-web-api-node");
 var spotifyKeys = require('../keys/keys')
+var albumUtils = require('../list/albums')
 
 module.exports = function searchAlbums(value, res) {
   // Create the api object with the credentials
