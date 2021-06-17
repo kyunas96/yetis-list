@@ -9,10 +9,13 @@ module.exports = function search(value, title, res){
   switch(title){
     case 'track':
       searchTracks(value, res)
+      break;
     case 'artist':
       searchArtists(value, res)
+      break;
     case 'album':
       searchAlbums(value, res)
+      break;
     default:
       console.error("invalid search type")
   }
