@@ -1,0 +1,28 @@
+.create-playlist-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20px;
+    height: auto;
+    height: 200px;
+}
+
+.create-playlist-modal-form {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.create-playlist-modal-form > label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 260px;
+}
+
+.exit-modal {
+    margin-bottom: 20px;
+    width: 40px;
+}

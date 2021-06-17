@@ -105,3 +105,4 @@ dist
 .tern-port
 
 config/keys_dev.js
+spotifyAPI/keys
