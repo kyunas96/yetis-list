@@ -1,5 +1,3 @@
-
-
 const searchTracks = require('./tracks');
 const searchArtists = require('./artists');
 const searchAlbums = require('./albums')

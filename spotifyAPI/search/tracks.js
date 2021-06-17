@@ -1,4 +1,4 @@
-var SpotifyWebApi = require("spotify-web-api-node");
+var SpotifyWebApi = require('spotify-web-api-node');
 var spotifyKeys = require('../keys/keys')
 var trackUtils = require('../list/tracks')
 

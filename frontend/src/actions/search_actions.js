@@ -1,10 +1,10 @@
 import * as APIUtil from '../util/search_api_util'
 
-
-export const SUBMIT_SEED = 'SUBMIT_SEED'
-export const GET_LIST_ITEMS = 'GET_LIST_ITEMS'
-export const RECEIVE_LIST_ITEMS = "RECEIVE_LIST_ITEMS"
-export const RECEIVE_LIST_ERRORS = 'RECEIVE_LIST_ERRORS'
+export const SUBMIT_SEED = 'SUBMIT_SEED';
+export const GET_LIST_ITEMS = 'GET_LIST_ITEMS';
+export const RECEIVE_LIST_ITEMS = 'RECEIVE_LIST_ITEMS';
+export const RECEIVE_LIST_ERRORS = 'RECEIVE_LIST_ERRORS';
+export const CLEAR_LIST_ITEMS = 'CLEAR_LIST_ITEMS';
 
 export const submitSeed = (seedData) => ({
     type: SUBMIT_SEED,
@@ -19,14 +19,12 @@ export const getListItems = (searchItem) => ({
 export const receiveListItems = (listItems) => ({
     type: RECEIVE_LIST_ITEMS,
     listItems
-
 })
 
 export const receiveListErrors = (errors) => ({
     type: RECEIVE_LIST_ERRORS,
     errors
 })
-
 
 export const sendSeed = (seedData) => dispatch => (
     APIUtil.submitSeed(seedData).then(
@@ -37,7 +35,11 @@ export const sendSeed = (seedData) => dispatch => (
 
 export const requestListItems = (searchItem) => dispatch => (
     APIUtil.getListItems(searchItem).then(
-        (listItems) => console.log(listItems),
+        (payload) => dispatch(receiveListItems(payload.data)),
         (err) => dispatch(receiveListErrors(err.response.data))
     )
+)
+
+export const clearListItems = () => dispatch => (
+    dispatch({type: CLEAR_LIST_ITEMS})
 )

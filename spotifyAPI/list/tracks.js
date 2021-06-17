@@ -8,8 +8,8 @@ function getListInfoForTrack(track){
   trackInfo.name = getTitle(track);
   trackInfo.artist = getArtist(track);
   trackInfo.album = getAlbum(track);
-  trackInfo.albumLink = getAlbumArtwork(track).small;
-  trackInfo.trackId = getTrackId(track)
+  trackInfo.albumLink = getAlbumArtwork(track);
+  trackInfo.id = getTrackId(track)
   return trackInfo;
 }
 
