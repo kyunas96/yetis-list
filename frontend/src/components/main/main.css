@@ -1,11 +1,16 @@
+.main-body {
+  background-color: rgb(76, 211, 245);
+  align-items: center;
+}
+
 .main-title {
   font-family: 'Kirang Haerang', cursive;
   text-align: center;
-  font-size: 60px;
+  font-size: 80px;
   display: block;
   clear: both;
   margin: 0 auto;
-  padding-top: 112px;
+  padding-top: 100px;
   padding-bottom: 20px;
 }
 
@@ -13,8 +18,37 @@
   text-align: center;
   font-size: 24px;
 }
+
 .buttons {
   text-align: center;
   padding-top: 30px;
-  margin-bottom: 300px;
+  margin-bottom: 70px;
+
+}
+
+.login-button {
+  margin-left: 20px;
+}
+
+.signup-button {
+  margin-right: 20px;
+}
+
+.login-button, .signup-button {
+  height: 60px;
+  width: 100px;
+  font-size: 20px;
+  border: rgb(0, 0, 0) 1pt solid;
+  color: rgb(99, 81, 21);
+  background-color: rgb(50, 216, 78);
+  font-family: 'Pangolin', cursive;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  margin-bottom: 3px;
+}
+
+.login-button:hover, .signup-button:hover {
+  background-color: rgb(50, 216, 78); /* Green */
+  color: white;
+  cursor: pointer;
 }
