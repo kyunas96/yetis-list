@@ -1,11 +1,19 @@
+.main-body {
+  background-color: rgb(76, 211, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%
+}
+
 .main-title {
   font-family: 'Kirang Haerang', cursive;
   text-align: center;
-  font-size: 60px;
+  font-size: 80px;
   display: block;
   clear: both;
   margin: 0 auto;
-  padding-top: 112px;
+  padding-top: 100px;
   padding-bottom: 20px;
 }
 
@@ -13,8 +21,73 @@
   text-align: center;
   font-size: 24px;
 }
+
 .buttons {
   text-align: center;
   padding-top: 30px;
-  margin-bottom: 300px;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+
+.login-button {
+  margin-left: 20px;
+  z-index: 10;
+}
+
+.signup-button {
+  margin-right: 20px;
+  z-index: 10;
+}
+
+.login-button, .signup-button {
+  height: 60px;
+  width: 100px;
+  font-size: 20px;
+  border: rgb(0, 0, 0) 1pt solid;
+  color: rgb(99, 81, 21);
+  background-color: rgb(50, 216, 78);
+  font-family: 'Pangolin', cursive;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  margin-bottom: 3px;
+}
+
+.demo-button {
+  height: 60px;
+  font-size: 20px;
+  align-items: center;
+  border: rgb(0, 0, 0) 1pt solid;
+  color: rgb(99, 81, 21);
+  background-color: rgb(50, 216, 78);
+  font-family: 'Pangolin', cursive;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  margin-bottom: 3px;
+}
+
+.login-button:hover, .signup-button:hover, .demo-button:hover {
+  background-color: rgb(50, 216, 78); 
+  color: white;
+  cursor: pointer;
+}
+
+.happy-place {
+    text-align:center;
+    position: relative;
+    left: 50px;
+    width: 100%;
+    margin-top: 600px;
+    z-index: 1;
+}
+
+.yeti {
+  position:absolute;
+  bottom: 0px;
+}
+
+.tree {
+  position: absolute;
+  bottom: 0px;
+  left: 400px;
+  z-index: 1;
 }
