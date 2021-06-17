@@ -4,7 +4,7 @@ import { openModal } from '../../actions/modal_actions';
 import { fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 // import SearchBarContainer from '../search_bar_container'
-import './playlist_css/playlist-create-page.css'
+import './playlist_css/playlist-create-page.css';
 
 class PlaylistCreatePage extends React.Component {
 	componentWillUnmount() {
@@ -14,11 +14,16 @@ class PlaylistCreatePage extends React.Component {
 	render() {
 		return (
 			<section className='playlist-create-page'>
-				{/* <SearchBarContainer /> */}
-                <input value='test search bar' />
-				<button className='make-playlist-button' onClick={() => this.props.openModal('create-playlist')}>
-					Make A Playlist From Scratch
-				</button>
+				<div>
+					{/* <SearchBarContainer /> */}
+
+					<input value='test search bar' />
+					<button
+						className='make-playlist-button'
+						onClick={() => this.props.openModal('create-playlist')}>
+						Make A Playlist From Scratch
+					</button>
+				</div>
 			</section>
 		);
 	}

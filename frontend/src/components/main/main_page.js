@@ -5,7 +5,6 @@ import {login} from '../../actions/session_actions'
 import Yeti from '../svg/yeti-component'
 import Tree from '../svg/tree-component'
 import './main.css'
-import yeti from '../svg/yeti-component';
 
 class MainPage extends React.Component {
 

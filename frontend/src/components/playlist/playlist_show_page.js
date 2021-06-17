@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../../actions/playlist_actions';
+import './playlist_css/playlist-show-page.css'
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ class PlaylistShowPage extends Component {
 	render() {
 		const {title, description} = this.state.playlist ? this.state.playlist : {title: '', description: ''}
 		return (
-			<section className='playlist-show'>
+			<section className='playlist-show-page'>
 				<div>PlaylistShowPage</div>
 				<div>{title}</div>
                 <div>{description}</div>
