@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 	if (!isValid) return res.status(400).json(errors);
 
 	let newPlaylist = new Playlist(req.body);
-	// console.log('routes', newPlaylist)
+
 	newPlaylist.save().then((playlist) => {
 
 		// adds playlist to users playlists array

@@ -21,10 +21,7 @@ class SessionForm extends React.Component {
 	handleSubmit(e) {
         e.preventDefault();
 		const user = Object.assign({}, this.state);
-        console.log(user)
-        console.log(this.props)
-		this.props.processForm(user)
-		.then((data) => {
+		this.props.processForm(user).then((data) => {
 			if (this.props.formType === 'signup') {
 				this.props.history.push(`/users/${data.currentUser._id}`)
 			} else {
@@ -33,7 +30,6 @@ class SessionForm extends React.Component {
 		})
 		.then(() => this.props.closeModal());
 	}
-
 	
 
 	render() {

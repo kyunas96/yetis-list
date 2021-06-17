@@ -19,11 +19,11 @@ function Modal({ modal, closeModal }) {
 		case 'signup':
 			component = <SignupFormContainer />;
 			break;
-    case 'create-playlist':
-			component = <CreatePlaylistContainer />
+		case 'create-playlist':
+			component = <CreatePlaylistContainer />;
 			break;
-    case 'update-playlist': 
-			component = <UpdatePlaylistContainer />
+		case 'update-playlist':
+			component = <UpdatePlaylistContainer />;
 			break;
 		default:
 			return null;

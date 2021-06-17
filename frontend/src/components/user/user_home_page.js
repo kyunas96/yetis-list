@@ -1,7 +1,14 @@
+// NOT 
+// BEING 
+// USED 
+// ANYWHERE
+// AT 
+// THE 
+// MOMENT
+
 import React from 'react';
 import { logout } from '../../actions/session_actions';
 import { connect } from 'react-redux';
-import SearchBar from '../search/search_bar_container'
 
 class UserHomePage extends React.Component {
 	render() {
@@ -9,7 +16,6 @@ class UserHomePage extends React.Component {
 			<div>
 				<h1>Yeti's List</h1>
 				<h1>Hello {this.props.currentUser.username}</h1>
-				<SearchBar />
 			</div>
 		);
 	}

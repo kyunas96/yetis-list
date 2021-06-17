@@ -14,9 +14,6 @@ class MainPage extends React.Component {
             {this.props.openSignup}
             {this.props.openLogin}
           </div>
-        <footer className="footer">
-          Copyright &copy; 2021 YeticorpLLC
-        </footer>
       </div>
     );
   }
