@@ -19,7 +19,6 @@ class PlaylistShowPage extends Component {
 		const {title, description} = this.state.playlist ? this.state.playlist : {title: '', description: ''}
 		return (
 			<section className='playlist-show-page'>
-				<div>PlaylistShowPage</div>
 				<div>{title}</div>
                 <div>{description}</div>
 			</section>
