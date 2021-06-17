@@ -9,7 +9,7 @@ import UserHomePage from './user/main/user_main';
 import './css/fonts.css'
 
 const App = () => (
-  <div>
+  <>
     <NavBarContainer />
     <Modal />
     <Switch>
@@ -26,7 +26,7 @@ const App = () => (
         
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
-  </div>
+  </>
 );
 
 export default App;

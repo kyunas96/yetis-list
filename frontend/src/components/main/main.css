@@ -72,21 +72,18 @@
 }
 
 .happy-place {
-    text-align:center;
+    display: flex;
+    align-items: baseline;
     position: relative;
-    left: 50px;
     width: 100%;
-    margin-top: 600px;
-    z-index: 1;
 }
 
 .yeti {
-  position:absolute;
-  bottom: 0px;
+  /* position:absolute;
+  bottom: 0px; */
 }
 
 .tree {
-  position: absolute;
-  bottom: 0px;
-  left: 400px;
+  /* position: absolute;
+  bottom: 0px; */
 }

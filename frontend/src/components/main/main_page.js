@@ -34,8 +34,8 @@ class MainPage extends React.Component {
           </div>
           <button onClick={this.handleDemo} className='demo-button'>Sign in with demo user</button>
           <div className="happy-place">
-          <Yeti />
-          <Tree />
+            <Yeti />
+            <Tree />
           </div>
         <footer className="footer">
           Copyright &copy; 2021 YeticorpLLC
