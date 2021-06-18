@@ -61,6 +61,7 @@
 
 .list{
   position: absolute;
+  top: -21px;
   background-color: rgb(244, 206, 18);
   height: 400px;
   width: 300px;
@@ -107,11 +108,12 @@
   align-items: center;
   box-shadow: inset 0px 0px 0px 1px black;
   box-sizing: border-box;
-  
+  transition-duration: 0.4;
 }
 
 .info-text:hover {
   background-color: rgb(50, 216, 78);
+  color: white
 }
 
 .search-value-name {
