@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../../actions/playlist_actions';
+import CommentItem from '../comment/comment_item';
 import './playlist_css/playlist-show-page.css'
 
 class PlaylistShowPage extends Component {
@@ -16,11 +17,36 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		const {title, description} = this.state.playlist ? this.state.playlist : {title: '', description: ''}
+		const {title, description, comments, songs} = this.state.playlist ? this.state.playlist : {title: '', description: ''}
 		return (
 			<section className='playlist-show-page'>
-				<div>{title}</div>
-                <div>{description}</div>
+				<section className='comments'>
+					<ul className='comments-list'>
+						{comments.length > 0 ? (
+							comments.map((comment, i) => {
+								return <CommentItem key={i} comment={comment}/>
+							})
+						) : (
+							<li className='comment-item add-comment'>Add comment</li>
+						)}
+					</ul>
+				</section>
+				<section className='playlist-info'>
+					<div className='playlist-header'>
+						<div className='playlist-title'>{title}</div>
+    		            <div className='playlist-description'>{description}</div>
+					</div>
+					<ul className='playlist-songs'>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+						<li className='song-item'>Songs Here</li>
+					</ul>
+				</section>
 			</section>
 		);
 	}
@@ -46,7 +72,7 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
 	return {
-		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId))
+		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 	};
 };
 

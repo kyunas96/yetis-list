@@ -16,7 +16,7 @@ class NavBar extends React.Component {
         return (
             <ul className="logged-in-nav">
               <li>
-                <Link to={'/'} className="playlist-make-nav">Make a playlist</Link> 
+                <Link to={`/users/${this.props.user}/create-playlist`} className="playlist-make-nav">Make a playlist</Link> 
               </li>
               <li>
                 <Link to={'/profile'} className="profile-nav-link">Profile</Link>

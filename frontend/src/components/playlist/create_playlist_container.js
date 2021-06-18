@@ -44,6 +44,7 @@ class CreatePlaylist extends React.Component {
 		if (newState.description.length < 1) {
 			newState.description = `Playlist #${this.getPlaylistNumber()} for ${this.props.currentUser.username}`
 		} 
+		console.log(newState)
 		this.props.createPlaylist(newState)
 		.then((playlist) => {
 			this.props.fetchPlaylists(playlist.userId).then(() => {
