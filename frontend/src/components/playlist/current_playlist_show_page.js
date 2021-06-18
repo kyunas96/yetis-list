@@ -24,12 +24,12 @@ class PlaylistShowPage extends Component {
 		const items = this.props.playlist.items
 		return (
 			<section className='current-playlist'>
-				<section className='playlist-info'>
+				<section className='current-page-playlist-info'>
 					<div className='playlist-header'>
 						<div className='playlist-title'>{items[0].name}</div>
     		            <div className='playlist-description'>I can't believe how cool this playlist is!</div>
 					</div>
-					<ul className='playlist-list'>
+					<ul className='current-playlist-list'>
 						{items.map((song, i) => {
 							return <SongListItem className='playlist-item' key={i} song={song}/>
 						})}

@@ -9,12 +9,12 @@
     margin-top: 55px;
 }
 
-.playlist-info {
+.current-page-playlist-info {
     width: 100%;
     align-items: center;
 }
 
-.playlist-list {
+.current-playlist-list {
     display: flex;
     flex-direction: column;
     align-items: center;
