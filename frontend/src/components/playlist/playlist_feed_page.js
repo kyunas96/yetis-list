@@ -21,12 +21,15 @@ class PlaylistFeedPage extends React.Component {
 	}
 
     filterOutOwnPlaylists(playlists) {
+		// console.log(playlists)
         const otherPlaylists = [];
-        playlists.forEach(playlist => {
+        for (const [key, playlist] of Object.entries(playlists)) {
+			// console.log(key, playlist)
             if (playlist.userId !== this.props.currentUserId) {
                 otherPlaylists.push(playlist)
             }
-        })
+        }
+		// console.log(otherPlaylists)
         return otherPlaylists;
     }
 

@@ -29,10 +29,10 @@ class AddComment extends Component {
         console.log(this.state)
 		this.props.createComment(this.state)
 			.then(() => {
-				this.props.fetchPlaylists(this.props.userId)
-                this.props.closeModal()
-			});
-
+				this.props.fetchPlaylists(this.props.userId).then(()=> {
+					this.props.closeModal()
+				})
+			})
 	}
 
     render() { 
@@ -53,7 +53,9 @@ class AddComment extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
+	console.log(ownProps)
 	return {
+		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
 		userId: state.session.user,
 	};

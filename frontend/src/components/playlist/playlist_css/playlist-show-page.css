@@ -39,6 +39,7 @@
 
 .add-comment  {
     background-color: rgb(47, 141, 165);
+	transition-duration: 0.4s;
 }
 
 .add-comment:hover {

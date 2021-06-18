@@ -3,7 +3,7 @@ const router = express.Router();
 const Playlist = require('../../models/Playlist');
 const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
-
+const { playlistsFormatter } = require('../util/playlist_util');
 
 // create playlist
 // needs...
@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
 	Playlist.find()
 		.sort({ date: -1 })
+		.then((playlists) => playlistsFormatter(playlists))
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
 			res.status(404).json({ noPlaylistsFound: 'No playlists found' })
