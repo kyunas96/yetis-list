@@ -5,7 +5,8 @@ const User = require('../../models/User');
 const validatePlaylistInput = require('../../validation/playlist');
 const Search = require('../../spotifyAPI/search/search');
 const makePlaylist = require('../../spotifyAPI/makePlaylist/makeplaylist');
-const packageQueryObject = require('../../spotifyApi/makePlaylist/packagers');
+const packageQueryObject = require('../../spotifyAPI/makePlaylist/packagers');
+                                          
 
 
 // create playlist
