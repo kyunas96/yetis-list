@@ -76,8 +76,10 @@ class SearchBar extends React.Component {
 
     return (
       <div className="search">
-        <form onSubmit={this.handleSubmit}>
+        <form className="search-form" onSubmit={this.handleSubmit}>
           <input
+            placeholder="Select Song/Artist/Genre and search here"
+            className="search-input"
             name="searchValue"
             type="text"
             autoComplete='off'
@@ -85,12 +87,12 @@ class SearchBar extends React.Component {
             value={this.state.searchValue}
           />
           <div className="search-list-dropdown">{list}</div>
-          <select onChange={this.updateSeedType}>
-            <option value="track">Track</option>
-            <option value="artist">Artist</option>
-            <option value="genre">Genre</option>
+          <select className="search-value-dropdown" onChange={this.updateSeedType}>
+            <option className="dropdown-option" value="track">Song</option>
+            <option className="dropdown-option" value="artist">Artist</option>
+            <option className="dropdown-option" value="genre">Genre</option>
           </select>
-          <button type="submit">Submit</button>
+          <button className="submit-search-button" type="submit">Submit</button>
         </form>
       </div>
     );

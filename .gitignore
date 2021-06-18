@@ -108,3 +108,4 @@ dist
 
 config/keys_dev.js
 spotifyAPI/keys
+spotifyAPI/.DS_Store
