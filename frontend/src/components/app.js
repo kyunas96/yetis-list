@@ -9,6 +9,7 @@ import UserHomePage from './user/main/user_main';
 import PlaylistCreatePage from './playlist/playlist_create_page';
 import PlaylistShowPage from './playlist/playlist_show_page';
 import Footer from './footer/footer'
+import UserProfilePage from './user/profile/user_profile_container'
 import './css/fonts.css'
 
 const App = () => (
@@ -20,12 +21,12 @@ const App = () => (
         <ProtectedRoute exact path='/users/:id/playlist/:playlistId' component={PlaylistShowPage} />
         {/* On Playlist Create page: Searchbar, manual Playlist creator */}
         <ProtectedRoute exact path='/users/:id/create-playlist' component={PlaylistCreatePage} /> 
-        {/* On User Home: Searchbar */}
-        <ProtectedRoute exact path='/users/:id/' component={UserHomePage} />
-        {/* On User Profile: playlist list container, liked playlist container, link to playlist creator page button */}
-        {/* <ProtectedRoute exact path='/users/:id/profile' component={UserProfilePage} /> */}
         {/* On Song Show page: song stats, playlists included in */}
         {/* <ProtectedRoute exact path='/users/:id/song/:song-id' component={SongShowPage} /> */}
+        {/* On User Profile: playlist list container, liked playlist container, link to playlist creator page button */}
+        <ProtectedRoute exact path='/users/:id/profile' component={UserProfilePage} />
+        {/* On User Home: Searchbar */}
+        <ProtectedRoute exact path='/users/:id/' component={UserHomePage} />
         
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>

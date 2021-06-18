@@ -6,7 +6,7 @@ import {
 	sendPlaylistId,
 	deletePlaylist,
 } from '../../actions/playlist_actions';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router-dom';
 
 class PlaylistIndex extends React.Component {
 	constructor(props) {
@@ -16,7 +16,7 @@ class PlaylistIndex extends React.Component {
 
 	handleUpdate(playlistId) {
 		this.props.sendPlaylistId(playlistId);
-		this.props.openModal('update-playlist')
+		this.props.openModal('update-playlist');
 	}
 
 	componentDidMount() {
@@ -24,44 +24,45 @@ class PlaylistIndex extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (nextProps !== this.props) {
+		if (nextProps.playlists !== this.props.playlists) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
+
 	render() {
 		return (
-			<section>
-          <button onClick={() => this.props.openModal('create-playlist')}>
-            Make A Playlist
-          </button>
-          <br />
-          <br />
+			<section className='playlist-list'>
+				<button id='make-a-playlist' onClick={() => this.props.openModal('create-playlist')}>
+					Make A Playlist
+				</button>
 				<ul>
 					{this.props.playlists.length > 0 ? (
 						this.props.playlists.map((playlist, i) => {
 							return (
-								<li key={i} playlist={playlist}>
-									<h3>{playlist.title}</h3>
-									<h3>{playlist.description}</h3>
+								<li key={i} playlist={playlist} className='playlist-item'>
+									<Link to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}>
+										<h3 className='playlist-profile-title'>{playlist.title}</h3>
+										<h3 className='playlist-profile-description'>{playlist.description}</h3>
+									</Link>
 									<button onClick={() => this.handleUpdate(playlist._id)}>
 										Update Playlist
 									</button>
 									<button
-										onClick={() => this.props.deletePlaylist(playlist._id).then(() => this.props.fetchPlaylists(playlist.userId))}>
+										onClick={() => {
+											this.props.openModal('delete-playlist')
+											this.props.sendPlaylistId(playlist._id)
+										}}>
 										Delete Playlist
 									</button>
-									<br />
-									<br />
 								</li>
 							);
 						})
 					) : (
 						<li>
 							<h3>You don't have any playlists</h3>
-							<br />
 						</li>
 					)}
 				</ul>

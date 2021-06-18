@@ -44,7 +44,7 @@ class CreatePlaylist extends React.Component {
 		if (newState.description.length < 1) {
 			newState.description = `Playlist #${this.getPlaylistNumber()} for ${this.props.currentUser.username}`
 		} 
-		console.log(newState)
+		
 		this.props.createPlaylist(newState)
 		.then((playlist) => {
 			this.props.fetchPlaylists(playlist.userId).then(() => {
@@ -80,17 +80,15 @@ class CreatePlaylist extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		playlists: state.entities.playlists.playlists,
-		currentUser: state.session.user,
+		currentUser: state.entities.users,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
-		// updatePlaylist: (playlist) => dispatch(updatePlaylist(playlist)),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
-		// openModal: () => dispatch(openModal('create-playlist'))
 	};
 };
 
