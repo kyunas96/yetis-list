@@ -58,6 +58,16 @@
   flex-grow: 3;
 }
 
-.list-item img{
-  
+.info-text {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.search-value-name {
+  height: 50%;
+
+}
+
