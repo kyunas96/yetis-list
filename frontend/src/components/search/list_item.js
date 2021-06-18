@@ -40,10 +40,6 @@ const ListItem = (props) => {
    
 
   }
-  
-
-
-  let imageSrc = props.item.image.hasImage ? props.item.image.small : "/music-solid.svg";
 
   return (
     <li
