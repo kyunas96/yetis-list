@@ -1,7 +1,6 @@
 const searchTracks = require('./tracks');
 const searchArtists = require('./artists');
-const searchAlbums = require('./albums')
-
+const searchGenres = require('./genres');
 
 module.exports = function search(value, title, res){
   switch(title){
@@ -11,8 +10,8 @@ module.exports = function search(value, title, res){
     case 'artist':
       searchArtists(value, res)
       break;
-    case 'album':
-      searchAlbums(value, res)
+    case 'genre':
+      searchGenres(value, res)
       break;
     default:
       console.error("invalid search type")

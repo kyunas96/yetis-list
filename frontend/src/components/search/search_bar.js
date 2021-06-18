@@ -32,8 +32,13 @@ class SearchBar extends React.Component {
   updateSeedType(e) {
     let selectedIndex = e.target.options.selectedIndex;
     let field = e.target.options[selectedIndex].value;
-    this.setState({ seedType: field });
-  }
+    this.setState({ seedType: field }, () => {
+      this.props.requestListItems({
+        searchValue: this.state.searchValue,
+        seedType: this.state.seedType,
+      });
+    });
+    }
 
   handleSubmit(e) {
     console.log("submitting");
