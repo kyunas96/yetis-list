@@ -32,8 +32,6 @@ class MainPage extends React.Component {
             {this.props.openSignup}
             {this.props.openLogin}
           </div>
-<<<<<<< HEAD
-=======
           <button onClick={this.handleDemo} className='demo-button'>Sign in with demo user</button>
           <div className="happy-place">
             <Yeti />
@@ -42,7 +40,6 @@ class MainPage extends React.Component {
         <footer className="footer">
           Copyright &copy; 2021 YeticorpLLC
         </footer>
->>>>>>> main
       </div>
     );
   }

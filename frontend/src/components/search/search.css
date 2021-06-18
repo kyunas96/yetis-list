@@ -1,0 +1,39 @@
+.search form {
+  display: flex;
+  flex-direction: row;
+}
+
+.search form input[type='text']{
+  width: 200px;
+}
+
+.search-list-dropdown{
+  position: relative;
+  right: 205px;
+  top: 23px;
+  /* height: 400px; */
+  /* overflow: scroll; */
+}
+
+.list{
+  position: absolute;
+  height: 400px;
+  width: 200px;
+  overflow: scroll;
+  z-index: 3;
+}
+
+.list-item{
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  height: 80px;
+}
+
+.list-item img{
+  
+}
+
+.list-item span{
+  flex-grow: 3;
+}

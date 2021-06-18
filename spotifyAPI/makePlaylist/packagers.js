@@ -1,4 +1,5 @@
  function packageQueryObject(data) {
+   console.log(data)
   let seed_artists = [];
   let seed_genres = [];
   let seed_tracks = [];
@@ -6,6 +7,10 @@
     switch (seed.type) {
       case "artist":
         seed_artists.push(seed.value);
+      case "track":
+        seed_tracks.push(seed.value)
+      case "genre":
+        seed_genres.push(seed.value)
     }
   });
 

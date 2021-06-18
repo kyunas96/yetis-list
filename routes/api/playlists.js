@@ -128,6 +128,7 @@ router.patch('/:id', (req, res) => {
 router.post('/generate', (req, res) => {
 	console.log("req body:" + JSON.stringify(req.body));
 	let queryObject = packageQueryObject(req.body);
+	console.log(queryObject);
 	makePlaylist(queryObject, res)
 })
 

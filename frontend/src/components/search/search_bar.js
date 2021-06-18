@@ -1,6 +1,6 @@
-
 import React from "react";
 import List from "./list";
+import "./search.css";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
       selectedSeed: "",
       seedType: "track",
     };
-    console.log(this.props)
+    console.log(this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.updateSeedType = this.updateSeedType.bind(this);
@@ -36,15 +36,12 @@ class SearchBar extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log("submitting");
     e.preventDefault();
-    this.props.sendSeed(
-      {
-        seeds: [
-          {value: this.state.selectedSeed, type: this.state.seedType}
-        ],
-        options: {}
-      }
-    );
+    this.props.sendSeed({
+      seeds: [{ value: this.state.selectedSeed, type: this.state.seedType }],
+      options: {},
+    });
     // add redirect to go to playlist show page
   }
 
@@ -72,21 +69,24 @@ class SearchBar extends React.Component {
       ) : null;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          name="searchValue"
-          type="text"
-          onChange={this.updateSearchValue}
-          value={this.state.searchValue}
-        />
-        <div className="search-list-dropdown">{list}</div>
-        <select onChange={this.updateSeedType}>
-          <option value="track">Track</option>
-          <option value="artist">Artist</option>
-          <option value="genre">Genre</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
+      <div className="search">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            name="searchValue"
+            type="text"
+            autoComplete='off'
+            onChange={this.updateSearchValue}
+            value={this.state.searchValue}
+          />
+          <div className="search-list-dropdown">{list}</div>
+          <select onChange={this.updateSeedType}>
+            <option value="track">Track</option>
+            <option value="artist">Artist</option>
+            <option value="genre">Genre</option>
+          </select>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     );
   }
 }

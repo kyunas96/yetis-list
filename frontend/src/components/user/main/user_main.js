@@ -12,10 +12,10 @@ class UserHomePage extends React.Component {
         <h1 className="main-title">Yeti's List</h1>
           <div className="search-info">
             Yeti help friend! Help Yeti know what song/album/genre friend want playlist like:
-            <div className="search-bar">
-              Searchbar here
-            </div>
           </div>
+            <div className="search-bar">
+              <SearchBarContainer />
+            </div>
           <div className="happy-place">
             <Yeti />
             <Tree />
