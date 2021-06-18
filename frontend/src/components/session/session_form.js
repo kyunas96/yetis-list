@@ -1,4 +1,5 @@
-import React from 'react';
+ import React from 'react';
+import "./login_signup_modal.css"
 
 class SessionForm extends React.Component {
 	constructor(props) {
@@ -39,20 +40,23 @@ class SessionForm extends React.Component {
 		if (this.props.formType === 'signup') {
 			username_input = (
 				<label>
-					Username:
 					<input
+						placeholder="Username"
 						type='text'
 						value={this.state.username}
 						onChange={this.update('username')}
-						className='signup-input'
+						className='input'
 					/>
 				</label>
 			);
 		}
 		return (
 			<div className='form-container'>
-				Welcome to Yeti's List! Please {this.props.formType} or{' '}
+				<span className="span-title"> Yeti's List </span> 
+				<div className="form-instruction">
+				Please {this.props.formType} or{' '}
 				{this.props.otherForm}
+				</div>
 				<div onClick={this.props.closeModal} className='close-x'>
 					X
 				</div>
@@ -60,8 +64,8 @@ class SessionForm extends React.Component {
 					<form className='form-box'>
 						{username_input ? username_input : <></>}
 						<label>
-							Email:
 							<input
+								placeholder= "Email"
 								type='text'
 								value={this.state.email}
 								onChange={this.update('email')}
@@ -69,8 +73,8 @@ class SessionForm extends React.Component {
 							/>
 						</label>
 						<label>
-							Password:
 							<input
+								placeholder="Password"
 								type='password'
 								value={this.state.password}
 								onChange={this.update('password')}

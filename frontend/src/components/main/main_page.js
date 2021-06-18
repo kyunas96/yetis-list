@@ -27,7 +27,7 @@ class MainPage extends React.Component {
     return (
       <div className="main-body">
         <h1 className="main-title">Yeti's List</h1>
-          <div className="site-info">Yeti help friend make music playlist. Please sign up and tell Yeti song/album/genre you like, and Yeti help friend!</div>
+          <div className="site-info">Yeti help friend make music playlist. Please sign up and tell Yeti song/album/genre you like. Yeti help friend!</div>
           <div className="buttons">
             {this.props.openSignup}
             {this.props.openLogin}

@@ -19,6 +19,8 @@
   background-color: rgb(224, 187, 2);
   top: 50%;
   left: 50%;
+  border:rgb(0, 0, 0) 1px;
+  background-image: linear-gradient(to bottom right, rgb(76, 211, 245), rgb(224, 187, 2));
   transform: translate(-50%, -50%);
 }
 
