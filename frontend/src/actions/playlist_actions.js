@@ -49,9 +49,10 @@ export const updatePlaylist = (item) => (dispatch) =>
 	APIUtil.updatePlaylist(item).then(
 		(res) => {
 			dispatch(receivePlaylists(res.data))
-		},
-		// (err) => dispatch(receiveErrors(err.response.data))
-	);
+		})
+
+	// 	(err) => dispatch(receiveErrors(err.response.data))
+	// );
 
 export const deletePlaylist = (playlistId) => (dispatch) =>
 	APIUtil.deletePlaylist(playlistId)

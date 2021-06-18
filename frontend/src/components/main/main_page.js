@@ -19,7 +19,6 @@ class MainPage extends React.Component {
     console.log(demoUser)
     this.props.demoLogin(demoUser)
       .then((data) => {
-        console.log(data)
         this.props.history.push(`/users/${data._id}`)
       })
   }

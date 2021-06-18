@@ -1,20 +1,19 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
-import { updatePlaylist, removePlaylistId, fetchPlaylists } from '../../actions/playlist_actions';
+import { removePlaylistId, fetchPlaylists, deletePlaylist } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 
-class UpdatePlaylist extends React.Component {
+class DeletePlaylistContainer extends React.Component {
 	constructor(props) {
 		super(props);
-		const userId = this.props.currentUser
+		const userId = this.props.currentUserId;
         const {title, description} = this.getPlaylistInfo()
 		this.state = {
 			userId,
 			title,
 			description,
 		};
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
     getPlaylistInfo() {
@@ -35,38 +34,23 @@ class UpdatePlaylist extends React.Component {
 			});
 	}
 
-	handleSubmit(e) {
-		e.preventDefault();
-		console.log({ data: this.state, id: this.props.playlistId })
-		this.props
-			.updatePlaylist({ data: this.state, id: this.props.playlistId })
-			.then(() => {
-				this.props.closeModal();
-				this.props.removePlaylistId()
-				this.props.fetchPlaylists(this.state.userId)
-				this.props.history.push(`/users/${this.state.userId}/profile`)
-			});
-
-	}
+    handleDelete() {
+        this.props.deletePlaylist(this.props.playlistId).then(() => {
+            this.props.closeModal()
+            this.props.removePlaylistId()
+            this.props.fetchPlaylists(this.state.userId)
+        })
+    }
 
 	render() {
 		return (
 			<div>
-				<button onClick={this.props.closeModal}>exit</button>
-				<form onSubmit={this.handleSubmit}>
-					<label>
-						Title
-						<input onChange={this.update('title')} value={this.state.title} />
-					</label>
-					<label>
-						Description
-						<input
-							onChange={this.update('description')}
-							value={this.state.description}
-						/>
-					</label>
-					<button>Save Changes</button>
-				</form>
+                <div>Are you sure you want to delete your playlist {this.state.title}</div>
+				<button onClick={() => {
+                    this.props.closeModal()
+                    this.props.removePlaylistId()
+                }}>No</button>
+				<button onClick={() => this.handleDelete()}>Yes</button>
 			</div>
 		);
 	}
@@ -75,20 +59,20 @@ class UpdatePlaylist extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		playlists: state.entities.playlists.playlists,
-		currentUser: state.session.user,
+		currentUserId: state.session.user,
         playlistId: state.entities.playlists.id,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		updatePlaylist: (item) => dispatch(updatePlaylist(item)),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
 		removePlaylistId: () => dispatch(removePlaylistId()),
+		deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
 	};
 };
 
 export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(UpdatePlaylist)
+	connect(mapStateToProps, mapDispatchToProps)(DeletePlaylistContainer)
 );
