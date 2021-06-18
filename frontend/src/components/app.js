@@ -26,6 +26,7 @@ const App = () => (
         
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
+    <Footer />
   </>
 );
 
