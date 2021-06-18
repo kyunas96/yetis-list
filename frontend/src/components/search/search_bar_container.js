@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { requestListItems, sendSeed, clearListItems} from "../../actions/search_actions";
 import SearchBar from "./search_bar";
+import { withRouter } from "react-router";
 
 const mSTP = (state) => {
   return {
@@ -15,4 +16,4 @@ const mDTP = (dispatch) => ({
   clearListItems: () => dispatch(clearListItems())
 });
 
-export default connect(mSTP, mDTP)(SearchBar);
+export default withRouter(connect(mSTP, mDTP)(SearchBar));

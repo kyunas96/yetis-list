@@ -46,8 +46,9 @@ class SearchBar extends React.Component {
     this.props.sendSeed({
       seeds: [{ value: this.state.selectedSeed, type: this.state.seedType }],
       options: {},
-    });
-    this.props.history.push(`/users/${this.props.currentUser}/playlists/current`)
+    }).then(() => {
+      this.props.history.push(`/users/${this.props.currentUser}/playlists/current`)
+    })
     // add redirect to go to playlist show page
   }
 
