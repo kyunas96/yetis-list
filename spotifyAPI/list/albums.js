@@ -31,7 +31,7 @@ function getAlbumArtwork(data){
     large: albumArtwork[0] || null,
     medium: albumArtwork[1] || null,
     small: albumArtwork[2] || null,
-    hasArtwork: albumArtwork.length > 0,
+    hasImage: albumArtwork.length > 0,
   };
 }
 

@@ -4,7 +4,8 @@ import SearchBar from "./search_bar";
 
 const mSTP = (state) => {
   return {
-    listItems: state.ui.searchBar
+    listItems: state.ui.searchBar,
+    currentUser: state.sesssion.user
   }
 };
 

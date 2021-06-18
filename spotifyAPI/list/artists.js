@@ -30,7 +30,7 @@ function getPortrait(data){
     large: artistPortrait[0] || null,
     medium: artistPortrait[1] || null,
     small: artistPortrait[2] || null,
-    hasPortrait: artistPortrait.length > 0
+    hasImage: artistPortrait.length > 0
   }
 }
 
