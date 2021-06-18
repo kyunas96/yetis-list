@@ -14,8 +14,11 @@
 .creators-container {
     display: flex;
     align-items: center;
-    position: fixed;
     left: 2%;
+    justify-content: space-around;
+    font-family: 'Kirang Haerang';
+    font-size: xx-large;
+    width: 80%;
 }
 
 .creators-container > div {
@@ -24,4 +27,16 @@
 
 .creator:hover {
     cursor: pointer;
+    
 }
+
+.creator > img:hover {
+    opacity: .4;
+}
+
+
+
+
+/* .creator > {
+
+} */
