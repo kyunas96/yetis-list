@@ -7,12 +7,7 @@ import { withRouter } from 'react-router';
 class UpdatePlaylist extends React.Component {
 	constructor(props) {
 		super(props);
-		let userId;
-		if (this.props.currentUser) {
-			userId = this.props.currentUser.id
-		} else {
-			userId = this.props.currentUser
-		}
+		const userId = this.props.currentUser
         const {title, description} = this.getPlaylistInfo()
 		this.state = {
 			userId,

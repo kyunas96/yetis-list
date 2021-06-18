@@ -4,7 +4,8 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  width: 100%
+  width: 100%;
+  margin-top: 55px;
 }
 
 .main-title {
@@ -79,13 +80,13 @@
     position: relative;
     width: 100%;
 }
-
+/* 
 .yeti {
   /* position:absolute;
   bottom: 0px; */
-}
+/* } */
 
-.tree {
+/* .tree { */
   /* position: absolute;
   bottom: 0px; */
-}
+/* } */ 

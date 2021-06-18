@@ -30,7 +30,10 @@ class SessionForm extends React.Component {
 				this.props.history.push(`/users/${data._id}`)
 			}
 		})
-		.then(() => this.props.closeModal());
+		.then(() => {
+			this.props.closeModal()
+			this.props.fetchAllPlaylists()
+		});
 	}
 
 	

@@ -5,9 +5,10 @@ import NavBarContainer from './nav/navbar_container';
 import Modal from './modal/modal';
 
 import MainPage from './main/main_page';
-import UserHomePage from './user/main/user_main';
+import UserMainPage from './user/main/user_main_container';
 import PlaylistCreatePage from './playlist/playlist_create_page';
 import PlaylistShowPage from './playlist/playlist_show_page';
+import PlaylistFeedPage from './playlist/playlist_feed_page';
 import UserProfilePage from './user/profile/user_profile_container'
 import './css/fonts.css'
 
@@ -23,9 +24,11 @@ const App = () => (
         {/* On Song Show page: song stats, playlists included in */}
         {/* <ProtectedRoute exact path='/users/:id/song/:song-id' component={SongShowPage} /> */}
         {/* On User Profile: playlist list container, liked playlist container, link to playlist creator page button */}
+        <ProtectedRoute exact path='/users/:id/playlist-feed' component={PlaylistFeedPage} />
+        {/* On User Profile: playlist list container, liked playlist container, link to playlist creator page button */}
         <ProtectedRoute exact path='/users/:id/profile' component={UserProfilePage} />
         {/* On User Home: Searchbar */}
-        <ProtectedRoute exact path='/users/:id/' component={UserHomePage} />
+        <ProtectedRoute exact path='/users/:id/' component={UserMainPage} />
         
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>

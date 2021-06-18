@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
 import CommentItem from '../comment/comment_item';
 import './playlist_css/playlist-show-page.css'
@@ -14,7 +14,7 @@ class PlaylistShowPage extends Component {
 	}
 
     componentDidMount() {
-		this.props.fetchPlaylists(this.props.currentUser.id)
+		this.props.fetchAllPlaylists()
 	}
 
 
@@ -84,14 +84,14 @@ const mSTP = (state, ownProps) => {
 	
 	return {
 		currentUser: state.entities.users,
-        playlists: state.entities.playlists.playlists,
+        playlists: state.entities.playlists.allPlaylists,
 		playlistId: ownProps.match.params.playlistId,
 	};
 };
 
 const mDTP = (dispatch) => {
 	return {
-		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 		openModal: () => dispatch(openModal('add-comment'))
 	};
 };
