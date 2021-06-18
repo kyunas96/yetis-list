@@ -4,6 +4,7 @@ import React from 'react';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import SessionForm from './session_form';
 import { withRouter } from 'react-router';
+import { fetchAllPlaylists } from '../../actions/playlist_actions';
 
 
 const mapStateToProps = (state) => {
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => {
         signup
       </button>
     ),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    fetchAllPlaylists: () => dispatch(fetchAllPlaylists())
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
 import CommentItem from '../comment/comment_item';
 import './playlist_css/playlist-show-page.css'
@@ -9,30 +9,21 @@ import './playlist_css/playlist-show-page.css'
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);
-		const playlist = this.getPlaylist(this.props.playlists, this.props.playlistId)
-		this.state = {playlist}
+		
+		// this.state = {playlist}
 	}
 
     componentDidMount() {
-		this.props.fetchPlaylists(this.props.currentUser.id)
+		this.props.fetchAllPlaylists()
+		// thi
 	}
 
-
-	getPlaylist(playlists, playlistId) {
-		console.log(playlists)
-		console.log(playlistId)
-		let selectedPlaylist;
-		playlists.forEach(playlist => {
-			if (playlist._id === playlistId) {
-				selectedPlaylist = playlist; 
-			}
-		})
-		
-		return selectedPlaylist;
-	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (this.state.playlist !== nextState.playlist || nextProps !== this.props) {
+		// console.log('should',nextProps)
+		console.log('should-this',this.props)
+		
+		if (!this.props.playlist && (nextProps.playlist !== this.props.playlist)) {
 			return true;
 		} else {
 			return false;
@@ -40,7 +31,8 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		const {title, description, comments, songs} = this.state.playlist ? this.state.playlist : {title: '', description: ''}
+		console.log('render')
+		const {title, description, comments, songs} = this.props.playlist ? this.props.playlist : {title: '', description: ''}
 		return (
 			<section className='playlist-show-page'>
 				<section className='comments'>
@@ -81,17 +73,17 @@ class PlaylistShowPage extends Component {
 
 
 const mSTP = (state, ownProps) => {
-	
+	console.log('show',state)
+	// console.log('show',ownProps)
 	return {
 		currentUser: state.entities.users,
-        playlists: state.entities.playlists.playlists,
-		playlistId: ownProps.match.params.playlistId,
+        playlist: state.entities.playlists.allPlaylists[ownProps.match.params.playlistId],
 	};
 };
 
 const mDTP = (dispatch) => {
 	return {
-		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 		openModal: () => dispatch(openModal('add-comment'))
 	};
 };

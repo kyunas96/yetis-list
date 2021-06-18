@@ -37,6 +37,13 @@ class NavBar extends React.Component {
 						</li>
 						<li>
 							<Link
+								to={`/users/${this.props.user}/playlist-feed`}
+								className='profile-nav-link'>
+								Playlist Feed
+							</Link>
+						</li>
+						<li>
+							<Link
 								to={`/users/${this.props.user}/profile`}
 								className='profile-nav-link'>
 								Profile

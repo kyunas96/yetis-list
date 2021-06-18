@@ -12,6 +12,10 @@ export const fetchPlaylists = (userId) => {
   return axios.get(`/api/playlists/user/${userId}`);
 };
 
+export const fetchAllPlaylists = () => {
+  return axios.get(`/api/playlists/`);
+};
+
 export const createPlaylist = (playlist) => {
   return axios.post(`/api/playlists/`, playlist);
 };

@@ -5,6 +5,7 @@ import {login} from '../../actions/session_actions'
 import Yeti from '../svg/yeti-component'
 import Tree from '../svg/tree-component'
 import './main.css'
+import { fetchAllPlaylists } from '../../actions/playlist_actions';
 
 class MainPage extends React.Component {
 
@@ -20,6 +21,7 @@ class MainPage extends React.Component {
     this.props.demoLogin(demoUser)
       .then((data) => {
         this.props.history.push(`/users/${data._id}`)
+        this.props.fetchAllPlaylists()
       })
   }
 
@@ -73,8 +75,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     demoLogin: (user) => dispatch(login(user)),
     openLogin:  <button className="login-button" onClick={() => dispatch(openModal('login'))}>login</button>,
-    openSignup: <button className="signup-button" onClick={() => dispatch(openModal('signup'))}>Sign Up</button>
-
+    openSignup: <button className="signup-button" onClick={() => dispatch(openModal('signup'))}>Sign Up</button>,
+    fetchAllPlaylists: () => dispatch(fetchAllPlaylists())
   }
 }
 
