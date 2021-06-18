@@ -1,6 +1,7 @@
 import React from 'react'
 import Yeti from '../../svg/yeti-component'
 import Tree from '../../svg/tree-component'
+import './user_main.css'
 
 class UserHomePage extends React.Component {
 
