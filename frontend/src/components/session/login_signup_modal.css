@@ -42,7 +42,7 @@
   opacity: 50%;
 }
 
-.input:hover {
+.input:hover, input:focus {
   opacity: 100%
 }
 
