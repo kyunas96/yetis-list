@@ -4,6 +4,7 @@ function findMatches(value, data){
   matches = matches.map(match => (
     {
       name: match,
+      id: match,
       image: {
         hasArtwork: false
       }
