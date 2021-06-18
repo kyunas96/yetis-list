@@ -28,6 +28,9 @@ class NavBar extends React.Component {
                 <p onClick={() => this.props.openModal()} className="playlist-make-nav">Make a custom playlist</p> 
               </li>
               <li>
+                <Link to={`/users/${this.props.user}/playlist-feed`} className="profile-nav-link">Playlist Feed</Link>
+              </li>
+              <li>
                 <Link to={`/users/${this.props.user}/profile`} className="profile-nav-link">Profile</Link>
               </li>
               <li>
