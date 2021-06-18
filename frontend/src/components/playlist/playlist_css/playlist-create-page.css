@@ -28,6 +28,5 @@ input {
 
 .make-playlist-button:hover {
     cursor: pointer;
-    background-color: rgb(50, 216, 78); 
     color: white;
 }

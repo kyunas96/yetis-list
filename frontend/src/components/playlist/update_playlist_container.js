@@ -7,7 +7,12 @@ import { withRouter } from 'react-router';
 class UpdatePlaylist extends React.Component {
 	constructor(props) {
 		super(props);
-		const userId = this.props.currentUserId;
+		let userId;
+		if (this.props.currentUser) {
+			userId = this.props.currentUser.id
+		} else {
+			userId = this.props.currentUser
+		}
         const {title, description} = this.getPlaylistInfo()
 		this.state = {
 			userId,
@@ -37,12 +42,14 @@ class UpdatePlaylist extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		console.log({ data: this.state, id: this.props.playlistId })
 		this.props
 			.updatePlaylist({ data: this.state, id: this.props.playlistId })
 			.then(() => {
 				this.props.closeModal();
 				this.props.removePlaylistId()
-				this.props.fetchPlaylists(this.props.currentUserId)
+				this.props.fetchPlaylists(this.state.userId)
+				this.props.history.push(`/users/${this.state.userId}/profile`)
 			});
 
 	}
@@ -73,7 +80,7 @@ class UpdatePlaylist extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		playlists: state.entities.playlists.playlists,
-		currentUserId: state.session.user,
+		currentUser: state.session.user,
         playlistId: state.entities.playlists.id,
 	};
 };

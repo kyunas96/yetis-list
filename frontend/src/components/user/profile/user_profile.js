@@ -1,24 +1,49 @@
 import React from 'react';
+import PlaylistIndex from '../../playlist/playlist_index_container'
+import './user-profile.css'
 
 class UserProfilePage extends React.Component {
+	
+
+	componentDidMount() {
+		if (!this.props.currentUser.id) {
+			this.props.fetchPlaylists(this.props.currentUser)
+		} else {
+			this.props.fetchPlaylists(this.props.currentUser.id)
+		}
+	}
+
+	greeting() {
+		const date = new Date()
+		const hrs = date.getHours();
+		let greet;
+
+		if (hrs >= 5 && hrs <= 11) {
+			greet = 'morning';
+		} else if (hrs >= 12 && hrs <= 17) {
+			greet = 'afternoon';
+		} else {
+			greet = 'evening';
+		}
+
+		return greet;
+	}
+
 	render() {
 		return (
-			<div>
-				<h1 className="main-title">Yeti's List</h1>
-				<h1 className="user-greeting">{this.props.currentUser.username} Yeti friend!</h1>
-				<div className='your-playlist-box'>
-					Your playlists listed here
-				</div>
-				<div className='liked-playlist-box'>
+			<section className='profile-page'>
+				<h1 className="user-greeting">Good {this.greeting()} {this.props.currentUser.username}!</h1>
+				<PlaylistIndex />
+				{/* <div className='liked-playlist-box'>
 					Your liked playlists listed here
-				</div>
+				</div> */}
 				<div className="average-song-stats">
-					Average song stats from playlists here
+					{/* Average song stats from playlists here */}
 				</div>
-			</div>
+			</section>
 		);
 	}
 }
 
 
-export default UserProfilePage
+export default UserProfilePage;

@@ -19,9 +19,6 @@ class UserHomePage extends React.Component {
             <Yeti />
             <Tree />
           </div>
-        <footer className="footer">
-          Copyright &copy; 2021 YeticorpLLC
-        </footer>
       </div>
     );
   }

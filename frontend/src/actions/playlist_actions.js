@@ -46,13 +46,13 @@ export const createPlaylist = (playlist) => (dispatch) =>
 	);
 
 export const updatePlaylist = (item) => (dispatch) =>
-	APIUtil.updatePlaylist(item).then(
-		(res) => {
-			console.log(res)
-			dispatch(receivePlaylists(res.data))
-		},
+	APIUtil.updatePlaylist(item)
+	// .then(
+		// (res) => {
+		// 	// dispatch(fetchPlaylists(res.data.userId))
+		// },
 		// (err) => dispatch(receiveErrors(err.response.data))
-	);
+	// );
 
 export const deletePlaylist = (playlistId) => (dispatch) =>
 	APIUtil.deletePlaylist(playlistId).then(

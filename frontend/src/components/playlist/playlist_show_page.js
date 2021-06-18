@@ -2,18 +2,41 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../../actions/playlist_actions';
+import { openModal } from '../../actions/modal_actions';
 import CommentItem from '../comment/comment_item';
 import './playlist_css/playlist-show-page.css'
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);
-		const playlist = this.props.playlist()
+		const playlist = this.getPlaylist(this.props.playlists, this.props.playlistId)
 		this.state = {playlist}
 	}
 
     componentDidMount() {
 		this.props.fetchPlaylists(this.props.currentUser.id)
+	}
+
+
+	getPlaylist(playlists, playlistId) {
+		console.log(playlists)
+		console.log(playlistId)
+		let selectedPlaylist;
+		playlists.forEach(playlist => {
+			if (playlist._id === playlistId) {
+				selectedPlaylist = playlist; 
+			}
+		})
+		
+		return selectedPlaylist;
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (this.state.playlist !== nextState.playlist || nextProps !== this.props) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	render() {
@@ -22,12 +45,15 @@ class PlaylistShowPage extends Component {
 			<section className='playlist-show-page'>
 				<section className='comments'>
 					<ul className='comments-list'>
-						{comments.length > 0 ? (
-							comments.map((comment, i) => {
-								return <CommentItem key={i} comment={comment}/>
-							})
+						{(comments && comments.length > 0)? (
+							<>
+								<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
+								{comments.map((comment, i) => {
+									return <CommentItem key={i} comment={comment}/>
+								})}
+							</>
 						) : (
-							<li className='comment-item add-comment'>Add comment</li>
+							<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
 						)}
 					</ul>
 				</section>
@@ -52,27 +78,21 @@ class PlaylistShowPage extends Component {
 	}
 }
 
-const getPlaylist = (playlists, playlistId) => {
-    let selectedPlaylist;
-    playlists.forEach(playlist => {
-        if (playlist._id === playlistId) {
-            selectedPlaylist = playlist; 
-        }
-    })
 
-    return selectedPlaylist;
-}
 
 const mSTP = (state, ownProps) => {
+	
 	return {
-		currentUser: state.session.user,
-        playlist: () => getPlaylist(state.entities.playlists.playlists, ownProps.match.params.playlistId)
+		currentUser: state.entities.users,
+        playlists: state.entities.playlists.playlists,
+		playlistId: ownProps.match.params.playlistId,
 	};
 };
 
 const mDTP = (dispatch) => {
 	return {
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		openModal: () => dispatch(openModal('add-comment'))
 	};
 };
 

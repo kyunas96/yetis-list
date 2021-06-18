@@ -18,7 +18,6 @@ class MainPage extends React.Component {
     let demoUser = this.props.demoUsers[Math.floor(Math.random()*this.props.demoUsers.length)];
     this.props.demoLogin(demoUser)
       .then((data) => {
-        console.log(data)
         this.props.history.push(`/users/${data._id}`)
       })
   }
