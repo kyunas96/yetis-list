@@ -1,14 +1,14 @@
 import React from 'react';
-import { openModal } from '../../actions/modal_actions'
-import {connect} from 'react-redux'
-import {login} from '../../actions/session_actions'
-import Yeti from '../svg/yeti-component'
-import Tree from '../svg/tree-component'
+import { openModal } from '../../actions/modal_actions';
+import {connect} from 'react-redux';
+import {login} from '../../actions/session_actions';
+import Yeti from '../svg/yeti-component';
+import Tree from '../svg/tree-component';
+import Footer from '../footer/footer';
 import './main.css'
 import { fetchAllPlaylists } from '../../actions/playlist_actions';
 
 class MainPage extends React.Component {
-
   constructor (props) {
     super(props);
 
@@ -27,6 +27,7 @@ class MainPage extends React.Component {
 
   render() {
     return (
+      <>
       <div className="main-body">
         <h1 className="main-title">Yeti's List</h1>
           <div className="site-info">Yeti help friend make music playlist. Please sign up and tell Yeti song/album/genre you like. Yeti help friend!</div>
@@ -40,6 +41,8 @@ class MainPage extends React.Component {
             <Tree />
           </div>
       </div>
+      <Footer />
+      </>
     );
   }
 }

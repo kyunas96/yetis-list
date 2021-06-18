@@ -3,23 +3,15 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchAllPlaylists } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
-import CommentItem from '../comment/comment_item';
+import SongListItem from '../song/song_list_item';
 import './playlist_css/playlist-show-page.css'
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);
-		
 	}
-
-    componentDidMount() {
-		this.props.fetchAllPlaylists()
-	}
-
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log('should-this',this.props)
-		
 		if (!this.props.playlist && (nextProps.playlist !== this.props.playlist)) {
 			return true;
 		} else {
@@ -28,35 +20,18 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		console.log('render')
 		const {title, description, comments, songs} = this.props.playlist ? this.props.playlist : {title: '', description: ''}
 		return (
-			<section className='playlist-show-page'>
-				<section className='comments'>
-					<ul className='comments-list'>
-						{(comments && comments.length > 0)? (
-							<>
-								<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
-								{comments.map((comment, i) => {
-									return <CommentItem key={i} comment={comment}/>
-								})}
-							</>
-						) : (
-							<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
-						)}
-					</ul>
-				</section>
+			<section className='current-playlist-show-page'>
 				<section className='playlist-info'>
 					<div className='playlist-header'>
 						<div className='playlist-title'>{title}</div>
     		            <div className='playlist-description'>{description}</div>
 					</div>
 					<ul className='playlist-songs'>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
+						{songs.map((song, i) => {
+							<SongListItem key={i} song={song}/>
+						})}
 					</ul>
 				</section>
 			</section>
@@ -67,11 +42,8 @@ class PlaylistShowPage extends Component {
 
 
 const mSTP = (state, ownProps) => {
-	console.log('show',state)
-	// console.log('show',ownProps)
 	return {
-		currentUser: state.entities.users,
-        playlist: state.entities.playlists.allPlaylists[ownProps.match.params.playlistId],
+        playlist: state.entities.currentPlaylist,
 	};
 };
 
