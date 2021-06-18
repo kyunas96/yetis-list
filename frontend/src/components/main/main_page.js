@@ -5,7 +5,6 @@ import {login} from '../../actions/session_actions'
 import Yeti from '../svg/yeti-component'
 import Tree from '../svg/tree-component'
 import './main.css'
-import yeti from '../svg/yeti-component';
 
 class MainPage extends React.Component {
 
@@ -16,9 +15,10 @@ class MainPage extends React.Component {
   }
 
   handleDemo () {
-    var demoUser = this.props.demoUsers[Math.floor(Math.random()*this.props.demoUsers.length)];
+    let demoUser = this.props.demoUsers[Math.floor(Math.random()*this.props.demoUsers.length)];
     this.props.demoLogin(demoUser)
       .then((data) => {
+        console.log(data)
         this.props.history.push(`/users/${data._id}`)
       })
   }

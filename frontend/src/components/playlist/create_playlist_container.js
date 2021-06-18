@@ -3,17 +3,23 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { createPlaylist, fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
+import './playlist_css/create-playlist-modal.css'
 
 class CreatePlaylist extends React.Component {
 	constructor(props) {
 		super(props);
-		const userId = this.props.currentUserId;
+		const user = this.props.currentUser;
 		this.state = {
-			userId,
+			userId: user.id,
 			title: '',
 			description: '',
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getPlaylistNumber = this.getPlaylistNumber.bind(this);
+	}
+
+	componentDidMount() {
+		this.props.fetchPlaylists(this.props.currentUser.id);
 	}
 
 	update(field) {
@@ -23,24 +29,36 @@ class CreatePlaylist extends React.Component {
 			});
 	}
 
+	getPlaylistNumber() {
+		if (!this.props.playlists) {
+			return 1
+		} else{
+			const length = this.props.playlists.length + 1
+			return length;
+		}
+	}
+
 	handleSubmit(e) {
 		e.preventDefault();
 		const newState = Object.assign({}, this.state);
 		if (newState.description.length < 1) {
-			newState.description = 'users playlist'
+			newState.description = `Playlist #${this.getPlaylistNumber()} for ${this.props.currentUser.username}`
 		} 
-
-		this.props.createPlaylist(newState).then(() => {
-			this.props.fetchPlaylists(this.props.currentUserId);
-			this.props.closeModal();
+		console.log(newState)
+		this.props.createPlaylist(newState)
+		.then((playlist) => {
+			this.props.fetchPlaylists(playlist.userId).then(() => {
+				this.props.history.push(`/users/${playlist.userId}/playlist/${playlist._id}`);
+				this.props.closeModal();
+			})
 		});
 	}
 
 	render() {
 		return (
-			<div>
-				<button onClick={this.props.closeModal}>exit</button>
-				<form onSubmit={this.handleSubmit}>
+			<div className='create-playlist-modal'>
+				<button className='exit-modal' onClick={this.props.closeModal}>exit</button>
+				<form className='create-playlist-modal-form' onSubmit={this.handleSubmit}>
 					<label>
 						Title
 						<input onChange={this.update('title')} value={this.state.title} />
@@ -62,7 +80,7 @@ class CreatePlaylist extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		playlists: state.entities.playlists.playlists,
-		currentUserId: state.session.user,
+		currentUser: state.session.user,
 	};
 };
 

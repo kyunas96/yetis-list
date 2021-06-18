@@ -31,14 +31,16 @@ export const fetchPlaylists = (userId) => (dispatch) =>
 	APIUtil.fetchPlaylists(userId).then(
 		(res) => {
 			dispatch(receivePlaylists(res.data))
+			return res.data
 		},
 		// (err) => dispatch(receiveErrors(err.response.data))
 	);
 
-export const createPlaylist = (playlist) => (dispatch) =>
+export const createPlaylist = (playlist) => (dispatch) => 
 	APIUtil.createPlaylist(playlist).then(
 		(res) => {
 			dispatch(receivePlaylists(res.data))
+			return res.data
 		},
 		// (err) => dispatch(receiveErrors(err.response.data))
 	);
