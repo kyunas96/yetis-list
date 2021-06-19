@@ -15,8 +15,8 @@
   display: block;
   clear: both;
   margin: 0 auto;
-  padding-top: 100px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  /* padding-bottom: 20px; */
 }
 
 .site-info {
