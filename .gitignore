@@ -1,4 +1,4 @@
-keys.js
+# keys.js
 
 
 # Logs
@@ -107,5 +107,5 @@ dist
 .tern-port
 
 config/keys_dev.js
-spotifyAPI/keys
+spotifyAPI/keys/keys_dev.js
 spotifyAPI/.DS_Store
