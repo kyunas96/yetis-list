@@ -4,6 +4,7 @@ const SongListItem = ({song}) => {
     console.log(song)
     return (  
         <li className='song-item'>
+            <img src={song.image.small} />
             <div>
                 {song.artists[0]}
             </div>
