@@ -14,7 +14,7 @@ const SongListItem = ({song}) => {
         </li>
     );
 }
- 
-// artist image name
+
+
  
 export default SongListItem;
