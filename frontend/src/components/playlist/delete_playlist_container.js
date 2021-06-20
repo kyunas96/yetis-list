@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
-import { removePlaylistId, fetchPlaylists, deletePlaylist } from '../../actions/playlist_actions';
+import { fetchPlaylists, deletePlaylist } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 
 class DeletePlaylistContainer extends React.Component {
@@ -37,7 +37,6 @@ class DeletePlaylistContainer extends React.Component {
     handleDelete() {
         this.props.deletePlaylist(this.props.playlistId).then(() => {
             this.props.closeModal()
-            this.props.removePlaylistId()
             this.props.fetchPlaylists(this.state.userId)
         })
     }
@@ -48,7 +47,6 @@ class DeletePlaylistContainer extends React.Component {
                 <div>Are you sure you want to delete your playlist {this.state.title}</div>
 				<button onClick={() => {
                     this.props.closeModal()
-                    this.props.removePlaylistId()
                 }}>No</button>
 				<button onClick={() => this.handleDelete()}>Yes</button>
 			</div>
@@ -68,7 +66,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
-		removePlaylistId: () => dispatch(removePlaylistId()),
 		deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
 	};
 };

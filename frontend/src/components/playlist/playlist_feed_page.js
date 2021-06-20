@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { openModal } from '../../actions/modal_actions';
 import {
 	fetchAllPlaylists,
 	sendPlaylistId,
@@ -16,7 +15,7 @@ class PlaylistFeedPage extends React.Component {
 		this.state = {playlists};
 	}
 
-	componentWillUnmount() {
+	componentDidMount() {
 		this.props.fetchAllPlaylists()
 	}
 
@@ -34,7 +33,8 @@ class PlaylistFeedPage extends React.Component {
     }
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (nextProps.playlists !== this.props.playlists) {
+		
+		if (!this.state.playlists && (nextState.playlists !== this.state.playlists) || nextProps !== this.props) {
 			return true;
 		} else {
 			return false;
@@ -58,7 +58,7 @@ class PlaylistFeedPage extends React.Component {
 					{this.state.playlists.length > 0 ? (
 						this.state.playlists.map((playlist, i) => {
 							return (
-								<li key={i} playlist={playlist} className='playlist-item' id='feed-item'>
+								<li key={i} className='playlist-item' id='feed-item' onClick={() => this.props.sendPlaylistId(playlist._id)}>
 									<Link to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}>
 										<h3 className='playlist-profile-title' id='title-feed'>{playlist.title}</h3>
 										<h3 className='playlist-profile-description'>{playlist.description}</h3>
@@ -79,9 +79,8 @@ class PlaylistFeedPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		playlists: state.entities.playlists.allPlaylists,
+		playlists: Object.values(state.entities.playlists.allPlaylists),
 		currentUserId: state.session.user,
-		playlistId: state.entities.playlists.id,
 	};
 };
 
@@ -90,7 +89,6 @@ const mapDispatchToProps = (dispatch) => {
 		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 		deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
-		openModal: (type) => dispatch(openModal(type)),
 	};
 };
 

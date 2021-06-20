@@ -29,6 +29,7 @@ require('./config/passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api/comments', comments);
+app.use('/api/songs', songs);
 app.use('/api/playlists', playlists);
 app.use('/api/users', users);
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
-import { updatePlaylist, removePlaylistId, fetchPlaylists } from '../../actions/playlist_actions';
+import { updatePlaylist, fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 
 class UpdatePlaylist extends React.Component {
@@ -42,7 +42,6 @@ class UpdatePlaylist extends React.Component {
 			.updatePlaylist({ data: this.state, id: this.props.playlistId })
 			.then(() => {
 				this.props.closeModal();
-				this.props.removePlaylistId()
 				this.props.fetchPlaylists(this.state.userId)
 				this.props.history.push(`/users/${this.state.userId}/profile`)
 			});
@@ -85,7 +84,6 @@ const mapDispatchToProps = (dispatch) => {
 		updatePlaylist: (item) => dispatch(updatePlaylist(item)),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
-		removePlaylistId: () => dispatch(removePlaylistId()),
 	};
 };
 

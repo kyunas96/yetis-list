@@ -19,8 +19,8 @@ class SearchBar extends React.Component {
 
   updateSearchValue(e) {
     e.preventDefault();
-    console.log("Updating search value");
-    console.log(this.state);
+    // console.log("Updating search value");
+    // console.log(this.state);
     this.setState({ searchValue: e.currentTarget.value }, () => {
       this.props.requestListItems({
         searchValue: this.state.searchValue,

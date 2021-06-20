@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/playlists_api_util';
+import * as SongAPIUtil from '../util/song_api_util';
 
 export const RECEIVE_PLAYLISTS = 'RECEIVE_PLAYLISTS';
 export const RECEIVE_ALL_PLAYLISTS = 'RECEIVE_ALL_PLAYLISTS';
@@ -27,13 +28,6 @@ export const sendPlaylistId = (playlistId) => {
 	    playlistId,
     }
 };
-
-export const removePlaylistId = () => {
-    return {
-	    type: REMOVE_PLAYLIST_ID,
-    }
-};
-
 
 export const fetchPlaylists = (userId) => (dispatch) =>
 	APIUtil.fetchPlaylists(userId).then(
@@ -74,4 +68,14 @@ export const updatePlaylist = (item) => (dispatch) =>
 export const deletePlaylist = (playlistId) => (dispatch) => (
 	APIUtil.deletePlaylist(playlistId)
 		// (err) => dispatch(receiveErrors(err.response.data))
+)
+
+export const addSongToPlaylist = (song) => (dispatch) => (
+	SongAPIUtil.addSongToPlaylist(song).then(
+	(res) => {
+		// dispatch(receivePlaylists(res.data))
+		return res.data
+	}).catch((err) =>{
+		console.log(err.response.data)
+	})
 )

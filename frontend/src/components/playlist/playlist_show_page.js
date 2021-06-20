@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchAllPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists, fetchPlaylists } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
-import CommentItem from '../comment/comment_item';
+import CommentsList from '../comment/comments_list';
 import './playlist_css/playlist-show-page.css'
+import SearchBarPlaylistShowContainer from './search_bar_playlist_show_container'
+import SongPlaylistList from '../song/song_playlist_list'
 
 class PlaylistShowPage extends Component {
-	constructor(props) {
-		super(props);
-		
-	}
 
-    componentDidMount() {
+	componentDidMount() {
 		this.props.fetchAllPlaylists()
+		this.props.fetchPlaylists(this.props.currentUser.id)
 	}
-
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log('should-this',this.props)
+		console.log('should-this', this.props)
 		
-		if (!this.props.playlist && (nextProps.playlist !== this.props.playlist)) {
+		if (!this.props.playlist.playlist && (nextProps.playlist.playlist !== this.props.playlist.playlist)) {
 			return true;
 		} else {
 			return false;
@@ -28,36 +26,21 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		console.log('render')
-		const {title, description, comments, songs} = this.props.playlist ? this.props.playlist : {title: '', description: ''}
+		console.log('playlist-show', this.props.playlist)
+		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
 		return (
 			<section className='playlist-show-page'>
-				<section className='comments'>
-					<ul className='comments-list'>
-						{(comments && comments.length > 0)? (
-							<>
-								<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
-								{comments.map((comment, i) => {
-									return <CommentItem key={i} comment={comment}/>
-								})}
-							</>
-						) : (
-							<li className='comment-item add-comment' onClick={() => this.props.openModal()}>Click To Add A Comment</li>
-						)}
-					</ul>
-				</section>
+				<CommentsList comments={comments} openModal={this.props.openModal} />
+
 				<section className='playlist-info'>
 					<div className='playlist-header'>
 						<div className='playlist-title'>{title}</div>
     		            <div className='playlist-description'>{description}</div>
 					</div>
-					<ul className='playlist-songs'>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-						<li className='song-item'>Songs Here</li>
-					</ul>
+
+					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
+
+					<SongPlaylistList songs={songs}/>
 				</section>
 			</section>
 		);
@@ -65,20 +48,43 @@ class PlaylistShowPage extends Component {
 }
 
 
+// looks in currently logged in users playlist first,
+// if no match then looks in all playlist
+const selectPlaylist = (allPlaylists, playlists, playlistId) => {
+	let selectedPlaylist;
+
+	playlists.forEach(playlist => {
+		if (playlist._id === playlistId) {
+			selectedPlaylist = playlist;
+		}
+	})
+
+	if (selectedPlaylist) {
+		return {playlist: selectedPlaylist, currentUsersPlaylist: true};
+	} else {
+		selectedPlaylist = allPlaylists[playlistId]
+		return {playlist: selectedPlaylist, currentUsersPlaylist: false};
+	}
+}
 
 const mSTP = (state, ownProps) => {
-	console.log('show',state)
-	// console.log('show',ownProps)
+	console.log(state)
+	console.log(ownProps)
 	return {
 		currentUser: state.entities.users,
-        playlist: state.entities.playlists.allPlaylists[ownProps.match.params.playlistId],
+        playlist: selectPlaylist(
+			state.entities.playlists.allPlaylists, 
+			state.entities.playlists.playlists, 
+			state.entities.playlists.id
+		),
 	};
 };
 
 const mDTP = (dispatch) => {
 	return {
 		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
-		openModal: () => dispatch(openModal('add-comment'))
+		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		openModal: () => dispatch(openModal('add-comment')),
 	};
 };
 

@@ -21,9 +21,6 @@ const playlistReducer = (state = _initialState, action) => {
 		case RECEIVE_PLAYLIST_ID:
 			newState.id = action.playlistId;
 			return newState;
-		case REMOVE_PLAYLIST_ID:
-			newState.id = null;
-			return newState;
 		case RECEIVE_USER_LOGOUT:
 			newState.id = null;
 			newState.playlists = [];

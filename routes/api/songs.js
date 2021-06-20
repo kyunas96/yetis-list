@@ -5,21 +5,17 @@ const Playlist = require('../../models/Playlist');
 
 // create song
 // needs...
-// in body: title, artist, audioFeatures, optional: playlistId
+// in body: (NO VALIDATIONS) song name, artsists, image, playlistId
 // in params: nothing
 router.post('/', (req, res) => {
-	let newSong = new Song(req.body);
-
-	newSong.save().then((song) => {
-        if (song.playlistId) {
-            // adds song to playlist's songs array
-            Playlist.findOne({_id: song.playlistId}).then(playlist => {
-                playlist.songs.push({id: song._id, text: song.text, userId: song.userId})
-                playlist.save()
-            }).catch(() => res.json('could not find playlist'))
-        }
-		res.json(song)
-	}).catch(() => res.json('could not save song'))
+	const song = req.body;
+	console.log(song)
+	// adds song to playlist's songs array
+	Playlist.findOne({_id: song.playlistId}).then(playlist => {
+		playlist.songs.push(song)
+		playlist.save()
+		res.json(playlist)
+	}).catch(() => res.json('could not find playlist'))
 });
 
 // get song by id
