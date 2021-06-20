@@ -22,37 +22,36 @@ router.post('/', (req, res) => {
 // needs...
 // in body: nothing
 // in params: song id
-router.get('/:id', (req, res) => {
-	Song.findById(req.params.id)
-		.then((song) => res.json(song))
-		.catch((err) =>
-			res
-				.status(404)
-				.json({ nosongFound: 'No song found with that ID' })
-		);
-});
+// router.get('/:id', (req, res) => {
+// 	Song.findById(req.params.id)
+// 		.then((song) => res.json(song))
+// 		.catch((err) =>
+// 			res
+// 				.status(404)
+// 				.json({ nosongFound: 'No song found with that ID' })
+// 		);
+// });
 
 // delete song(won't delete song, only remove from playlist)
 // needs...
-// in body: playlistId
-// in params: song id
-router.delete('/:id', (req, res) => {
-	Song.findById(req.params.id).then((song) => {
+// in body: song
+// in params: nothing
+router.patch('/', (req, res) => {
+ 	const song = req.body;
+	console.log(song)
 
-        Playlist.findById(song.playlistId).then((playlist) => {
-            playlist.songs.forEach(com => {
-                if (com.id.toString() === song._id.toString()) {
-                    const indx = playlist.songs.indexOf(com);
-                    playlist.songs.splice(indx, 1);
-                    playlist.save();
-                }
-            })
-        })
-		.then(() => res.json({ success: 'song removed from playlist' }))
-		.catch((err) =>
-			res.status(500).json({ couldNotDelete: 'could not remove song from playlist' })
-		);
+	Playlist.findOne({_id: song.playlistId}).then((playlist) => {
+		console.log(playlist)
+		playlist.songs.forEach(playlistSong => {
+			if (song.id.toString() === playlistSong.id.toString()) {
+				const indx = playlist.songs.indexOf(playlistSong);
+				playlist.songs.splice(indx, 1);
+				playlist.save();
+			}
+		}) 
 	})
+	.then(() => res.json({ success: 'song removed from playlist' }))
+	.catch((err) => res.status(500).json({req, couldNotDelete: 'could not remove song from playlist'}));
 });
 
 

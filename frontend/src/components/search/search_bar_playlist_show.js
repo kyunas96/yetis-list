@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '../search/list';
-import './playlist_css/playlist-show-page.css'
+import '../playlist/playlist_css/playlist-show-page.css'
 
 class SearchBarPlaylistShow extends React.Component {
 	constructor(props) {

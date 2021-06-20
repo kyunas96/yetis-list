@@ -7,7 +7,12 @@ export const setAuthToken = token => {
     delete axios.defaults.headers.common['Authorization'];
   }
 };
-
+ 
 export const addSongToPlaylist = (song) => {
   return axios.post(`/api/songs/`, song);
+};
+
+export const removeSongFromPlaylist = (song) => {
+  console.log(song)
+  return axios.patch(`/api/songs/`, song);
 };

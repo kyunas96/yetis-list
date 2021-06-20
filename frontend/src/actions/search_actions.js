@@ -6,7 +6,10 @@ export const RECEIVE_LIST_ITEMS = 'RECEIVE_LIST_ITEMS';
 export const RECEIVE_LIST_ERRORS = 'RECEIVE_LIST_ERRORS';
 export const CLEAR_LIST_ITEMS = 'CLEAR_LIST_ITEMS';
 export const RECEIVE_CURRENT_PLAYLIST = 'RECEIVE_CURRENT_PLAYLIST';
+export const RECEIVE_CURRENT_PLAYLIST_DETAILS = 'RECEIVE_CURRENT_PLAYLIST_DETAILS';
 export const CLEAR_CURRENT_PLAYLIST = 'CLEAR_CURRENT_PLAYLIST';
+export const RECEIVE_SONG_ITEM = 'RECEIVE_SONG_ITEM';
+export const REMOVE_SONG_ITEM = 'REMOVE_SONG_ITEM';
 
 export const submitSeed = (seedData) => ({
     type: SUBMIT_SEED,
@@ -33,8 +36,23 @@ export const receiveCurrentPlaylist = playlist => ({
     playlist
 })
 
+export const sendDescriptionDetails = details => ({
+    type: RECEIVE_CURRENT_PLAYLIST_DETAILS,
+    details,
+})
+
 export const clearCurrentPlaylist = () => ({
     type: CLEAR_CURRENT_PLAYLIST
+})
+
+export const saveItem = (song) => ({
+    type: RECEIVE_SONG_ITEM,
+    song,
+})
+
+export const removeItem = (song) => ({
+    type: REMOVE_SONG_ITEM,
+    song,
 })
 
 export const sendSeed = (seedData) => dispatch => (

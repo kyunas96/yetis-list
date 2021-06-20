@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { requestListItems, sendSeed, clearListItems} from "../../actions/search_actions";
-import { addSongToPlaylist, fetchPlaylists } from "../../actions/playlist_actions";
+import { fetchPlaylists } from "../../actions/playlist_actions";
+import { addSongToPlaylist } from "../../actions/song_actions";
 import SearchBar from "./search_bar_playlist_show";
 import { withRouter } from "react-router";
 

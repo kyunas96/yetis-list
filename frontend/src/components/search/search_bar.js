@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
       selectedSeed: "",
       seedType: "track",
     };
-    console.log(this.props);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateSearchValue = this.updateSearchValue.bind(this);
     this.updateSeedType = this.updateSeedType.bind(this);
@@ -19,8 +19,7 @@ class SearchBar extends React.Component {
 
   updateSearchValue(e) {
     e.preventDefault();
-    // console.log("Updating search value");
-    // console.log(this.state);
+ 
     this.setState({ searchValue: e.currentTarget.value }, () => {
       this.props.requestListItems({
         searchValue: this.state.searchValue,
@@ -41,15 +40,15 @@ class SearchBar extends React.Component {
     }
 
   handleSubmit(e) {
-    console.log("submitting");
+    console.log("submitting", this.state);
     e.preventDefault();
     this.props.sendSeed({
       seeds: [{ value: this.state.selectedSeed, type: this.state.seedType }],
       options: {},
     }).then(() => {
+      this.props.sendDescriptionDetails({searchValue: this.state.searchValue, seedType: this.state.seedType})
       this.props.history.push(`/users/${this.props.currentUser}/playlists/current`)
     })
-    // add redirect to go to playlist show page
   }
 
   setSeed(seed, name) {

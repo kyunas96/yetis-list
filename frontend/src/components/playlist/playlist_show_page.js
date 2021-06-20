@@ -5,7 +5,7 @@ import { fetchAllPlaylists, fetchPlaylists } from '../../actions/playlist_action
 import { openModal } from '../../actions/modal_actions';
 import CommentsList from '../comment/comments_list';
 import './playlist_css/playlist-show-page.css'
-import SearchBarPlaylistShowContainer from './search_bar_playlist_show_container'
+import SearchBarPlaylistShowContainer from '../search/search_bar_playlist_show_container'
 import SongPlaylistList from '../song/song_playlist_list'
 
 class PlaylistShowPage extends Component {
