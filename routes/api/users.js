@@ -24,7 +24,7 @@ router.get(
 // in body: nothing
 // in params: users id
 router.get('/:id', (req, res) => {
-	User.findOne({ _id: req.params.id }).then((user) => {
+	User.findById(req.params.id).then((user) => {
 		res.json(user);
 	});
 });
@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
-	User.findOne({ email: req.body.email }).then((user) => {
+	User.findById(req.body.email).then((user) => {
 		if (user) {
 			return res
 				.status(400)
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	User.findOne({ email }).then((user) => {
+	User.find({ email }).then((user) => {
 		if (!user) {
 			return res.status(404).json({ email: 'This user does not exist' });
 		}

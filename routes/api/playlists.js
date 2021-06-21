@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
 	newPlaylist.save().then((playlist) => {
 
 		// adds playlist to users playlists array
-		User.findOne({_id: playlist.userId}).then(user => {
+		User.findById(playlist.userId).then(user => {
 			user.playlists.push({id: playlist._id, title: playlist.title})
 			user.save()
 		}).catch(() => res.json('could not find user'))

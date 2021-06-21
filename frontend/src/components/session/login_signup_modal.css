@@ -39,12 +39,9 @@
   margin-bottom: 8px;
   height: 24px;
   font-size: 18px;
-  opacity: 50%;
 }
 
-.input:hover, input:focus {
-  opacity: 100%
-}
+
 
 .form-box {
   display: flex;
