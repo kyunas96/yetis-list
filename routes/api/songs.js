@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
 	console.log(song)
 	// adds song to playlist's songs array
 	Playlist.findOne({_id: song.playlistId}).then(playlist => {
-		playlist.songs.push(song)
+		playlist.songs.unshift(song)
 		playlist.save()
 		res.json(playlist)
 	}).catch(() => res.json('could not find playlist'))

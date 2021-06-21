@@ -18,7 +18,7 @@ class PlaylistShowPage extends Component {
 	shouldComponentUpdate(nextProps, nextState) {
 		console.log('should-this', this.props)
 		
-		if (!this.props.playlist.playlist && (nextProps.playlist.playlist !== this.props.playlist.playlist)) {
+		if (nextProps !== this.props || this.props.playlist !== nextProps.playlist) {
 			return true;
 		} else {
 			return false;
@@ -40,7 +40,7 @@ class PlaylistShowPage extends Component {
 
 					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
 
-					<SongPlaylistList songs={songs}/>
+					<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.currentUser.id)}/>
 				</section>
 			</section>
 		);

@@ -38,6 +38,7 @@ class PlaylistIndex extends React.Component {
 				<button id='make-a-playlist' onClick={() => this.props.openModal('create-playlist')}>
 					Make A Playlist
 				</button>
+				<h2>Your Playlists</h2>
 				<ul>
 					{this.props.playlists.length > 0 ? (
 						this.props.playlists.map((playlist, i) => {
