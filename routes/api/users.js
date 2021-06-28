@@ -109,7 +109,9 @@ router.post('/login', (req, res) => {
 				return res.status(400).json({ password: 'Incorrect password' });
 			}
 		});
-	}).catch((err) => console.log(err));
+	}).catch((err) => {
+		res.json({err});
+		console.log(err)});
 });
 
 module.exports = router;
