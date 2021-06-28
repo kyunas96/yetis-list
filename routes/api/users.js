@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
-	User.findById(req.body.email).then((user) => {
+	User.findOne({email: req.body.email}).then((user) => {
 		if (user) {
 			return res
 				.status(400)
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
 	const email = req.body.email;
 	const password = req.body.password;
 
-	User.find({ email }).then((user) => {
+	User.findOne({ email }).then((user) => {
 		if (!user) {
 			return res.status(404).json({ email: 'This user does not exist' });
 		}
