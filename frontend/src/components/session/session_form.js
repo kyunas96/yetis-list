@@ -26,6 +26,7 @@ class SessionForm extends React.Component {
 		this.props.processForm(user)
 		.then((data) => {
 			if (this.props.formType === 'signup') {
+				console.log(data)
 				this.props.history.push(`/users/${data.currentUser._id}`)
 			} else {
 				this.props.history.push(`/users/${data._id}`)
