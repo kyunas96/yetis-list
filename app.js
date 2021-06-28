@@ -8,7 +8,7 @@ const passport = require('passport');
 const users = require('./routes/api/users');
 const playlists = require('./routes/api/playlists');
 const comments = require('./routes/api/comments');
-const songs = require('./routes/api/songs');
+// const songs = require('./routes/api/songs');
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
