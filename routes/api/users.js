@@ -26,7 +26,7 @@ router.get(
 router.get('/:id', (req, res) => {
 	User.findById(req.params.id).then((user) => {
 		res.json(user);
-	});
+	}).catch((err) => console.log(err));
 });
 
 // needs...
@@ -67,7 +67,7 @@ router.post('/signup', (req, res) => {
 				});
 			});
 		}
-	});
+	}).catch((err) => console.log(err));
 });
 
 // needs...
@@ -109,7 +109,7 @@ router.post('/login', (req, res) => {
 				return res.status(400).json({ password: 'Incorrect password' });
 			}
 		});
-	});
+	}).catch((err) => console.log(err));
 });
 
 module.exports = router;
