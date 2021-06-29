@@ -1,0 +1,39 @@
+.git-pic {
+    height: 60px;
+}
+
+.contact-page-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 55px;
+    height: 100%;
+    width: 100%;
+    background-color: beige;
+}
+
+.profilePic {
+    height: 150px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.dev-name {
+    font-family: 'Kirang Haerang';
+    font-size: x-large;
+}
+
+.contact-page-container > h2 {
+    font-family: 'Kirang Haerang';
+    font-size: xxx-large
+}
+
+.dev-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linkedin-pic, .gitpic:hover {
+    
+}

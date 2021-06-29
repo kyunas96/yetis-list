@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import Modal from './modal/modal';
 
+
+import ContactPage from './contact/contact_page'
 import Footer from './footer/footer'
 import MainPage from './main/main_page';
 import UserMainPage from './user/main/user_main_container';
@@ -35,7 +37,7 @@ const App = () => (
         {/* On User Home: Searchbar */}
         <ProtectedRoute exact path='/users/:id/' component={UserMainPage} />
         
-        {/* <Route exact path='/contact-us' component={ContactPage}/> */}
+        <Route exact path='/contact-us' component={ContactPage}/>
 
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
