@@ -18,8 +18,8 @@ class PlaylistShowPage extends Component {
 	}
 
 	shouldComponentUpdate(nextProps) {
-		console.log('this dot props', this.props)
-		console.log('next props', nextProps)
+		// console.log('this dot props', this.props)
+		// console.log('next props', nextProps)
 		if (this.props !== nextProps) {
 			return true;
 		} else {
@@ -32,7 +32,7 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		console.log('playlist show page render', this.props);
+		// console.log('playlist show page render', this.props);
 
 		const { seedType, searchValue } = this.props.playlist.playlistDetails;
 		const title = `${this.props.items[0].name}`;
@@ -44,7 +44,7 @@ class PlaylistShowPage extends Component {
 			songs = this.props.savedItems;
 			klassName = 'song-saved';
 		} 
-
+		
 		const playlistToSave = {
 			songs,
 			title,

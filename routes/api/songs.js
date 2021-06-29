@@ -9,7 +9,6 @@ const Playlist = require('../../models/Playlist');
 // in params: nothing
 router.post('/', (req, res) => {
 	let song = req.body;
-	console.log(song)
 	
 	// adds song to playlist's songs array
 	Playlist.findById(song.playlistId).then(playlist => {
@@ -26,10 +25,8 @@ router.post('/', (req, res) => {
 // in params: nothing
 router.patch('/', (req, res) => {
  	const song = req.body;
-	console.log(song)
 
 	Playlist.findOne({_id: song.playlistId}).then((playlist) => {
-		console.log(playlist)
 		playlist.songs.forEach(playlistSong => {
 			if (song.id.toString() === playlistSong.id.toString()) {
 				const indx = playlist.songs.indexOf(playlistSong);

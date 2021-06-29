@@ -16,7 +16,7 @@ class PlaylistShowPage extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log('should-this', this.props)
+		// console.log('should-this', this.props)
 		
 		if (nextProps !== this.props || this.props.playlist !== nextProps.playlist) {
 			return true;
@@ -26,8 +26,11 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		console.log('playlist-show', this.props.playlist)
+		// console.log('playlist-show', this.props.playlist)
 		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
+		if (songs.length > 0) { songs.forEach(song => song.playlistId = _id) }
+		
+
 		return (
 			<section className='playlist-show-page'>
 				<CommentsList comments={comments} openModal={this.props.openModal} />
@@ -68,8 +71,8 @@ const selectPlaylist = (allPlaylists, playlists, playlistId) => {
 }
 
 const mSTP = (state, ownProps) => {
-	console.log(state)
-	console.log(ownProps)
+	// console.log(state)
+	// console.log(ownProps)
 	return {
 		userId: state.session.user,
         playlist: selectPlaylist(

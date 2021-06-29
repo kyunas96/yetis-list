@@ -37,7 +37,7 @@ class UpdatePlaylist extends React.Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log({ data: this.state, id: this.props.playlistId })
+		// console.log({ data: this.state, id: this.props.playlistId })
 		this.props
 			.updatePlaylist({ data: this.state, id: this.props.playlistId })
 			.then(() => {

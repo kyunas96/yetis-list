@@ -2,7 +2,7 @@ import React from 'react';
 import './search.css';
 
 const ListItem = (props) => {
-  console.log(props)
+//   console.log(props)
 	let imageSrc = props.item.image.small
 		? props.item.image.small
 		: 'music-solid.svg';

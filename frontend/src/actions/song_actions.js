@@ -14,6 +14,6 @@ export const removeSongFromPlaylist = (song) => (dispatch) => (
 	(res) => {
 		return res.data
 	}).catch((err) =>{
-		console.log(err)
+		console.log(err.response)
 	})
 )

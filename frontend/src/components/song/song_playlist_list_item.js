@@ -5,7 +5,7 @@ import { removeSongFromPlaylist } from '../../actions/song_actions';
 import { fetchPlaylists } from '../../actions/playlist_actions';
 
 const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlaylists, userId }) => {
-	console.log(isUsersPlaylist);
+	// console.log(isUsersPlaylist);
 	
 	if (song.artist) {
 		song.artists = song.artist

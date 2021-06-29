@@ -58,7 +58,7 @@ class SearchBar extends React.Component {
         searchValue: name,
       },
       () => {
-        console.log(this.state);
+        // console.log(this.state);
         this.props.clearListItems();
       }
     );

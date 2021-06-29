@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let store;
 	const token = window.localStorage.getItem('jwtToken')
 	if (token && token !== "undefined") {
-		console.log('jwtToken present')
+		// console.log('jwtToken present')
 		setAuthToken(window.localStorage.getItem('jwtToken'));
 
 		const decodedUser = jwt_decode(window.localStorage.getItem('jwtToken'));

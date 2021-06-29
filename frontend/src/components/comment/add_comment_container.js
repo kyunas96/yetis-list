@@ -26,7 +26,7 @@ class AddComment extends Component {
 
     handleSubmit(e) {
 		e.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
 		this.props.createComment(this.state)
 			.then(() => {
 				this.props.fetchPlaylists(this.props.userId).then(()=> {
@@ -53,7 +53,7 @@ class AddComment extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-	console.log(ownProps)
+	// console.log(ownProps)
 	return {
 		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
