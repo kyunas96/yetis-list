@@ -20,19 +20,15 @@ router.post('/', (req, res) => {
 
 	let newPlaylist = new Playlist(req.body);
 
-	newPlaylist
-		.save()
-		.then((playlist) => {
-			// adds playlist to users playlists array
-			User.findOne({ _id: playlist.userId })
-				.then((user) => {
-					user.playlists.push({ id: playlist._id, title: playlist.title });
-					user.save();
-				})
-				.catch(() => res.json('could not find user'));
-			res.json(playlist);
-		})
-		.catch(() => res.json('could not save playlist'));
+	newPlaylist.save().then((playlist) => {
+
+		// adds playlist to users playlists array
+		User.findById(playlist.userId).then(user => {
+			user.playlists.push({id: playlist._id, title: playlist.title})
+			user.save()
+		}).catch(() => res.json('could not find user'))
+		res.json(playlist)
+	}).catch(() => res.json('could not save playlist'))
 });
 
 // get all playlists from every user

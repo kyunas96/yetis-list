@@ -24,21 +24,22 @@ router.get(
 // in body: nothing
 // in params: users id
 router.get('/:id', (req, res) => {
-	User.findOne({ _id: req.params.id }).then((user) => {
+	User.findById(req.params.id).then((user) => {
 		res.json(user);
-	});
+	}).catch((err) => console.log(err));
 });
 
 // needs...
 // in body: email, username, password
 // in params: nothing
 router.post('/signup', (req, res) => {
+	console.log(req.body)
 	const { errors, isValid } = validateRegisterInput(req.body);
-
 	if (!isValid) {
 		return res.status(400).json(errors);
 	}
-	User.findOne({ email: req.body.email }).then((user) => {
+
+	User.findOne({email: req.body.email}).then((user) => {
 		if (user) {
 			return res
 				.status(400)
@@ -67,26 +68,23 @@ router.post('/signup', (req, res) => {
 				});
 			});
 		}
-	});
+	}).catch((err) => console.log(err));
 });
 
 // needs...
 // in body: email, password
 // in params: nothing
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
 	const { errors, isValid } = validateLoginInput(req.body);
 
-	if (!isValid) {
-		return res.status(400).json(errors);
-	}
-
+	if (!isValid) return res.status(400).json(errors);
+	
 	const email = req.body.email;
 	const password = req.body.password;
-
-	User.findOne({ email }).then((user) => {
-		if (!user) {
-			return res.status(404).json({ email: 'This user does not exist' });
-		}
+	
+	try {
+		const user = await User.findOne({ email });
+		if (!user) return res.status(404).json({ email: 'This user does not exist' });
 
 		bcrypt.compare(password, user.password).then((isMatch) => {
 			if (isMatch) {
@@ -109,7 +107,10 @@ router.post('/login', (req, res) => {
 				return res.status(400).json({ password: 'Incorrect password' });
 			}
 		});
-	});
+	} catch(err) {
+		console.log(err);
+		return res.json({ err });
+	}	
 });
 
 module.exports = router;
