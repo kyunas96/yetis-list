@@ -3,7 +3,8 @@ import {
 	CLEAR_CURRENT_PLAYLIST,
 	RECEIVE_CURRENT_PLAYLIST_DETAILS,
 	RECEIVE_SONG_ITEM,
-	REMOVE_SONG_ITEM
+	REMOVE_SONG_ITEM,
+	REMOVE_ALL_SONG_ITEMS
 } from '../actions/search_actions';
 
 const _initialState = {
@@ -36,6 +37,9 @@ export default function currentPlaylistReducer(state = _initialState, action) {
 				}
 			});
 			return newState;
+		case REMOVE_ALL_SONG_ITEMS:
+			newState.playlist.savedItems = [];
+			return newState; 
 		case CLEAR_CURRENT_PLAYLIST:
 			return {
 				playlist: {

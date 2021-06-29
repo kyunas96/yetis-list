@@ -9,6 +9,7 @@ export const setAuthToken = token => {
 };
  
 export const addSongToPlaylist = (song) => {
+  console.log('song util', song)
   return axios.post(`/api/songs/`, song);
 };
 

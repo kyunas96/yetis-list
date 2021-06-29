@@ -9,7 +9,7 @@ const Playlist = require('../../models/Playlist');
 // in params: nothing
 router.post('/', (req, res) => {
 	let newSong = new Song(req.body);
-
+	console.log(newSong)
 	newSong.save().then((song) => {
         if (song.playlistId) {
             // adds song to playlist's songs array

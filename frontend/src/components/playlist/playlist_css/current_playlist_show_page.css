@@ -45,3 +45,11 @@
     border: 1px solid rgb(49, 232, 98);
     background-color: rgb(57, 146, 168);
 }
+
+.song-saved {
+    background-color: green;
+}
+
+.song-saved:hover {
+    background-color: rgba(90, 177, 90, 0.76);
+}

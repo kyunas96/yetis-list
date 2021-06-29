@@ -10,6 +10,7 @@ export const RECEIVE_CURRENT_PLAYLIST_DETAILS = 'RECEIVE_CURRENT_PLAYLIST_DETAIL
 export const CLEAR_CURRENT_PLAYLIST = 'CLEAR_CURRENT_PLAYLIST';
 export const RECEIVE_SONG_ITEM = 'RECEIVE_SONG_ITEM';
 export const REMOVE_SONG_ITEM = 'REMOVE_SONG_ITEM';
+export const REMOVE_ALL_SONG_ITEMS = 'REMOVE_ALL_SONG_ITEMS';
 
 export const submitSeed = (seedData) => ({
     type: SUBMIT_SEED,
@@ -53,6 +54,10 @@ export const saveItem = (song) => ({
 export const removeItem = (song) => ({
     type: REMOVE_SONG_ITEM,
     song,
+})
+
+export const removeAllItems = () => ({
+    type: REMOVE_ALL_SONG_ITEMS,
 })
 
 export const sendSeed = (seedData) => dispatch => (
