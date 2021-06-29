@@ -32,7 +32,7 @@ class SearchBarPlaylistShow extends React.Component {
 		e.preventDefault();
         const selectedSong = Object.assign({}, this.state.selectedSeed);
         selectedSong.playlistId = this.props.playlistId;
-        // console.log(selectedSong)
+        console.log(selectedSong)
 		this.props.addSongToPlaylist(
             selectedSong
 		).then((res) => {

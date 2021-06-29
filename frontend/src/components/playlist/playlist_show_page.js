@@ -12,7 +12,7 @@ class PlaylistShowPage extends Component {
 
 	componentDidMount() {
 		this.props.fetchAllPlaylists()
-		this.props.fetchPlaylists(this.props.currentUser.id)
+		this.props.fetchPlaylists(this.props.userId)
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -40,7 +40,7 @@ class PlaylistShowPage extends Component {
 
 					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
 
-					<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.currentUser.id)}/>
+					<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
 				</section>
 			</section>
 		);
@@ -71,7 +71,7 @@ const mSTP = (state, ownProps) => {
 	console.log(state)
 	console.log(ownProps)
 	return {
-		currentUser: state.entities.users,
+		userId: state.session.user,
         playlist: selectPlaylist(
 			state.entities.playlists.allPlaylists, 
 			state.entities.playlists.playlists, 

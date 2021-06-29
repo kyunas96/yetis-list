@@ -9,11 +9,9 @@ export const setAuthToken = token => {
 };
  
 export const addSongToPlaylist = (song) => {
-  console.log('song util', song)
   return axios.post(`/api/songs/`, song);
 };
 
 export const removeSongFromPlaylist = (song) => {
-  console.log(song)
   return axios.patch(`/api/songs/`, song);
 };

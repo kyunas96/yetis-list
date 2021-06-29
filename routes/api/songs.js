@@ -8,18 +8,15 @@ const Playlist = require('../../models/Playlist');
 // in body: NO VALIDATIONS, but should have: song-name, artsist's, image, playlistId
 // in params: nothing
 router.post('/', (req, res) => {
-	let newSong = new Song(req.body);
-	console.log(newSong)
-	newSong.save().then((song) => {
-        if (song.playlistId) {
-            // adds song to playlist's songs array
-            Playlist.findById(song.playlistId).then(playlist => {
-                playlist.songs.push({id: song._id, text: song.text, userId: song.userId})
-                playlist.save()
-            }).catch(() => res.json('could not find playlist'))
-        }
+	let song = req.body;
+	console.log(song)
+	
+	// adds song to playlist's songs array
+	Playlist.findById(song.playlistId).then(playlist => {
+		playlist.songs.push(song)
+		playlist.save()
 		res.json(song)
-	}).catch(() => res.json('could not save song'))
+	}).catch(() => res.status(500).json({error: 'could not find playlist'}))
 });
 
 
@@ -42,7 +39,7 @@ router.patch('/', (req, res) => {
 		}) 
 	})
 	.then(() => res.json({ success: 'song removed from playlist' }))
-	.catch((err) => res.status(500).json({req, couldNotDelete: 'could not remove song from playlist'}));
+	.catch((err) => res.status(500).json({song: req.body, couldNotDelete: 'could not remove song from playlist'}));
 });
 
 
