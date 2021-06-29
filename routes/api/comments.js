@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 	newComment.save().then((comment) => {
 
 		// adds comment to playlist's comments array
-		Playlist.findOne({_id: comment.playlistId}).then(playlist => {
+		Playlist.findById(comment.playlistId).then(playlist => {
 			playlist.comments.push({id: comment._id, text: comment.text, userId: comment.userId})
 			playlist.save()
 		}).catch(() => res.json('could not find playlist'))

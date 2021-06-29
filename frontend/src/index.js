@@ -6,15 +6,16 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
-import { fetchPlaylists } from './actions/playlist_actions';
+// import { fetchPlaylists } from './actions/playlist_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	let store;
+	console.log(window.localStorage.getItem('jwtToken'))
+	if (window.localStorage.getItem('jwtToken') !== "undefined") {
+		console.log('jwtToken present')
+		setAuthToken(window.localStorage.getItem('jwtToken'));
 
-	if (localStorage.jwtToken) {
-		setAuthToken(localStorage.jwtToken);
-
-		const decodedUser = jwt_decode(localStorage.jwtToken);
+		const decodedUser = jwt_decode(window.localStorage.getItem('jwtToken'));
 
 		const preloadedState = {
 			entities: { users: decodedUser },
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		};
 
 		store = configureStore(preloadedState);
-    	store.dispatch(fetchPlaylists(decodedUser.id))
+    	// store.dispatch(fetchPlaylists(decodedUser.id))
 
 		const currentTime = Date.now() / 1000;
 

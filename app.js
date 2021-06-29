@@ -8,7 +8,7 @@ const passport = require('passport');
 const users = require('./routes/api/users');
 const playlists = require('./routes/api/playlists');
 const comments = require('./routes/api/comments');
-const songs = require('./routes/api/songs');
+// const songs = require('./routes/api/songs');
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
@@ -19,9 +19,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 mongoose
-	.connect(db, { useNewUrlParser: true })
+	.connect(db, { useNewUrlParser: true , useUnifiedTopology: true })
 	.then(() => console.log('Connected to MongoDB successfully'))
-	.catch((err) => console.log(err));
+	.catch((err) => {
+		console.log('not connected to MongoDB')
+		console.log(err)
+	});
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
