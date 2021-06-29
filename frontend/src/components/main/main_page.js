@@ -41,7 +41,7 @@ class MainPage extends React.Component {
             <Tree />
           </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
       </>
     );
   }

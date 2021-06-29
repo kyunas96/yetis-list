@@ -4,26 +4,11 @@ import './footer.css';
 const Footer = () => {
 	return (
 		<footer className='footer'>
-			<div className='creators-container'>
-				<div>Project Members:</div>
-					{/* <div className='creator-container'>
-						<a href='https://github.com/yunasty' className='creator'><img src='https://image.flaticon.com/icons/png/128/4019/4019287.png'/></a>
-						<div>Kevin Yunas</div>
-					</div>
-					<div className='creator-container'>
-						<a href='https://github.com/brcodington78' className='creator'><img src='https://image.flaticon.com/icons/png/128/834/834358.png'/></a>
-					</div>
-					<div className='creator-container'>
-						<a href='https://github.com/ElijahAlly' className='creator'><img src='https://image.flaticon.com/icons/png/128/4019/4019287.png'/></a>
-					</div>
-					<div className='creator-container'>
-						<a href="https://github.com/Schploink" className='creator'><img src='https://image.flaticon.com/icons/png/128/834/834358.png'/></a>
-					</div> */}
-				<a href='https://github.com/yunasty' className='creator'><img src='https://image.flaticon.com/icons/png/128/4019/4019287.png'/></a>
-				<a href='https://github.com/brcodington78' className='creator'><img src='https://image.flaticon.com/icons/png/128/834/834358.png'/></a>
-				<a href='https://github.com/ElijahAlly' className='creator'><img src='https://image.flaticon.com/icons/png/128/4019/4019287.png'/></a>
-				<a href="https://github.com/Schploink" className='creator'><img src='https://image.flaticon.com/icons/png/128/834/834358.png'/></a>
+			<div className='footer-right-side'>
+				<a className='footer-a' className='contact-us-link' href="url">Contact Us</a> 
+				<a className='footer-a' href='https://github.com/yunasty/yetis-list/wiki'><img className='github-icon' alt='link to our github' src='http://experience-premier.herokuapp.com/images/github-logo.ef7a02b69836dc8b6a732a54c4200dcb.png'></img></a>
 			</div>
+			
 		</footer>
 	);
 };

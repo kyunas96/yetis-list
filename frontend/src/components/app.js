@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import Modal from './modal/modal';
 
+import Footer from './footer/footer'
 import MainPage from './main/main_page';
 import UserMainPage from './user/main/user_main_container';
 import PlaylistCreatePage from './playlist/playlist_create_page';
@@ -18,6 +19,7 @@ const App = () => (
     <NavBarContainer />
     <Modal />
     <Switch>
+        
         {/* On Playlist Show page: list of songs, comments, likes */}
         <ProtectedRoute exact path='/users/:id/playlist/:playlistId' component={PlaylistShowPage} />
         {/* On Playlist Create page: Searchbar, manual Playlist creator */}
@@ -33,8 +35,11 @@ const App = () => (
         {/* On User Home: Searchbar */}
         <ProtectedRoute exact path='/users/:id/' component={UserMainPage} />
         
+        {/* <Route exact path='/contact-us' component={ContactPage}/> */}
+
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
+    <Footer />
   </>
 );
 
