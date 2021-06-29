@@ -53,6 +53,9 @@
 .footer-right-side {
     display: flex;
     align-items: center;
+    margin-right: 10px;
+    width: 20%;
+    justify-content: space-evenly;
 }
 
 
