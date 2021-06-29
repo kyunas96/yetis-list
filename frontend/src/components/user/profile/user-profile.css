@@ -73,7 +73,7 @@
     color: white;
 }
 
-a {
+.playlist-link {
     text-decoration: none;
     width: 100%;
     height: auto;

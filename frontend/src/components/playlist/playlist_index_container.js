@@ -43,7 +43,7 @@ class PlaylistIndex extends React.Component {
 						this.props.playlists.map((playlist, i) => {
 							return (
 								<li key={i} playlist={playlist} className='playlist-item'>
-									<Link to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}>
+									<Link className='playlist-link' to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}>
 										<h3 className='playlist-profile-title'>{playlist.title}</h3>
 										<h3 className='playlist-profile-description'>{playlist.description}</h3>
 									</Link>
