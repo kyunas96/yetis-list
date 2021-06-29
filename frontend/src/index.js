@@ -10,8 +10,8 @@ import { logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
 	let store;
-	console.log(window.localStorage.getItem('jwtToken'))
-	if (window.localStorage.getItem('jwtToken') !== "undefined") {
+	const token = window.localStorage.getItem('jwtToken')
+	if (token && token !== "undefined") {
 		console.log('jwtToken present')
 		setAuthToken(window.localStorage.getItem('jwtToken'));
 
