@@ -69,7 +69,7 @@ class SearchBarPlaylistShow extends React.Component {
 			<div className='search'>
 				<form className='search-form' onSubmit={this.handleSubmit}>
 					<input
-						placeholder='Select song to add to playlist'
+						placeholder='Search for songs'
 						className='search-input'
 						name='searchValue'
 						type='text'
