@@ -3,6 +3,7 @@ const router = express.Router();
 const Comment = require('../../models/Comment');
 const Playlist = require('../../models/Playlist');
 const validateCommentInput = require('../../validation/comment');
+const mongoose = require('mongoose');
 
 // create comment
 // needs...
@@ -27,10 +28,12 @@ router.post('/', (req, res) => {
 						userId: comment.userId,
 						playlistId: comment.playlistId,
 					});
-					playlist.save();
+					playlist.save()
+						.then(() => res.json("comment posted"))
+						.catch(() => res.json("comment not posted"))
 				})
 				.catch(() => res.json('could not find playlist'));
-			res.json(comment);
+			
 		})
 		.catch(() => res.json('could not save comment'));
 });
@@ -74,11 +77,19 @@ router.get('/:id', (req, res) => {
 
 router.delete('/:playlistId/:commentId', async function (req, res) {
 	console.log('params', req.params);
+	let objectID = mongoose.mongo.ObjectID(req.params.commentId)
+	console.log(objectID)
 	try {
 		const playlist = await Playlist.findByIdAndUpdate(
 			req.params.playlistId,
 			{
-				$pull: { 'comments': {'id': req.params.commentId } },
+				$pull: { 'comments': {'id': objectID } },function(err, comment){
+					if (err) {
+            console.log("ERROR: " + err);
+          }
+          console.log("comments" + comment);
+
+				}
 			}
 		);
 
@@ -86,19 +97,10 @@ router.delete('/:playlistId/:commentId', async function (req, res) {
 			return res.status(400).send('Playlist not found');
 		}
 
-		// const playlist = await Playlist.findById(req.params.playlistId)
-		// console.log(playlist)
-		// playlist.comments.forEach((com, i) => {
-		// 	if (com.id.toString() === commentId.toString()) {
-		// 		playlist.comments.splice(i, 1);
-		// 		playlist.save();
-		// 	}
-		// })
-		// console.log(playlist)
-
-		await Comment.findByIdAndDelete(req.params.commentId);
-
-		res.send('Success');
+		
+		await Comment.findByIdAndDelete(req.params.commentId).then(() =>
+      res.send("Success")
+    );
 	} catch (err) {
 		console.log(err);
 		res.status(500).send('Something went wrong');

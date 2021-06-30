@@ -52,7 +52,6 @@ router.get('/', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
 	Playlist.find({ userId: req.params.user_id })
 		.then(playlist => {
-			console.log(playlist)
 			return playlist;
 		})
 		.then((playlists) => res.json(playlists))
