@@ -45,14 +45,14 @@ router.get('/:id', (req, res) => {
 // in body: nothing
 // in params: comment id
 router.delete('/:id', (req, res) => {
+	console.log('params',req.params)
 	Comment.findById(req.params.id).then((comment) => {
 		Comment.deleteOne({_id: req.params.id}).then(() => {
 
 			Playlist.findById(comment.playlistId).then((playlist) => {
-				playlist.comments.forEach(com => {
+				playlist.comments.forEach((com, i) => {
 					if (com.id.toString() === comment._id.toString()) {
-						const indx = playlist.comments.indexOf(com);
-						playlist.comments.splice(indx, 1);
+						playlist.comments.splice(i, 1);
 						playlist.save();
 					}
 				})

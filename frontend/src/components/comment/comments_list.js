@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import CommentItem from './comment_item'
 
 const CommentList = ({comments, openModal }) => {
+	console.log('comment-list',comments)
+
     return ( 
         <section className='comments'>
             <ul className='comments-list'>
@@ -19,5 +21,5 @@ const CommentList = ({comments, openModal }) => {
         </section>
     );
 }
- 
+
 export default CommentList;

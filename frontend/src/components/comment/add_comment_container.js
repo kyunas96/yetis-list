@@ -28,11 +28,8 @@ class AddComment extends Component {
 		e.preventDefault();
         // console.log(this.state)
 		this.props.createComment(this.state)
-			.then(() => {
-				this.props.fetchPlaylists(this.props.userId).then(()=> {
-					this.props.closeModal()
-				})
-			})
+			.then(() => this.props.closeModal())
+			.then(() => this.props.fetchPlaylists(this.props.userId))
 	}
 
     render() { 

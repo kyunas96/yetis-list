@@ -31,11 +31,12 @@ class PlaylistIndex extends React.Component {
 		}
 	}
 
-
 	render() {
 		return (
 			<section className='playlist-list'>
-				<button id='make-a-playlist' onClick={() => this.props.openModal('create-playlist')}>
+				<button
+					id='make-a-playlist'
+					onClick={() => this.props.openModal('create-playlist')}>
 					Make A Playlist
 				</button>
 				<h2>Your Playlists</h2>
@@ -44,17 +45,21 @@ class PlaylistIndex extends React.Component {
 						this.props.playlists.map((playlist, i) => {
 							return (
 								<li key={i} playlist={playlist} className='playlist-item'>
-									<Link to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`} onClick={() => this.props.sendPlaylistId(playlist._id)}>
+									<Link
+										to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}
+										onClick={() => this.props.sendPlaylistId(playlist._id)}>
 										<h3 className='playlist-profile-title'>{playlist.title}</h3>
-										<h3 className='playlist-profile-description'>{playlist.description}</h3>
+										<h3 className='playlist-profile-description'>
+											{playlist.description}
+										</h3>
 									</Link>
 									<button onClick={() => this.handleUpdate(playlist._id)}>
 										Update Playlist
 									</button>
 									<button
 										onClick={() => {
-											this.props.openModal('delete-playlist')
-											this.props.sendPlaylistId(playlist._id)
+											this.props.openModal('delete-playlist');
+											this.props.sendPlaylistId(playlist._id);
 										}}>
 										Delete Playlist
 									</button>

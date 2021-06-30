@@ -30,7 +30,7 @@ class PlaylistShowPage extends Component {
 		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
 		if (songs.length > 0) { songs.forEach(song => song.playlistId = _id) }
 		
-
+		console.log('show-page', comments)
 		return (
 			<section className='playlist-show-page'>
 				<CommentsList comments={comments} openModal={this.props.openModal} />
