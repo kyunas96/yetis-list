@@ -8,6 +8,7 @@ import Footer from '../../footer/footer'
 class UserMainPage extends React.Component {
 	componentDidMount() {
 		this.props.fetchAllPlaylists();
+		this.props.removeAllItems();
 	}
 
 	render() {

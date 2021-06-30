@@ -29,11 +29,18 @@ class NavBar extends React.Component {
           </div>
 					<ul className='logged-in-nav'>
 						<li>
-							<p
+							<Link
+								to={`/users/${this.props.user}/`}
+								className='profile-nav-link'>
+								Generate A Random Playlist
+							</Link>
+						</li>
+						<li>
+							<Link to={`/users/${this.props.user}/profile`}
 								onClick={() => this.props.openModal()}
-								className='playlist-make-nav'>
-								Make a custom playlist
-							</p>
+								className='profile-nav-link'>
+								Make A Custom Playlist
+							</Link>
 						</li>
 						<li>
 							<Link

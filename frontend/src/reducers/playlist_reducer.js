@@ -1,10 +1,10 @@
-import { RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST_ID, REMOVE_PLAYLIST_ID, RECEIVE_ALL_PLAYLISTS } from '../actions/playlist_actions';
+import { RECEIVE_PLAYLISTS, RECEIVE_PLAYLIST_ID, RECEIVE_ALL_PLAYLISTS } from '../actions/playlist_actions';
 import {RECEIVE_USER_LOGOUT} from '../actions/session_actions'
 
 const _initialState = {
 	allPlaylists: [],
 	playlists: [],
-	id: null
+	id: null,
 };
 
 const playlistReducer = (state = _initialState, action) => {
@@ -20,9 +20,6 @@ const playlistReducer = (state = _initialState, action) => {
 			return newState;
 		case RECEIVE_PLAYLIST_ID:
 			newState.id = action.playlistId;
-			return newState;
-		case REMOVE_PLAYLIST_ID:
-			newState.id = null;
 			return newState;
 		case RECEIVE_USER_LOGOUT:
 			newState.id = null;

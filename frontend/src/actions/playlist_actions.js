@@ -28,13 +28,6 @@ export const sendPlaylistId = (playlistId) => {
     }
 };
 
-export const removePlaylistId = () => {
-    return {
-	    type: REMOVE_PLAYLIST_ID,
-    }
-};
-
-
 export const fetchPlaylists = (userId) => (dispatch) =>
 	APIUtil.fetchPlaylists(userId).then(
 		(res) => {
@@ -57,7 +50,7 @@ export const fetchAllPlaylists = () => (dispatch) =>
 export const createPlaylist = (playlist) => (dispatch) => 
 	APIUtil.createPlaylist(playlist).then(
 		(res) => {
-			dispatch(receivePlaylists(res.data))
+			// dispatch(receivePlaylists(res.data))
 			return res.data
 		},
 		// (err) => dispatch(receiveErrors(err.response.data))

@@ -8,7 +8,7 @@ const passport = require('passport');
 const users = require('./routes/api/users');
 const playlists = require('./routes/api/playlists');
 const comments = require('./routes/api/comments');
-// const songs = require('./routes/api/songs');
+const songs = require('./routes/api/songs');
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
@@ -32,6 +32,7 @@ require('./config/passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api/comments', comments);
+app.use('/api/songs', songs);
 app.use('/api/playlists', playlists);
 app.use('/api/users', users);
 

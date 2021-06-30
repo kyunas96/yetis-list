@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
-import { requestListItems, sendSeed, clearListItems} from "../../actions/search_actions";
+import { requestListItems, sendSeed, clearListItems, sendDescriptionDetails } from "../../actions/search_actions";
 import SearchBar from "./search_bar";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 
 const mSTP = (state) => {
   return {
@@ -13,6 +13,7 @@ const mSTP = (state) => {
 const mDTP = (dispatch) => ({
   requestListItems: (searchItem) => dispatch(requestListItems(searchItem)),
   sendSeed: (seed) => dispatch(sendSeed(seed)),
+  sendDescriptionDetails: (details) => dispatch(sendDescriptionDetails(details)),
   clearListItems: () => dispatch(clearListItems())
 });
 

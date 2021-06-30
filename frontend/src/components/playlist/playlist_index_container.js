@@ -38,12 +38,13 @@ class PlaylistIndex extends React.Component {
 				<button id='make-a-playlist' onClick={() => this.props.openModal('create-playlist')}>
 					Make A Playlist
 				</button>
+				<h2>Your Playlists</h2>
 				<ul>
 					{this.props.playlists.length > 0 ? (
 						this.props.playlists.map((playlist, i) => {
 							return (
 								<li key={i} playlist={playlist} className='playlist-item'>
-									<Link className='playlist-link' to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}>
+									<Link to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`} onClick={() => this.props.sendPlaylistId(playlist._id)}>
 										<h3 className='playlist-profile-title'>{playlist.title}</h3>
 										<h3 className='playlist-profile-description'>{playlist.description}</h3>
 									</Link>

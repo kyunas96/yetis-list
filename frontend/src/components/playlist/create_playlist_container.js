@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
-import { createPlaylist, fetchPlaylists } from '../../actions/playlist_actions';
+import { createPlaylist, fetchPlaylists, sendPlaylistId } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 import './playlist_css/create-playlist-modal.css'
 
@@ -47,10 +47,11 @@ class CreatePlaylist extends React.Component {
 		
 		this.props.createPlaylist(newState)
 		.then((playlist) => {
+			this.props.sendPlaylistId(playlist._id);
 			this.props.fetchPlaylists(playlist.userId).then(() => {
 				this.props.history.push(`/users/${playlist.userId}/playlist/${playlist._id}`);
 				this.props.closeModal();
-			})
+			});
 		});
 	}
 
@@ -89,6 +90,7 @@ const mapDispatchToProps = (dispatch) => {
 		createPlaylist: (playlist) => dispatch(createPlaylist(playlist)),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		closeModal: () => dispatch(closeModal()),
+		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 	};
 };
 
