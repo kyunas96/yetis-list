@@ -18,11 +18,11 @@ class CommentItem extends Component {
 
     deleteComment() {
         this.props.deleteComment(this.state.comment.id)
-            .then((indx) => {
-                console.log(indx)
+            .then((res) => {
+                console.log(res.response.data)
                 this.props.fetchPlaylists(this.props.userId)
             })
-            .catch(() => console.log('didnt delete'))
+            .catch((err) => console.log(err.response.data))
     }
 
 	render() {

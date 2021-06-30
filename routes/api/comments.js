@@ -44,26 +44,49 @@ router.get('/:id', (req, res) => {
 // needs...
 // in body: nothing
 // in params: comment id
-router.delete('/:id', (req, res) => {
-	console.log('params',req.params)
-	Comment.findById(req.params.id).then((comment) => {
-		Comment.deleteOne({_id: req.params.id}).then(() => {
+// router.delete('/:id', (req, res) => {
+// 	console.log('params', req.params)
+// 	Comment.findById(req.params.id).then((comment) => {
+// 		Comment.deleteOne({_id: req.params.id}).then(() => {
 
-			Playlist.findById(comment.playlistId).then((playlist) => {
-				playlist.comments.forEach((com, i) => {
-					if (com.id.toString() === comment._id.toString()) {
-						playlist.comments.splice(i, 1);
-						playlist.save();
-					}
-				})
-			})
+// 			Playlist.findById(comment.playlistId).then((playlist) => {
+// 				playlist.comments.forEach((com, i) => {
+// 					if (com.id.toString() === comment._id.toString()) {
+// 						playlist.comments.splice(i, 1);
+// 						playlist.save();
+// 					}
+// 				})
+// 			})
+// 		})
+// 		.then(() => res.json({ success: 'comment deleted' }))
+// 		.catch((err) =>
+// 			res.status(500).json({ couldNotDelete: 'could not delete comment' })
+// 		);
+// 	})
+// });
+
+
+router.delete('/:id', (req, res) => {
+	const commentId = req.params.id;
+
+	Comment.findById(commentId).then(comment => {
+		console.log(comment)
+		Playlist.findById(comment.playlistId).then((playlist) => {
+			playlist.updateMany({},
+				{ $pull: { comments: { id:  commentId } } },
+				{ multi: true }
+			)
+			.then(() => res.json({ success: 'comment deleted' }))
+			.catch((err) => res.status(500).json({ couldNotDelete: 'could not delete comment' }));
+		}).then(() => {
+			Comment.findByIdAndDelete(req.params.id)
+			.then(() =>res.status(200).json('deleted comment'))
+			.catch((err) => res.status(500).json({ couldNotDelete: 'could not find comment' }));
 		})
-		.then(() => res.json({ success: 'comment deleted' }))
-		.catch((err) =>
-			res.status(500).json({ couldNotDelete: 'could not delete comment' })
-		);
+		.catch((err) => res.status(500).json({ couldNotDelete: "didn't find playlist" }));
 	})
-});
+	.catch((err) => res.status(500).json({ couldNotDelete: "didn't find comment" }));
+})
 
 // update comments
 // needs...
