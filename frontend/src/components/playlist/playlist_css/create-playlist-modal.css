@@ -1,28 +1,32 @@
-.create-playlist-modal {
+.create-playlist-form-container {
+    height: 100%;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: 0 20px;
-    height: auto;
-    height: 200px;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+
 }
 
 .create-playlist-modal-form {
-    height: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 }
 
-.create-playlist-modal-form > label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 260px;
+.close-x {
+    position: absolute;
+    top: 8px;
+    right: 13px;
+    color:crimson;
+    transition-duration: 0.4s;
 }
 
-.exit-modal {
-    margin-bottom: 20px;
-    width: 40px;
+.close-x:hover {
+    cursor: pointer;
+}
+
+.close-x:hover {
+	color: white;
+	cursor: pointer;
 }

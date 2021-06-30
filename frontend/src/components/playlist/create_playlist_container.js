@@ -57,16 +57,19 @@ class CreatePlaylist extends React.Component {
 
 	render() {
 		return (
-			<div className='create-playlist-modal'>
-				<button className='exit-modal' onClick={this.props.closeModal}>exit</button>
+			<div className='create-playlist-form-container'>
+				<div className='close-x' onClick={this.props.closeModal}>X</div>
 				<form className='create-playlist-modal-form' onSubmit={this.handleSubmit}>
 					<label>
-						Title
-						<input onChange={this.update('title')} value={this.state.title} />
+						<input 
+						placeholder="Title"
+						onChange={this.update('title')} 
+						value={this.state.title} 
+						/>
 					</label>
 					<label>
-						Description
 						<input
+							placeholder="Description"
 							onChange={this.update('description')}
 							value={this.state.description}
 						/>
