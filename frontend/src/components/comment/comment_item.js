@@ -17,12 +17,12 @@ class CommentItem extends Component {
 	}
 
     deleteComment() {
-        this.props.deleteComment(this.state.comment.id)
+        this.props.deleteComment(this.state.comment)
             .then((res) => {
-                console.log(res.response.data)
+                console.log(res.response)
                 this.props.fetchPlaylists(this.props.userId)
             })
-            .catch((err) => console.log(err.response.data))
+            .catch((err) => console.log(err.response))
     }
 
 	render() {

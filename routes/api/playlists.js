@@ -51,6 +51,10 @@ router.get('/', (req, res) => {
 // in params: userId
 router.get('/user/:user_id', (req, res) => {
 	Playlist.find({ userId: req.params.user_id })
+		.then(playlist => {
+			console.log(playlist)
+			return playlist;
+		})
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
 			res
@@ -132,14 +136,14 @@ router.patch('/:id', (req, res) => {
 router.post('/generate', (req, res) => {
 	console.log('req body:' + JSON.stringify(req.body));
 	let queryObject = packageQueryObject(req.body);
-	console.log(queryObject);
+	// console.log(queryObject);
 	makePlaylist(queryObject, res);
 });
 
 router.post('/getlist', (req, res) => {
 	// console.log(req.body)
 	const { searchValue, seedType } = req.body;
-	console.log(searchValue, seedType);
+	// console.log(searchValue, seedType);
 	Search(searchValue, seedType, res);
 });
 

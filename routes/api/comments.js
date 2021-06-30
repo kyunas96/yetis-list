@@ -19,7 +19,12 @@ router.post('/', (req, res) => {
 
 		// adds comment to playlist's comments array
 		Playlist.findById(comment.playlistId).then(playlist => {
-			playlist.comments.push({id: comment._id, text: comment.text, userId: comment.userId})
+			playlist.comments.push({
+				id: comment._id, 
+				text: comment.text, 
+				userId: comment.userId,
+				playlistId: comment.playlistId
+			})
 			playlist.save()
 		}).catch(() => res.json('could not find playlist'))
 		res.json(comment)
@@ -66,27 +71,29 @@ router.get('/:id', (req, res) => {
 // });
 
 
-router.delete('/:id', (req, res) => {
-	const commentId = req.params.id;
+router.delete("/:playlistId/:commentId", async function (req, res) {
+	console.log("params", req.params)
+  try {
+    const playlist = await Playlist.findByIdAndUpdate(
+      req.params.playlistId,
+      {
+        $pull: { comments: req.params.commentId },
+      },
+      { new: true }
+    );
 
-	Comment.findById(commentId).then(comment => {
-		console.log(comment)
-		Playlist.findById(comment.playlistId).then((playlist) => {
-			playlist.updateMany({},
-				{ $pull: { comments: { id:  commentId } } },
-				{ multi: true }
-			)
-			.then(() => res.json({ success: 'comment deleted' }))
-			.catch((err) => res.status(500).json({ couldNotDelete: 'could not delete comment' }));
-		}).then(() => {
-			Comment.findByIdAndDelete(req.params.id)
-			.then(() =>res.status(200).json('deleted comment'))
-			.catch((err) => res.status(500).json({ couldNotDelete: 'could not find comment' }));
-		})
-		.catch((err) => res.status(500).json({ couldNotDelete: "didn't find playlist" }));
-	})
-	.catch((err) => res.status(500).json({ couldNotDelete: "didn't find comment" }));
-})
+    if (!playlist) {
+      return res.status(400).send("Playlist not found");
+    }
+
+    await Comment.findByIdAndDelete(req.params.commentId);
+
+    res.send("Success");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something went wrong");
+  }
+});
 
 // update comments
 // needs...

@@ -17,22 +17,22 @@ function getArtistAlbums(albumId) {
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
 
       spotifyApi.getArtistAlbums(`${albumId}`, {}, function (err, data) {
         if (err) {
-          console.error("Something went wrong!");
+          // console.error("Something went wrong!");
         } else {
-          console.log(data.body);
+          // console.log(data.body);
         }
       });
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }
@@ -47,8 +47,8 @@ function getAlbum(albumId) {
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
@@ -62,7 +62,7 @@ function getAlbum(albumId) {
       });
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }
@@ -77,8 +77,8 @@ function getTrack(trackId) {
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
@@ -86,7 +86,7 @@ function getTrack(trackId) {
       spotifyApi.getTrack(`${trackId}`).then((data) => console.log(data));
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }
@@ -101,8 +101,8 @@ function getRecommendations(recommendationsObject){
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
@@ -116,15 +116,15 @@ function getRecommendations(recommendationsObject){
         .then(
           function (data) {
             let recommendations = data.body;
-            console.log(recommendations);
+            // console.log(recommendations);
           },
           function (err) {
-            console.log("Something went wrong!", err);
+            // console.log("Something went wrong!", err);
           }
         );
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }
@@ -138,8 +138,8 @@ function getAvailableGenreSeeds() {
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
@@ -151,7 +151,7 @@ function getAvailableGenreSeeds() {
         );
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }
@@ -166,18 +166,18 @@ function getDanceable() {
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(
     function (data) {
-      console.log("The access token expires in " + data.body["expires_in"]);
-      console.log("The access token is " + data.body["access_token"]);
+      // console.log("The access token expires in " + data.body["expires_in"]);
+      // console.log("The access token is " + data.body["access_token"]);
 
       // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body["access_token"]);
 
       spotifyApi
         .search("", ["track", "playlist"], { min_danceability: 0.9 })
-        .then((data) => console.log(data));
+        // .then((data) => console.log(data));
     },
     function (err) {
-      console.log("Something went wrong when retrieving an access token", err);
+      // console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }

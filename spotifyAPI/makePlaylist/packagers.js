@@ -1,5 +1,4 @@
  function packageQueryObject(data) {
-   console.log(data)
   let seed_artists = [];
   let seed_genres = [];
   let seed_tracks = [];

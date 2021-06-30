@@ -26,7 +26,7 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		// console.log('playlist-show', this.props.playlist)
+		console.log('playlist-show', this.props.playlist)
 		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
 		if (songs.length > 0) { songs.forEach(song => song.playlistId = _id) }
 		

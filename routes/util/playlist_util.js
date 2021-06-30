@@ -5,7 +5,7 @@ const playlistsFormatter = (playlists) => {
     playlists.forEach(playlist => {
         newObj[playlist._id] = playlist;
     })
-    console.log('util', newObj)
+    // console.log('util', newObj)
     return newObj;
 }
 
