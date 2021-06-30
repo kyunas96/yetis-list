@@ -8,9 +8,10 @@ import { connect } from 'react-redux';
 class AddComment extends Component {
     constructor(props) {
         super(props);
-        const {userId, playlistId} = this.props;
+        const {userId, playlistId, username} = this.props;
         this.state = {  
             text: '',
+			username,
             userId,
             playlistId
         }
@@ -55,6 +56,7 @@ const mapStateToProps = (state, ownProps) => {
 		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
 		userId: state.session.user,
+		username: state.entities.users.username
 	};
 };
 

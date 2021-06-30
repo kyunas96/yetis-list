@@ -26,6 +26,7 @@ router.post('/', (req, res) => {
 						id: comment._id,
 						text: comment.text,
 						userId: comment.userId,
+						username: comment.username,
 						playlistId: comment.playlistId,
 					});
 					playlist.save()

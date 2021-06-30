@@ -7,6 +7,7 @@ import { deleteComment } from "../../actions/comment_actions";
 class CommentItem extends Component {
   constructor(props) {
     super(props);
+    console.log('comment item props', props)
     this.deleteComment = this.deleteComment.bind(this);
   }
 
@@ -39,10 +40,11 @@ class CommentItem extends Component {
         <button onClick={() => this.deleteComment()}>Delete Comment</button>
       );
     }
-    const { text, id } = this.props.comment;
+    const { text, id, username } = this.props.comment;
     console.log("id", id);
     return (
       <li className="comment-item">
+        <div className='comment-username'>{username}</div>
         {text}
         {deleteButton}
       </li>
