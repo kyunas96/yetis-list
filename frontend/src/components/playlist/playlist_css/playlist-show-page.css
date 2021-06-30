@@ -23,6 +23,7 @@
 	margin: 20px;
 	border-radius: 4px;
 	overflow-y: scroll;
+	/* width: 90%; */
 }
 
 .comment-item {
@@ -41,6 +42,8 @@
 .add-comment  {
     background-color: rgb(47, 141, 165);
 	transition-duration: 0.4s;
+	position: fixed;
+	width: 100%;
 }
 
 .add-comment:hover {
@@ -59,6 +62,20 @@
 }
 
 .comment-item::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+.comments-list::-webkit-scrollbar {
+	background-color: transparent;
+	width: 7px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.349);
+	border-radius: 5px;
+}
+
+.comments-list::-webkit-scrollbar-corner {
 	background-color: transparent;
 }
 
