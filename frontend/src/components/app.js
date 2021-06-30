@@ -37,7 +37,7 @@ const App = () => (
         {/* On User Home: Searchbar */}
         <ProtectedRoute exact path='/users/:id/' component={UserMainPage} />
         
-        <Route exact path='/contact-us' component={ContactPage}/>
+        <Route exact path='/contactUs' component={ContactPage}/>
 
         <AuthRoute exact path="/" component={MainPage} />
     </Switch>
