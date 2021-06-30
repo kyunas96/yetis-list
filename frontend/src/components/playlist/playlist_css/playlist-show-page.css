@@ -37,6 +37,12 @@
 	border-radius: 4px;
 }
 
+.comment-username {
+	position: relative;
+    bottom: 50px;
+    right: 50px;
+}
+
 .add-comment  {
     background-color: rgb(47, 141, 165);
 	transition-duration: 0.4s;
