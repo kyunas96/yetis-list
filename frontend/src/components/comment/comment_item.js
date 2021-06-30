@@ -37,7 +37,7 @@ class CommentItem extends Component {
     let deleteButton = null;
     if (this.props.userId === this.props.comment.userId) {
       deleteButton = (
-        <button onClick={() => this.deleteComment()}>Delete Comment</button>
+        <button className='comment-delete' onClick={() => this.deleteComment()}>Delete Comment</button>
       );
     }
     const { text, id, username } = this.props.comment;
@@ -45,7 +45,7 @@ class CommentItem extends Component {
     return (
       <li className="comment-item">
         <div className='comment-username'>{username}</div>
-        {text}
+        <p>{text}</p>
         {deleteButton}
       </li>
     );

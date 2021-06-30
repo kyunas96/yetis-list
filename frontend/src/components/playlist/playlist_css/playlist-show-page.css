@@ -41,8 +41,12 @@
 
 .comment-username {
 	position: relative;
-    bottom: 50px;
-    right: 50px;
+    bottom: 50%;
+}
+
+.comment-delete {
+	position: relative;
+    top: 35%;
 }
 
 .add-comment  {
