@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchAllPlaylists, fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists, fetchPlaylists, sendPlaylistId } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
 import CommentsList from '../comment/comments_list';
 import './playlist_css/playlist-show-page.css'
@@ -25,6 +25,11 @@ class PlaylistShowPage extends Component {
 		}
 	}
 
+	handleUpdate(playlistId) {
+		this.props.sendPlaylistId(playlistId);
+		this.props.openModal('update-playlist');
+	}
+
 	render() {
 		// console.log('playlist-show', this.props.playlist)
 		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
@@ -33,12 +38,24 @@ class PlaylistShowPage extends Component {
 		// console.log('show-page', comments)
 		return (
 			<section className='playlist-show-page'>
-				<CommentsList comments={comments} openModal={this.props.openModal} />
+				<CommentsList comments={comments} openModal={() => this.props.openModal('add-comment')} />
 
 				<section className='playlist-info'>
 					<div className='playlist-header'>
 						<div className='playlist-title'>{title}</div>
     		            <div className='playlist-description'>{description}</div>
+						<div>
+							<button onClick={() => this.handleUpdate(_id)}>
+								Update Playlist
+							</button>
+							<button
+								onClick={() => {
+									this.props.openModal('delete-playlist');
+									this.props.sendPlaylistId(_id);
+								}}>
+								Delete Playlist
+							</button>
+						</div>
 					</div>
 
 					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
@@ -87,7 +104,8 @@ const mDTP = (dispatch) => {
 	return {
 		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
-		openModal: () => dispatch(openModal('add-comment')),
+		openModal: (type) => dispatch(openModal(type)),
+		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 	};
 };
 

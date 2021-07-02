@@ -36,9 +36,10 @@ class DeletePlaylistContainer extends React.Component {
 
     handleDelete() {
         this.props.deletePlaylist(this.props.playlistId).then(() => {
-            this.props.closeModal()
-            this.props.fetchPlaylists(this.state.userId)
-        })
+            this.props.closeModal();
+            this.props.fetchPlaylists(this.state.userId);
+			setTimeout(() => this.props.history.push(`/users/${this.state.userId}/profile`), 500);
+		})
     }
 
 	render() {
