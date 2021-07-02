@@ -49,7 +49,7 @@ class PlaylistIndex extends React.Component {
 										<h3 className='playlist-profile-description'>{playlist.description}</h3>
 									</Link>
 									<button onClick={() => this.handleUpdate(playlist._id)}>
-										Update Playlist
+										Rename Playlist
 									</button>
 									<button
 										onClick={() => {
