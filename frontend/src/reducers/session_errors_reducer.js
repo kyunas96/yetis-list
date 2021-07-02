@@ -3,6 +3,7 @@ import {
 	RECEIVE_CURRENT_USER,
 	RECEIVE_USER_LOGOUT
 } from '../actions/session_actions';
+import {OPEN_MODAL, CLOSE_MODAL} from '../actions/modal_actions'
 
 const _nullErrors = [];
 
@@ -15,6 +16,10 @@ const SessionErrorsReducer = (state = _nullErrors, action) => {
 			return _nullErrors;
 		case RECEIVE_USER_LOGOUT:
 			return [];
+		case OPEN_MODAL:
+			return []
+		case CLOSE_MODAL:
+			return []
 		default:
 			return state;
 	}
