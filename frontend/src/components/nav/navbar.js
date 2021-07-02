@@ -22,11 +22,9 @@ class NavBar extends React.Component {
 		if (this.props.loggedIn) {
 			return (
 				<>
-          <div className='nav-title'>
-            <Link to={`/users/${this.props.user}`}>
-              Yeti's List
-            </Link>
-          </div>
+					<div className='nav-title'>
+						<Link to={`/users/${this.props.user}`}>Yeti's List</Link>
+					</div>
 					<ul className='logged-in-nav'>
 						<li>
 							<Link
@@ -36,7 +34,8 @@ class NavBar extends React.Component {
 							</Link>
 						</li>
 						<li>
-							<Link to={`/users/${this.props.user}/profile`}
+							<Link
+								to={`/users/${this.props.user}/profile`}
 								onClick={() => this.props.openModal()}
 								className='profile-nav-link'>
 								Make A Custom Playlist
@@ -67,7 +66,7 @@ class NavBar extends React.Component {
 				</>
 			);
 		} else {
-			return <div className='nav-title'>Yeti's List</div>;
+			return <div className='nav-title'>Yeti's List</div>; // make link
 		}
 	}
 
