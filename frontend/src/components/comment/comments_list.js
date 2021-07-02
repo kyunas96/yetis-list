@@ -4,12 +4,6 @@ import CommentItem from './comment_item'
 const CommentList = ({comments, openModal }) => {
 	console.log('comment-list',comments)
 
-    const [classComments, setComments] = useState(comments);
-
-
-    useEffect(() => {
-        setComments(comments)
-    }, [classComments, comments])
 
     return ( 
         <section className='comments'>
@@ -17,7 +11,7 @@ const CommentList = ({comments, openModal }) => {
             <ul className='comments-list'>
                 {(comments && comments.length > 0)? (
                     <>
-                        {classComments.map((comment, i) => {
+                        {comments.map((comment, i) => {
                             console.log(comment)
                             return <CommentItem key={i} comment={comment}/>
                         })}
