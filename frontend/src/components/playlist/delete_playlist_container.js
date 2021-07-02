@@ -44,11 +44,13 @@ class DeletePlaylistContainer extends React.Component {
 	render() {
 		return (
 			<div>
-                <div>Are you sure you want to delete your playlist {this.state.title}</div>
-				<button onClick={() => {
-                    this.props.closeModal()
-                }}>No</button>
-				<button onClick={() => this.handleDelete()}>Yes</button>
+        <div>Is Friend sure Friend want Yeti to delete playlist {this.state.title}?</div>
+				<button onClick={() => {this.props.closeModal()}}>
+					No, Keep
+				</button>
+				<button onClick={() => this.handleDelete()}>
+					Yes, Delete
+				</button>
 			</div>
 		);
 	}
