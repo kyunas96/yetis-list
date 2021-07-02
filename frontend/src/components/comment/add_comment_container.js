@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { createComment } from '../../actions/comment_actions';
-import { fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -30,7 +30,7 @@ class AddComment extends Component {
         // console.log(this.state)
 		this.props.createComment(this.state)
 			.then(() => this.props.closeModal())
-			.then(() => this.props.fetchPlaylists(this.props.userId))
+			.then(() => this.props.fetchAllPlaylists())
 	}
 
     render() { 
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		createComment: (comment) => dispatch(createComment(comment)),
 		closeModal: () => dispatch(closeModal()),
-		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 	};
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { fetchPlaylists } from "../../actions/playlist_actions";
+import { fetchAllPlaylists } from "../../actions/playlist_actions";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { deleteComment } from "../../actions/comment_actions";
@@ -28,7 +28,7 @@ class CommentItem extends Component {
       .deleteComment(this.props.comment)
       .then((res) => {
         console.log(res.response);
-        this.props.fetchPlaylists(this.props.userId);
+        this.props.fetchAllPlaylists();
       })
       .catch((err) => console.log(err.response));
   }
@@ -62,7 +62,7 @@ const mSTP = (state, ownProps) => {
 
 const mDTP = (dispatch) => {
   return {
-    fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+    fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
   };
 };
