@@ -43,6 +43,18 @@ class PlaylistFeedPage extends React.Component {
     }
   }
 
+  formatTitleAndDescription(type, info) {
+		if (type === 'title' && info.length > 30) {
+			info = info.slice(0, 27) + '...';
+		}
+		
+		if (type === 'description' && info.length > 52) {
+			info = info.slice(0, 49) + '...';
+		}
+
+		return info;
+	}
+
   render() {
     return (
       <section className="playlist-feed-page">
@@ -73,10 +85,10 @@ class PlaylistFeedPage extends React.Component {
                     to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}
                   >
                     <h3 className="playlist-profile-title" id="title-feed">
-                      {playlist.title}
+                      {this.formatTitleAndDescription('title', playlist.title)}
                     </h3>
                     <h3 className="playlist-profile-description">
-                      {playlist.description}
+                      {this.formatTitleAndDescription('description', playlist.description)}
                     </h3>
                   </Link>
                 </li>

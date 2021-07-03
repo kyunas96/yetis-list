@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
 
 	let newPlaylist = new Playlist(req.body);
 
+	if (newPlaylist.songs.length > 0) newPlaylist.songs = newPlaylist.songs.reverse()
 	newPlaylist.save().then((playlist) => {
 
 		// adds playlist to users playlists array

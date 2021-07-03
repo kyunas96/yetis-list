@@ -11,7 +11,6 @@ import { withRouter, Link } from 'react-router-dom';
 class PlaylistIndex extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
 	}
 
 	handleUpdate(playlistId) {
@@ -31,13 +30,25 @@ class PlaylistIndex extends React.Component {
 		}
 	}
 
+	formatTitleAndDescription(type, info) {
+		if (type === 'title' && info.length > 15) {
+			info = info.slice(0, 14) + '...';
+		}
+		
+		if (type === 'description' && info.length > 60) {
+			info = info.slice(0, 57) + '...';
+		}
+
+		return info;
+	}
+
 	render() {
 		return (
 			<section className='playlist-list'>
 				<button
 					id='make-a-playlist'
 					onClick={() => this.props.openModal('create-playlist')}>
-					Make A Playlist
+					Make A Playlist From Scratch
 				</button>
 				<h2>Your Playlists</h2>
 				<ul>
@@ -48,9 +59,9 @@ class PlaylistIndex extends React.Component {
 									<Link
 										to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}
 										onClick={() => this.props.sendPlaylistId(playlist._id)}>
-										<h3 className='playlist-profile-title'>{playlist.title}</h3>
+										<h3 className='playlist-profile-title'>{this.formatTitleAndDescription('title', playlist.title)}</h3>
 										<h3 className='playlist-profile-description'>
-											{playlist.description}
+											{this.formatTitleAndDescription('description', playlist.description)}
 										</h3>
 									</Link>
 									<button onClick={() => this.handleUpdate(playlist._id)}>

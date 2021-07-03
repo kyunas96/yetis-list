@@ -4,10 +4,25 @@
 	height: 100%;
 	width: 100%;
 	background-color: rgb(76, 211, 245);
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 4.5%;
+	margin-bottom: 65px;
+	padding-bottom: 50px;
 	margin-top: 55px;
 	overflow-y: auto;
+}
+
+.playlist-show-page::-webkit-scrollbar {
+	background-color: transparent;
+	width: 17px;
+}
+
+.playlist-show-page::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.349);
+	border-radius: 5px;
+}
+
+.playlist-show-page::-webkit-scrollbar-corner {
+	background-color: transparent;
 }
 
 .comments {
@@ -90,6 +105,8 @@
 	position: relative;
 	height: 50px;
 	width: 85%;
+	display: flex;
+    justify-content: center;
 }
 
 .add-comment:hover {
@@ -143,6 +160,10 @@
 	margin-bottom: 10px;
 }
 
+.playlist-description {
+	width: 80%;
+}
+
 .playlist-songs {
 	display: flex;
 	flex-direction: column;
@@ -174,8 +195,8 @@
 	display: flex;
 	align-items: center;
   	justify-content: center;
-	height: 12%;
-	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 25px;
 	margin-left: 29%;
 	width: 50%;
 }
@@ -223,4 +244,10 @@
 
 .song-item-artist {
 	margin-right: 30px;
+}
+
+.no-songs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
