@@ -36,7 +36,7 @@ class PlaylistShowPage extends Component {
 
 		const { seedType, searchValue } = this.props.playlist.playlistDetails;
 		const title = this.props.items[0] ? `${this.props.items[0].name}` : '';
-		const description = `You made this playlist with the ${seedType}: ${searchValue}`;
+		const description = `Playlist made with the ${seedType}: ${searchValue}`;
 
 		let songs = this.props.items;
 		let klassName = '';

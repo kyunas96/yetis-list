@@ -50,17 +50,21 @@ class PlaylistShowPage extends Component {
     			            <div className='playlist-description'>{description}</div>
 					</div>
 					<div className='edit-playlist'>
-						<button className='rename-playlist' onClick={() => this.handleUpdate(_id)}>
-							Rename
-						</button>
-						<button
-							className='delete-playlist'
-							onClick={() => {
-								this.props.openModal('delete-playlist');
-								this.props.sendPlaylistId(_id);
-							}}>
-							Delete
-						</button>
+						{this.props.playlist.currentUsersPlaylist ? ( 
+							<>
+								<button className='rename-playlist' onClick={() => this.handleUpdate(_id)}>
+									Rename
+								</button>
+								<button
+									className='delete-playlist'
+									onClick={() => {
+										this.props.openModal('delete-playlist');
+										this.props.sendPlaylistId(_id);
+									}}>
+									Delete
+								</button>
+							</>
+						) : <></>}
 					</div>
 				</section>
 
