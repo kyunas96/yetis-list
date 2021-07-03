@@ -51,8 +51,14 @@ router.get('/', (req, res) => {
 // in params: userId
 router.get('/user/:user_id', (req, res) => {
 	Playlist.find({ userId: req.params.user_id })
-		.then(playlist => {
-			return playlist;
+		.sort({ date: -1 })
+		.then(playlists => {
+			playlists.forEach(playlist => {
+				playlist.songs.reverse();
+				playlist.comments.reverse();
+			})
+			// console.log(playlists)
+			return playlists;
 		})
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
@@ -122,9 +128,10 @@ router.patch('/:id', (req, res) => {
 							user.save();
 						}
 					});
+					return user.playlists;
 				})
-				.then(() => {
-					res.json(playlist);
+				.then((playlists) => {
+					res.json(playlists);
 				});
 		})
 		.catch((err) =>

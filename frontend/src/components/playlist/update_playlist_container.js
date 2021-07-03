@@ -43,7 +43,6 @@ class UpdatePlaylist extends React.Component {
 			.then(() => {
 				this.props.closeModal();
 				this.props.fetchPlaylists(this.state.userId)
-				this.props.history.push(`/users/${this.state.userId}/profile`)
 			});
 
 	}

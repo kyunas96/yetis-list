@@ -9,6 +9,10 @@ import SearchBarPlaylistShowContainer from '../search/search_bar_playlist_show_c
 import SongPlaylistList from '../song/song_playlist_list'
 
 class PlaylistShowPage extends Component {
+	constructor(props) {
+		super(props)
+		this.handleUpdate = this.handleUpdate.bind(this)
+	}
 
 	componentDidMount() {
 		this.props.fetchAllPlaylists()
@@ -42,26 +46,26 @@ class PlaylistShowPage extends Component {
 
 				<section className='playlist-info'>
 					<div className='playlist-header'>
-						<div className='playlist-title'>{title}</div>
-    		            <div className='playlist-description'>{description}</div>
-						<div>
-							<button onClick={() => this.handleUpdate(_id)}>
-								Update Playlist
-							</button>
-							<button
-								onClick={() => {
-									this.props.openModal('delete-playlist');
-									this.props.sendPlaylistId(_id);
-								}}>
-								Delete Playlist
-							</button>
-						</div>
+							<div className='playlist-title'>{title}</div>
+    			            <div className='playlist-description'>{description}</div>
 					</div>
-
-					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
-
-					<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
+					<div className='edit-playlist'>
+						<button className='rename-playlist' onClick={() => this.handleUpdate(_id)}>
+							Rename
+						</button>
+						<button
+							className='delete-playlist'
+							onClick={() => {
+								this.props.openModal('delete-playlist');
+								this.props.sendPlaylistId(_id);
+							}}>
+							Delete
+						</button>
+					</div>
 				</section>
+
+				{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
+				<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
 			</section>
 		);
 	}
@@ -88,7 +92,7 @@ const selectPlaylist = (allPlaylists, playlists, playlistId) => {
 }
 
 const mSTP = (state, ownProps) => {
-	// console.log(state)
+	console.log(state.entities.playlists)
 	// console.log(ownProps)
 	return {
 		userId: state.session.user,

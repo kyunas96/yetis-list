@@ -5,16 +5,18 @@ import { removeSongFromPlaylist } from '../../actions/song_actions';
 import { fetchPlaylists } from '../../actions/playlist_actions';
 
 const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlaylists, userId }) => {
-	// console.log(isUsersPlaylist);
+	console.log(song);
 	
 	if (song.artist) {
 		song.artists = song.artist
 		delete song.artist
 	}
 
+	let image = song.image ? song.image.small : ''
+
 	return (
 		<li className='song-item-show'>
-			<img src={song.image.small} />
+			<img src={image} alt='Album Cover'/>
 			<div>{song.artists[0]}</div>
 			<div>{song.name}</div>
 			{isUsersPlaylist ? (
