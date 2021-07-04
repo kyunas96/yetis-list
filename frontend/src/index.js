@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Root from './components/root';
-import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { persistStore } from 'redux-persist';
 import { setAuthToken } from './util/session_api_util';
-import { logout } from './actions/session_actions';
+import { logout, RECEIVE_CURRENT_USER } from './actions/session_actions';
+import { store } from './store/store';
 // import { fetchPlaylists } from './actions/playlist_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
-	let store;
 	const token = window.localStorage.getItem('jwtToken')
 	if (token && token !== "undefined") {
 
@@ -27,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	session: { isAuthenticated: true, user: decodedUser.id },
 		// };
 
-		store = configureStore(preloadedState);
+		// store = configureStore(preloadedState);
+
+		store.dispatch({type: RECEIVE_CURRENT_USER, currentUser: decodedUser})
 
 		// store.dispatch(recieveUser(decodedUser`))
 		// store.dispatch(setSessionLogin({isAuthenticated: true, user: decodedUser.id}))
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			window.location.href = '/';
 		}
 	} else {
-		store = configureStore({});
+		// store = configureStore({});
 	}
 	const root = document.getElementById('root');
 

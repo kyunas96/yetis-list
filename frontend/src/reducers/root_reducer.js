@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-import { storage } from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 import session from './session_reducer';
 import entities from './entities_reducer';
 import errors from './errors_reducer';
@@ -19,4 +19,6 @@ const rootReducer = combineReducers({
   ui
 });
 
-export default persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export default persistedReducer;
