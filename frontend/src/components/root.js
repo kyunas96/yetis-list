@@ -1,6 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import persistor 
 // We'll create this soon
 import App from './app';
 
