@@ -10,6 +10,20 @@
     overflow-y: scroll;
 }
 
+.playlist-feed-page::-webkit-scrollbar {
+	background-color: transparent;
+	width: 17px;
+}
+
+.playlist-feed-page::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.349);
+	border-radius: 5px;
+}
+
+.playlist-feed-page::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
 #view-your-playlists {
     display: flex;
     align-items: center;

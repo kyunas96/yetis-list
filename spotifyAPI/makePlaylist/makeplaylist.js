@@ -20,6 +20,8 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
     spotifyApi.getRecommendations(playlistQueryObject).then(
       (data) => {
         let playlist = playlistUtils.playlistToJSON(data);
+        playlist.items = playlist.items.reverse()
+
         res.json(playlist);
       },
       function (err) {

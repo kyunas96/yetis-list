@@ -5,20 +5,30 @@ import { removeSongFromPlaylist } from '../../actions/song_actions';
 import { fetchPlaylists } from '../../actions/playlist_actions';
 
 const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlaylists, userId }) => {
-	// console.log(isUsersPlaylist);
+	console.log(song);
 	
 	if (song.artist) {
 		song.artists = song.artist
 		delete song.artist
 	}
 
+	if (song.name.length > 25) {
+		song.name = song.name.slice(0, 23) + '...';
+	} else if (song.artists[0].length > 20) {
+		song.artists[0] = song.artists[0].slice(0, 17) + '...';
+	}
+
+	let image = song.image ? song.image.small : ''
+
 	return (
 		<li className='song-item-show'>
-			<img src={song.image.small} />
-			<div>{song.artists[0]}</div>
-			<div>{song.name}</div>
+			<img src={image} alt='Album Cover'/>
+			<div className='song-item-info'>
+				<div>{song.name}</div>
+				<div className='song-item-artist'>{song.artists[0]}</div>
+			</div>
 			{isUsersPlaylist ? (
-				<button onClick={() => removeSongFromPlaylist(song).then(() => fetchPlaylists(userId))}>Remove Song</button>
+				<button onClick={() => removeSongFromPlaylist(song).then(() => fetchPlaylists(userId))}>Remove</button>
 			) : (
 				<></>
 			)}

@@ -33,16 +33,14 @@ class SearchBarPlaylistShow extends React.Component {
         const selectedSong = Object.assign({}, this.state.selectedSeed);
         selectedSong.playlistId = this.props.playlistId;
         // console.log(selectedSong)
-		this.props.addSongToPlaylist(
-            selectedSong
-		).then((res) => {
-			this.props.fetchPlaylists(this.props.currentUser)
-			this.setState({searchValue: ''})
-		})
+		this.props.addSongToPlaylist(selectedSong)
+			.then((res) => {
+				this.props.fetchPlaylists(this.props.currentUser)
+				this.setState({searchValue: ''})
+			})
 	}
 
 	setSeed(song) {
-        // console.log(song)
 		this.setState(
 			{
 				selectedSeed: song,
@@ -60,13 +58,15 @@ class SearchBarPlaylistShow extends React.Component {
 	// }
 
 	render() {
-		let list =
-			this.state.searchValue !== '' ? (
-				<List items={this.props.listItems} setSeed={this.setSeed} />
-			) : null;
+		let list = null;
+		let disabled = true;
+		if (this.state.searchValue !== '') { 
+			list = <List items={this.props.listItems} setSeed={this.setSeed} />;
+			disabled = false;
+		}
 
 		return (
-			<div className='search'>
+			<div className='search-playlist-show'>
 				<form className='search-form' onSubmit={this.handleSubmit}>
 					<input
 						placeholder='Search for songs'
@@ -78,8 +78,8 @@ class SearchBarPlaylistShow extends React.Component {
 						value={this.state.searchValue}
 					/>
 					<div className='search-list-dropdown'>{list}</div>
-					<button className='submit-search-button' type='submit'>
-						Add Song to Playlist
+					<button disabled={disabled} className='submit-search-button' type='submit'>
+						Add Song
 					</button>
 				</form>
 			</div>
