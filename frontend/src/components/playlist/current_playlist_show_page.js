@@ -12,10 +12,17 @@ import { removeAllItems } from '../../actions/search_actions';
 import SongListItem from '../song/song_list_item';
 import './playlist_css/current_playlist_show_page.css';
 import SlidersContainer from '../sliders/sliders_container';
+import { sendSeed } from '../../actions/search_actions';
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			seeds: props.playlist.playlist.seeds,
+			properties: {}
+		}
+		console.log(this.state);
+		this.sliderToSeeds = this.sliderToSeeds.bind(this);
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -26,6 +33,10 @@ class PlaylistShowPage extends Component {
 		} else {
 			return false;
 		}
+	}
+
+	sliderToSeeds(properties){
+		this.setState({properties}, console.log("update seeds", this.state))
 	}
 
 	componentWillUnmount() {
@@ -94,7 +105,7 @@ class PlaylistShowPage extends Component {
 						Save Playlist With Selected Songs
 					</button>
 				</div>
-				<SlidersContainer />
+				<SlidersContainer action={this.sliderToSeeds}/>
 				<ul className='current-playlist-list'>
 					{this.props.items.map((song, i) => {
 						return (

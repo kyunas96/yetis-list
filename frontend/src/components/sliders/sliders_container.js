@@ -18,11 +18,25 @@ class SlidersContainer extends React.Component{
       happiness: 0.0,
     };
     this.setSliderValue = this.setSliderValue.bind(this);
+    this.siftStateForParent = this.siftStateForParent.bind(this);
+  }
+
+  siftStateForParent(){
+    let stateForParent = {};
+
+    for(const [key, val] of Object.entries(this.state)){
+      if(val !== 0 && val !== 0.0){
+        stateForParent[key] = val;
+      }
+    }
+
+    return stateForParent;
   }
 
   setSliderValue(valName){
+    const action = this.props.action;
     return (e) => {
-      this.setState({[valName]: e.target.value}, );
+      this.setState({[valName]: e.target.value}, action(this.siftStateForParent()));
     }
   }
 
