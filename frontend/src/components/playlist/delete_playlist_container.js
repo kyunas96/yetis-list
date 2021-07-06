@@ -46,7 +46,7 @@ class DeletePlaylistContainer extends React.Component {
 	render() {
 		return (
 			<div className="delete-playlist-form-container">
-				<div className="close-x">X</div>
+				<div className="close-x" onClick={() => {this.props.closeModal()}}>X</div>
         <div className="form-instruction">
 					Is Friend sure Friend want Yeti to delete playlist {this.state.title}?
 				</div>
