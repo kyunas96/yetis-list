@@ -1,6 +1,7 @@
 import React from 'react';
+import './slider.css';
 
-const Slider = ({name, value, action}) => {
+const Slider = ({name, value, action, range}) => {
   const sliderName = name[0].toUpperCase() + name.slice(1);
 
   return (
@@ -9,10 +10,10 @@ const Slider = ({name, value, action}) => {
     <input 
       id={name} 
       type="range"
-      min="0.0"
-      max="1.0"
+      min={range.min}
+      max={range.max}
       step="0.025"
-      // value="1.0"
+      value={value}
       onChange={action}
       ></input>
   </div>

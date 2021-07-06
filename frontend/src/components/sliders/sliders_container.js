@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from './slider';
+import './sliders_container.css';
 
 class SlidersContainer extends React.Component{
   constructor(props){
@@ -27,9 +28,26 @@ class SlidersContainer extends React.Component{
 
   render(){
     const sliders = [];
+    const defRange = {min: 0.0, max: 1.0};
+    const tempo = (
+      <Slider 
+        name={"tempo"} 
+        value={this.state.tempo} 
+        action={this.setSliderValue("tempo")}
+        range={{min: 50.0, max: 200.0}}
+      />
+      )
     for(const [key, val] of Object.entries(this.state)){
+      if(key === "tempo"){
+        sliders.push(tempo);
+        continue;
+      }
       sliders.push(
-        <Slider name={key} value={val} action={this.setSliderValue(key)} />
+        <Slider 
+        name={key} 
+        value={val} 
+        range={defRange}
+        action={this.setSliderValue(key)} />
       )
     }
 
