@@ -1,0 +1,71 @@
+.delete-playlist-form-container {
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 8px;
+
+}
+
+.form-instruction {
+    font-family: 'Pangolin', cursive;
+    font-size: 20px;
+}
+
+.buttons {
+    width: 80%;
+    display: flex;
+    align-content: flex-start;
+    justify-content: space-evenly;
+}
+
+.keep-button {
+    padding: 7px;
+    font-size: 20px;
+    border: rgb(0, 0, 0) 1pt solid;
+    color: rgb(99, 81, 21);
+    background-color: rgb(50, 216, 78);
+    font-family: 'Pangolin', cursive;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    margin-bottom: 3px;
+    margin-top: 10px;
+}
+
+.delete-button {
+    padding: 7px;
+    font-size: 20px;
+    border: rgb(0, 0, 0) 1pt solid;
+    color: rgb(99, 81, 21);
+    background-color: rgb(230, 156, 171);
+    font-family: 'Pangolin', cursive;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    margin-bottom: 3px;
+    margin-top: 10px;
+}
+
+.close-x {
+    position: absolute;
+    top: 8px;
+    right: 13px;
+    color:crimson;
+    transition-duration: 0.4s;
+}
+
+.close-x:hover {
+    cursor: pointer;
+}
+
+.close-x:hover, .keep-button:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.delete-button:hover {
+  color: white;
+	cursor: pointer;
+  background-color: crimson
+}
