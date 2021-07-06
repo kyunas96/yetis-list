@@ -2,12 +2,21 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import {saveItem, removeItem } from '../../actions/search_actions'
+import {receiveSongId} from '../../actions/widget_actions'
 
 class SongListItem extends Component { 
     
     constructor(props) {
         super(props)
         this.toggleSaveItem = this.toggleSaveItem.bind(this)
+        this.renderInitialWidget()
+    }
+
+    renderInitialWidget() {
+        let {song, receiveSongId, index} = this.props
+        if(index === 0) {
+            receiveSongId(song.id)
+        }
     }
     
     toggleSongColor() {
@@ -40,17 +49,20 @@ class SongListItem extends Component {
     }
  
     render() {
-        const {song, savedItems} = this.props
+        const {song, savedItems, receiveSongId} = this.props
         return (
-            <li className='song-item' id={`${song.id}`} onClick={() => this.toggleSaveItem(song, savedItems)}>
-                <img src={song.image.small} />
-                <div>
-                    {song.artists[0]}
-                </div>
-                <div>
-                    {song.name}
-                </div>
-            </li>
+            <>
+                <li className='song-item' id={`${song.id}`} onClick={() => this.toggleSaveItem(song, savedItems)}>
+                    <img src={song.image.small} />
+                    <div>
+                        {song.artists[0]}
+                    </div>
+                    <div>
+                        {song.name}
+                    </div>
+                </li>
+                <img onClick={() => receiveSongId(song.id)} height='50px' width='50px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png' />
+            </>
         );
     }
 }
@@ -67,6 +79,7 @@ const mDTP = (dispatch) => {
     return {
         saveItem: (song) => dispatch(saveItem(song)),
         removeItem: (song) => dispatch(removeItem(song)),
+        receiveSongId: (songId) => dispatch(receiveSongId(songId))
     }
 }
  

@@ -11,6 +11,7 @@ import { openModal } from '../../actions/modal_actions';
 import { removeAllItems } from '../../actions/search_actions';
 import SongListItem from '../song/song_list_item';
 import './playlist_css/current_playlist_show_page.css';
+import PlayerWidget from '../player_widget/player_widget'
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
@@ -60,6 +61,7 @@ class PlaylistShowPage extends Component {
 					<div className='playlist-title'>{title}</div>
 					<div className='playlist-description'>{description}</div>
 				</div>
+				<PlayerWidget/>
 				<div>
 					<button
 						onClick={() =>
@@ -96,7 +98,7 @@ class PlaylistShowPage extends Component {
 				<ul className='current-playlist-list'>
 					{this.props.items.map((song, i) => {
 						return (
-							<SongListItem className='playlist-item' key={i} song={song} />
+							<SongListItem className='playlist-item' key={i} song={song} index={i}/>
 						);
 					})}
 				</ul>
