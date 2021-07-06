@@ -28,7 +28,7 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 
 	return (
 		<li className='song-item-show'>
-			<img src={image} alt='Album Cover'/>
+			<img className="song-album-cover" src={image} alt='Album Cover'/>
 			<div className='song-item-info'>
 				<div>{song.name}</div>
 				<div className='song-item-artist'>{song.artists[0]}</div>
@@ -38,7 +38,7 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 			) : (
 				<></>
 			)}
-			<img onClick={() => receiveSongId(song.id)} height='50px' width='50px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png' />
+			<img className='spotify-image' onClick={() => receiveSongId(song.id)} src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png' />
 		</li>
 	);
 };
