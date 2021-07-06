@@ -28,7 +28,11 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 				<div className='song-item-artist'>{song.artists[0]}</div>
 			</div>
 			{isUsersPlaylist ? (
-				<button onClick={() => removeSongFromPlaylist(song).then(() => fetchPlaylists(userId))}>Remove</button>
+				<button 
+				className="remove-button"
+				onClick={() => removeSongFromPlaylist(song).then(() => fetchPlaylists(userId))}>
+					Remove
+				</button>
 			) : (
 				<></>
 			)}

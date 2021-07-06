@@ -59,7 +59,9 @@ class PlaylistShowPage extends Component {
 					<div className='edit-playlist'>
 						{this.props.playlist.currentUsersPlaylist ? ( 
 							<>
-								<button className='rename-playlist' onClick={() => this.handleUpdate(_id)}>
+								<button 
+									className='rename-playlist' 
+									onClick={() => this.handleUpdate(_id)}>
 									Rename
 								</button>
 								<button
