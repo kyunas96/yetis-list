@@ -1,0 +1,30 @@
+.widget-player-container {
+    position: fixed;
+    top: 18%;
+    right: 20px;
+    width: 320px;
+    height: 100px;
+    background-color: #2f8da5;
+    border-radius: 8px;
+}
+
+.widget-player {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 80%;
+    width: 93%;
+    border-radius: 8px;
+}
+
+.widget-toggle {
+    position: fixed;
+    top: 225px;
+    right: 345px;
+    width: 320px;
+    height: 100px;
+    height: 20px;
+    width: 20px;
+    background-color: #2f8da5;
+    border-radius: 5px;
+    padding: 5px;
+}

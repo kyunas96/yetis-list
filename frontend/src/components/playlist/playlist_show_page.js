@@ -9,7 +9,6 @@ import SearchBarPlaylistShowContainer from '../search/search_bar_playlist_show_c
 import SongPlaylistList from '../song/song_playlist_list'
 import PlayerWidget from '../player_widget/player_widget'
 
-
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props)
