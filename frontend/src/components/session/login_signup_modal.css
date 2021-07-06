@@ -21,16 +21,17 @@
   cursor: pointer;
 }
 
-.form-instruction {
-  font-family: 'Pangolin', cursive;
-  font-size: 20px;
-}
-
 .span-title {
   font-family: 'Kirang Haerang', cursive;
   font-size: 34px;
   color: rgb(99, 81, 21)
 }
+
+.form-instruction {
+  font-family: 'Pangolin', cursive;
+  font-size: 20px;
+}
+
 
 .input {
   width: 100%;

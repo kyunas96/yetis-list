@@ -65,7 +65,7 @@ class PlaylistIndex extends React.Component {
 										</h3>
 									</Link>
 									<button onClick={() => this.handleUpdate(playlist._id)}>
-										Update Playlist
+										Rename Playlist
 									</button>
 									<button
 										onClick={() => {

@@ -3,6 +3,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { updatePlaylist, fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
+import './playlist_css/update-playlist-modal.css'
 
 class UpdatePlaylist extends React.Component {
 	constructor(props) {
@@ -49,21 +50,26 @@ class UpdatePlaylist extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<button onClick={this.props.closeModal}>exit</button>
-				<form onSubmit={this.handleSubmit}>
+			<div className="rename-playlist-form-container">
+				<div className='close-x' onClick={this.props.closeModal}>X</div>
+				<div className="form-instruction">
+				OMG Yeti write wrong thing! Sorry, Friend! Tell Yeti correct name, hmmm?
+				</div>
+				<form className="rename-playlist-form" onSubmit={this.handleSubmit}>
 					<label>
-						Title
-						<input onChange={this.update('title')} value={this.state.title} />
+						<input 
+							className="input"
+							onChange={this.update('title')} 
+							placeholder="New Title" />
 					</label>
 					<label>
-						Description
 						<input
+							className="input"
 							onChange={this.update('description')}
-							value={this.state.description}
+							placeholder="New Description"
 						/>
 					</label>
-					<button>Save Changes</button>
+					<button className="rename-playlist-button">Save Changes</button>
 				</form>
 			</div>
 		);
