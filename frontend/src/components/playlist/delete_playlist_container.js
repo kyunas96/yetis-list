@@ -50,7 +50,7 @@ class DeletePlaylistContainer extends React.Component {
         <div className="form-instruction">
 					Is Friend sure Friend want Yeti to delete playlist {this.state.title}?
 				</div>
-				<div className="buttons">
+				<div className="delete-modal-buttons">
 					<button className="keep-button" onClick={() => {this.props.closeModal()}}>
 						No, Keep
 					</button>
