@@ -6,7 +6,7 @@ const Slider = ({name, value, action, range}) => {
 
   return (
   <div className="slider">
-    <label for={name}>{sliderName}</label>
+    <label htmlFor={name}>{sliderName}</label>
     <input 
       id={name} 
       type="range"

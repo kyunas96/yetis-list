@@ -43,12 +43,14 @@ class SlidersContainer extends React.Component{
   render(){
     const sliders = [];
     const defRange = {min: 0.0, max: 1.0};
+    let counter = 0;
     const tempo = (
       <Slider 
         name={"tempo"} 
         value={this.state.tempo} 
         action={this.setSliderValue("tempo")}
         range={{min: 50.0, max: 200.0}}
+        key={counter++}
       />
       )
     for(const [key, val] of Object.entries(this.state)){
@@ -61,7 +63,8 @@ class SlidersContainer extends React.Component{
         name={key} 
         value={val} 
         range={defRange}
-        action={this.setSliderValue(key)} />
+        action={this.setSliderValue(key)}
+        key={counter++} />
       )
     }
 
