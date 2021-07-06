@@ -6,7 +6,7 @@ const SongPlaylistList = ({songs}) => {
         <ul className='playlist-songs'>
             {songs.length > 0 ? (
                 songs.map((song, i) => {
-                    return <SongPlaylistListItem key={i} song={song}/> 
+                    return <SongPlaylistListItem key={i} song={song} index={i}/> 
                 })
             ) : (
                 <li className='song-item-show no-songs'>There Are No Songs. Add Some Above</li>

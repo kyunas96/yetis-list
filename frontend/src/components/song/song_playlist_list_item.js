@@ -3,10 +3,16 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { removeSongFromPlaylist } from '../../actions/song_actions';
 import { fetchPlaylists } from '../../actions/playlist_actions';
+import { receiveSongId } from '../../actions/widget_actions';
 
-const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlaylists, userId }) => {
+const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlaylists, userId, receiveSongId, index }) => {
 	console.log(song);
 	
+	if(index === 0) {
+		receiveSongId(song.id)
+	}
+
+
 	if (song.artist) {
 		song.artists = song.artist
 		delete song.artist
@@ -32,6 +38,7 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 			) : (
 				<></>
 			)}
+			<img onClick={() => receiveSongId(song.id)} height='50px' width='50px' src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png' />
 		</li>
 	);
 };
@@ -47,12 +54,13 @@ const isUsersPlaylist = (playlists, playlistId) => {
 
 const mSTP = (state, ownProps) => ({
 	isUsersPlaylist: isUsersPlaylist(state.entities.playlists.playlists, ownProps.match.params.playlistId),
-	userId: state.session.user
+	userId: state.session.user,
 });
 
 const mDTP = (dispatch) => ({
 	removeSongFromPlaylist: (song) => dispatch(removeSongFromPlaylist(song)),
 	fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+	receiveSongId: (songId) => dispatch(receiveSongId(songId))
 });
 
 export default withRouter(connect(mSTP, mDTP)(SongListItem));
