@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchAllPlaylists, fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists, fetchPlaylists, sendPlaylistId } from '../../actions/playlist_actions';
 import { openModal } from '../../actions/modal_actions';
 import CommentsList from '../comment/comments_list';
 import './playlist_css/playlist-show-page.css'
@@ -9,6 +9,10 @@ import SearchBarPlaylistShowContainer from '../search/search_bar_playlist_show_c
 import SongPlaylistList from '../song/song_playlist_list'
 
 class PlaylistShowPage extends Component {
+	constructor(props) {
+		super(props)
+		this.handleUpdate = this.handleUpdate.bind(this)
+	}
 
 	componentDidMount() {
 		this.props.fetchAllPlaylists()
@@ -16,7 +20,7 @@ class PlaylistShowPage extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		// console.log('should-this', this.props)
+		console.log('should-this', nextProps)
 		
 		if (nextProps !== this.props || this.props.playlist !== nextProps.playlist) {
 			return true;
@@ -25,26 +29,54 @@ class PlaylistShowPage extends Component {
 		}
 	}
 
+	handleUpdate(playlistId) {
+		this.props.sendPlaylistId(playlistId);
+		this.props.openModal('update-playlist');
+	}
+
 	render() {
-		// console.log('playlist-show', this.props.playlist)
-		const {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
+		console.log('playlist-show', this.props.playlist)
+		let {title, description, comments, songs, _id} = this.props.playlist.playlist ? this.props.playlist.playlist : {title: '', description: '', comments: [], songs: [], _id: null}
 		if (songs.length > 0) { songs.forEach(song => song.playlistId = _id) }
 		
+		if (title.length > 30) {
+			title = title.slice(0, 27) + '...';
+		}
+		
+		if (description.length > 167) {
+			description = description.slice(0, 164) + '...';
+		}
 
 		return (
 			<section className='playlist-show-page'>
-				<CommentsList comments={comments} openModal={this.props.openModal} />
+				<CommentsList comments={comments} openModal={() => this.props.openModal('add-comment')} />
 
 				<section className='playlist-info'>
 					<div className='playlist-header'>
-						<div className='playlist-title'>{title}</div>
-    		            <div className='playlist-description'>{description}</div>
+							<div className='playlist-title'>{title}</div>
+    			            <div className='playlist-description'>{description}</div>
 					</div>
-
-					{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
-
-					<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
+					<div className='edit-playlist'>
+						{this.props.playlist.currentUsersPlaylist ? ( 
+							<>
+								<button className='rename-playlist' onClick={() => this.handleUpdate(_id)}>
+									Rename
+								</button>
+								<button
+									className='delete-playlist'
+									onClick={() => {
+										this.props.openModal('delete-playlist');
+										this.props.sendPlaylistId(_id);
+									}}>
+									Delete
+								</button>
+							</>
+						) : <></>}
+					</div>
 				</section>
+
+				{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
+				<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
 			</section>
 		);
 	}
@@ -71,7 +103,7 @@ const selectPlaylist = (allPlaylists, playlists, playlistId) => {
 }
 
 const mSTP = (state, ownProps) => {
-	// console.log(state)
+	console.log(state.entities.playlists)
 	// console.log(ownProps)
 	return {
 		userId: state.session.user,
@@ -87,7 +119,8 @@ const mDTP = (dispatch) => {
 	return {
 		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
-		openModal: () => dispatch(openModal('add-comment')),
+		openModal: (type) => dispatch(openModal(type)),
+		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 	};
 };
 

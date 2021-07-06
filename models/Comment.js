@@ -10,6 +10,10 @@ const CommentSchema = new Schema({
         type: String,
 		required: true,
     },
+	username: {
+        type: String,
+		required: true,
+	},
 	playlistId: {
 		type: String,
 		required: true,

@@ -8,6 +8,7 @@ const _initialState = {
 };
 
 const playlistReducer = (state = _initialState, action) => {
+	console.log("playlist action", action.playlists);
 	Object.freeze(state)
 	const newState = Object.assign({}, state)
 

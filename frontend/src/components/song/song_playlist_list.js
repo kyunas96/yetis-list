@@ -9,7 +9,7 @@ const SongPlaylistList = ({songs}) => {
                     return <SongPlaylistListItem key={i} song={song}/> 
                 })
             ) : (
-                <li className='song-item-show'>There Are No Songs. Add Some Above</li>
+                <li className='song-item-show no-songs'>There Are No Songs. Add Some Above</li>
             )}
         </ul>
     );

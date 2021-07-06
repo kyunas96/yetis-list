@@ -65,3 +65,9 @@
 	color: white;
 	cursor: pointer;
 }
+
+.fail {
+  color: red;
+  font-family: 'Pangolin';
+  margin-bottom: 5px;
+}

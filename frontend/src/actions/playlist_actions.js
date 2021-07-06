@@ -31,29 +31,25 @@ export const sendPlaylistId = (playlistId) => {
 export const fetchPlaylists = (userId) => (dispatch) =>
 	APIUtil.fetchPlaylists(userId).then(
 		(res) => {
+			console.log("this is the res", res.data)
 			dispatch(receivePlaylists(res.data))
 			return res.data
 		},
-		// (err) => dispatch(receiveErrors(err.response.data))
 	);
 
 export const fetchAllPlaylists = () => (dispatch) =>
 	APIUtil.fetchAllPlaylists().then(
 		(res) => {
 			dispatch(receiveAllPlaylists(res.data))
-			console.log(res)
 			return res.data
 		},
-		// (err) => dispatch(receiveErrors(err.response.data))
 	);
 
 export const createPlaylist = (playlist) => (dispatch) => 
 	APIUtil.createPlaylist(playlist).then(
 		(res) => {
-			// dispatch(receivePlaylists(res.data))
 			return res.data
 		},
-		// (err) => dispatch(receiveErrors(err.response.data))
 	);
 
 export const updatePlaylist = (item) => (dispatch) =>
@@ -61,10 +57,7 @@ export const updatePlaylist = (item) => (dispatch) =>
 		(res) => {
 			dispatch(receivePlaylists(res.data))
 		})
-	// 	(err) => dispatch(receiveErrors(err.response.data))
-	// );
-
+	
 export const deletePlaylist = (playlistId) => (dispatch) => (
 	APIUtil.deletePlaylist(playlistId)
-		// (err) => dispatch(receiveErrors(err.response.data))
 )

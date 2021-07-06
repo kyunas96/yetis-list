@@ -36,9 +36,9 @@ export const login = (user) => (dispatch) =>
 			dispatch(receiveCurrentUser(decoded));
 			return res.data.user;
 		})
-		// .catch((err) => {
-		// 	dispatch(receiveSessionErrors(err.response.data));
-		// });
+		.catch((err) => {
+			dispatch(receiveSessionErrors(err.response.data));
+		});
 
 export const logout = () => (dispatch) => {
 	window.localStorage.removeItem('jwtToken');

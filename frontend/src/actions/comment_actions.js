@@ -11,3 +11,7 @@ export const receivePlaylists = (playlists) => {
 
 export const createComment = (comment) => (dispatch) =>
 	APIUtil.createComment(comment)
+
+export const deleteComment = (commentId) => (dispatch) =>
+	APIUtil.deleteComment(commentId)
+

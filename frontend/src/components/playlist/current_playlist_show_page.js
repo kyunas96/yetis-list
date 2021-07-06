@@ -35,14 +35,16 @@ class PlaylistShowPage extends Component {
 		// console.log('playlist show page render', this.props);
 
 		const { seedType, searchValue } = this.props.playlist.playlistDetails;
-		const title = `${this.props.items[0].name}`;
-		const description = `You made this playlist with the ${seedType}: ${searchValue}`;
+		const title = this.props.items[0] ? `${this.props.items[0].name}` : '';
+		const description = `Playlist made with the ${seedType}: ${searchValue}`;
 
 		let songs = this.props.items;
 		let klassName = '';
+		let disabled = true;
 		if (this.props.savedItems.length > 0) {
 			songs = this.props.savedItems;
 			klassName = 'song-saved';
+			disabled = false;
 		} 
 		
 		const playlistToSave = {
@@ -65,7 +67,7 @@ class PlaylistShowPage extends Component {
 								this.props
 									.fetchPlaylists(this.props.userId)
 									.then((playlists) => {
-										const playlist = playlists[playlists.length - 1];
+										const playlist = playlists[0];
 										this.props.sendPlaylistId(playlist._id);
 										this.props.history.push(
 											`/users/${this.props.userId}/playlist/${playlist._id}`
@@ -85,7 +87,9 @@ class PlaylistShowPage extends Component {
 								);
 							});
 						}}
-						className={klassName}>
+						className={klassName}
+						disabled={disabled}
+						>
 						Save Playlist With Selected Songs
 					</button>
 				</div>

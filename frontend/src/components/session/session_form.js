@@ -35,7 +35,9 @@ class SessionForm extends React.Component {
 		.then(() => {
 			this.props.closeModal()
 			this.props.fetchAllPlaylists()
-		});
+		}).catch(err => {
+			console.log(err);
+		})
 	}
 	
 
@@ -51,6 +53,7 @@ class SessionForm extends React.Component {
 						onChange={this.update('username')}
 						className='input'
 					/>
+					<p className='fail'>{this.props.errors.username}</p>
 				</label>
 			);
 		}
@@ -68,13 +71,14 @@ class SessionForm extends React.Component {
 					<form className='form-box'>
 						{username_input ? username_input : <></>}
 						<label>
-							<input
+							<input 
 								placeholder= "Email"
 								type='text'
 								value={this.state.email}
 								onChange={this.update('email')}
 								className='input'
 							/>
+							<p className='fail'>{this.props.errors.email}</p>
 						</label>
 						<label>
 							<input
@@ -84,6 +88,7 @@ class SessionForm extends React.Component {
 								onChange={this.update('password')}
 								className='input'
 							/>
+							<p className='fail'>{this.props.errors.password}</p>
 						</label>
 						{this.props.errors ? <div>{this.props.errors[0]}</div> : <div></div>}
 						<button className='session-submit' onClick={this.handleSubmit}>

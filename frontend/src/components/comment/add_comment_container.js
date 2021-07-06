@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { createComment } from '../../actions/comment_actions';
-import { fetchPlaylists } from '../../actions/playlist_actions';
+import { fetchAllPlaylists, fetchPlaylists } from '../../actions/playlist_actions';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 class AddComment extends Component {
     constructor(props) {
         super(props);
-        const {userId, playlistId} = this.props;
+        const {userId, playlistId, username} = this.props;
         this.state = {  
             text: '',
+			username,
             userId,
             playlistId
         }
@@ -28,11 +29,12 @@ class AddComment extends Component {
 		e.preventDefault();
         // console.log(this.state)
 		this.props.createComment(this.state)
+			.then(() => this.props.closeModal())
 			.then(() => {
-				this.props.fetchPlaylists(this.props.userId).then(()=> {
-					this.props.closeModal()
-				})
+				this.props.fetchAllPlaylists()
+				this.props.fetchPlaylists(this.state.userId)
 			})
+			
 	}
 
     render() { 
@@ -58,6 +60,7 @@ const mapStateToProps = (state, ownProps) => {
 		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
 		userId: state.session.user,
+		username: state.entities.users.username
 	};
 };
 
@@ -65,7 +68,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		createComment: (comment) => dispatch(createComment(comment)),
 		closeModal: () => dispatch(closeModal()),
-		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
+		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
+		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId))
 	};
 };
 

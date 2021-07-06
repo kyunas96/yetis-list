@@ -20,6 +20,7 @@ router.post('/', (req, res) => {
 
 	let newPlaylist = new Playlist(req.body);
 
+	if (newPlaylist.songs.length > 0) newPlaylist.songs = newPlaylist.songs.reverse()
 	newPlaylist.save().then((playlist) => {
 
 		// adds playlist to users playlists array
@@ -51,6 +52,15 @@ router.get('/', (req, res) => {
 // in params: userId
 router.get('/user/:user_id', (req, res) => {
 	Playlist.find({ userId: req.params.user_id })
+		.sort({ date: -1 })
+		.then(playlists => {
+			playlists.forEach(playlist => {
+				playlist.songs.reverse();
+				playlist.comments.reverse();
+			})
+			// console.log(playlists)
+			return playlists;
+		})
 		.then((playlists) => res.json(playlists))
 		.catch((err) =>
 			res
@@ -119,9 +129,10 @@ router.patch('/:id', (req, res) => {
 							user.save();
 						}
 					});
+					return user.playlists;
 				})
-				.then(() => {
-					res.json(playlist);
+				.then((playlists) => {
+					res.json(playlists);
 				});
 		})
 		.catch((err) =>
@@ -132,14 +143,14 @@ router.patch('/:id', (req, res) => {
 router.post('/generate', (req, res) => {
 	console.log('req body:' + JSON.stringify(req.body));
 	let queryObject = packageQueryObject(req.body);
-	console.log(queryObject);
+	// console.log(queryObject);
 	makePlaylist(queryObject, res);
 });
 
 router.post('/getlist', (req, res) => {
 	// console.log(req.body)
 	const { searchValue, seedType } = req.body;
-	console.log(searchValue, seedType);
+	// console.log(searchValue, seedType);
 	Search(searchValue, seedType, res);
 });
 

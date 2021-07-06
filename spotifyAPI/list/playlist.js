@@ -4,7 +4,6 @@ function playlistToJSON(data){
     items: items.map(item => itemToJSON(item)),
     seeds: getSeeds(data.body.seeds)
   }
-  console.log(getSeeds(items))
 }
 
 function itemToJSON(item){
