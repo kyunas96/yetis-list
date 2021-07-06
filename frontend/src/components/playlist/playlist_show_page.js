@@ -7,6 +7,7 @@ import CommentsList from '../comment/comments_list';
 import './playlist_css/playlist-show-page.css'
 import SearchBarPlaylistShowContainer from '../search/search_bar_playlist_show_container'
 import SongPlaylistList from '../song/song_playlist_list'
+import SlidersContainer from '../sliders/sliders_container';
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
@@ -73,7 +74,10 @@ class PlaylistShowPage extends Component {
 							</>
 						) : <></>}
 					</div>
+					<SlidersContainer />
 				</section>
+
+				
 
 				{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
 				<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>

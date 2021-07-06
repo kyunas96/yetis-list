@@ -16,16 +16,26 @@ class SlidersContainer extends React.Component{
       tempo: 0,
       happiness: 0.0,
     };
+    this.setSliderValue = this.setSliderValue.bind(this);
+  }
+
+  setSliderValue(valName){
+    return (e) => {
+      this.setState({[valName]: e.target.value}, );
+    }
   }
 
   render(){
-    const sliderNames = Object.keys(this.state);
+    const sliders = [];
+    for(const [key, val] of Object.entries(this.state)){
+      sliders.push(
+        <Slider name={key} value={val} action={this.setSliderValue(key)} />
+      )
+    }
 
     return (
       <div className="sliders-container">
-        {sliderNames.map((ele) => (
-          <Slider slider={ele} />
-        ))}
+        {sliders}
       </div>
     );
   }
