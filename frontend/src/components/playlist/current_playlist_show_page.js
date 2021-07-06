@@ -39,7 +39,9 @@ class PlaylistShowPage extends Component {
 
 	sliderToSeeds(properties){
 		this.setState({properties}, () => {
-			this.sendSeeds(this.state)})
+			console.log(this.state)
+			this.sendSeeds(this.state)
+		})
 	}
 
 	componentWillUnmount() {

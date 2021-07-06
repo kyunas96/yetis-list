@@ -21,6 +21,7 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
       (data) => {
         let playlist = playlistUtils.playlistToJSON(data);
         playlist.items = playlist.items.reverse()
+        console.log(data)
 
         res.json(playlist);
       },
