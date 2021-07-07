@@ -12,7 +12,6 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 		receiveSongId(song.id)
 	}
 
-
 	if (song.artist) {
 		song.artists = song.artist
 		delete song.artist

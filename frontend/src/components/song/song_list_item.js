@@ -8,7 +8,6 @@ class SongListItem extends Component {
   constructor(props) {
     super(props);
     this.toggleSaveItem = this.toggleSaveItem.bind(this);
-    this.renderInitialWidget();
   }
 
   renderInitialWidget() {
@@ -69,6 +68,7 @@ class SongListItem extends Component {
 
   render() {
     const { song, savedItems, receiveSongId } = this.props;
+    this.renderInitialWidget();
     return (
       <li className="song-item-show" id={`${song.id}`}>
         <img
