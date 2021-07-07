@@ -11,10 +11,21 @@ import { openModal } from '../../actions/modal_actions';
 import { removeAllItems } from '../../actions/search_actions';
 import SongListItem from '../song/song_list_item';
 import './playlist_css/current_playlist_show_page.css';
+import SlidersContainer from '../sliders/sliders_container';
+import { sendSeed } from '../../actions/search_actions';
+import { throttle } from 'underscore';
 
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			seeds: props.playlist.playlist.seeds,
+			options: {}
+		}
+		console.log(this.state);
+		this.sliderToSeeds = this.sliderToSeeds.bind(this);
+		this.sendSeeds = throttle(this.props.sendSeed.bind(this), 500);
+		
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -25,6 +36,13 @@ class PlaylistShowPage extends Component {
 		} else {
 			return false;
 		}
+	}
+
+	sliderToSeeds(options){
+		this.setState({options}, () => {
+			console.log(this.state)
+			this.sendSeeds(this.state)
+		})
 	}
 
 	componentWillUnmount() {
@@ -93,6 +111,7 @@ class PlaylistShowPage extends Component {
 						Save Playlist With Selected Songs
 					</button>
 				</div>
+				<SlidersContainer action={this.sliderToSeeds}/>
 				<ul className='current-playlist-list'>
 					{this.props.items.map((song, i) => {
 						return (
@@ -122,6 +141,7 @@ const mDTP = (dispatch) => {
 		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 		openModal: () => dispatch(openModal('add-comment')),
 		removeAllItems: () => dispatch(removeAllItems()),
+		sendSeed: (seedData) => dispatch(sendSeed(seedData))
 	};
 };
 

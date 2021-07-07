@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const decodedUser = jwt_decode(window.localStorage.getItem('jwtToken'));
 
 
-		// rather than have this information in preloaded into the state, have the 
+		// rather than have this information preloaded into the state, have the 
 		// store dispatch the actions to set this information in the store
 
 		// const preloadedState = {
@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// store = configureStore(preloadedState);
 
+		// RECEIVE_CURRENT_USER is defined in both the user and session reducer,
+		// therefore both will store the information upon interception the
+		// action.type
 		store.dispatch({type: RECEIVE_CURRENT_USER, currentUser: decodedUser})
-
-		// store.dispatch(recieveUser(decodedUser`))
-		// store.dispatch(setSessionLogin({isAuthenticated: true, user: decodedUser.id}))
 
 		const persistor = persistStore(store);
 

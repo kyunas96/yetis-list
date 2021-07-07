@@ -75,6 +75,8 @@ class PlaylistShowPage extends Component {
 					</div>
 				</section>
 
+				
+
 				{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
 				<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
 			</section>
