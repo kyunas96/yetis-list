@@ -9,6 +9,8 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
     clientSecret: spotifyKeys.clientSecret,
   });
 
+  console.log("playlistQueryObject", playlistQueryObject);
+
   // Retrieve an access token.
   spotifyApi.clientCredentialsGrant().then(function (data) {
     // console.log("The access token expires in " + data.body["expires_in"]);
@@ -19,17 +21,17 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
 
     spotifyApi.getRecommendations(playlistQueryObject).then(
       (data) => {
+        console.log(data)
         let playlist = playlistUtils.playlistToJSON(data);
         playlist.items = playlist.items.reverse()
-        console.log(data)
 
         res.json(playlist);
       },
       function (err) {
-        // console.log(
-        //   "Something went wrong when retrieving an access token",
-        //   err
-        // );
+        console.log(
+          "Something went wrong when retrieving an access token",
+          err
+        );
       }
     );
   });

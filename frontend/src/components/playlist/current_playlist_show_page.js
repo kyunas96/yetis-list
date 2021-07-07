@@ -19,7 +19,7 @@ class PlaylistShowPage extends Component {
 		super(props);
 		this.state = {
 			seeds: props.playlist.playlist.seeds,
-			properties: {}
+			options: {}
 		}
 		console.log(this.state);
 		this.sliderToSeeds = this.sliderToSeeds.bind(this);
@@ -37,8 +37,8 @@ class PlaylistShowPage extends Component {
 		}
 	}
 
-	sliderToSeeds(properties){
-		this.setState({properties}, () => {
+	sliderToSeeds(options){
+		this.setState({options}, () => {
 			console.log(this.state)
 			this.sendSeeds(this.state)
 		})
