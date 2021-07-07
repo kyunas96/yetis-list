@@ -64,10 +64,13 @@ class PlaylistIndex extends React.Component {
 											{this.formatTitleAndDescription('description', playlist.description)}
 										</h3>
 									</Link>
-									<button onClick={() => this.handleUpdate(playlist._id)}>
+									<button 
+										className="playlist-rename-button"
+										onClick={() => this.handleUpdate(playlist._id)}>
 										Rename Playlist
 									</button>
 									<button
+										className="playlist-delete-button"
 										onClick={() => {
 											this.props.openModal('delete-playlist');
 											this.props.sendPlaylistId(playlist._id);
