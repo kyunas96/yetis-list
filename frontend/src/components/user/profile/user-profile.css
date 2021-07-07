@@ -25,13 +25,27 @@
     width: 65%;
 }
 
-.playlist-list button {
+.playlist-rename-button {
     height: 50px;
     width: 30%;
     font-size: 20px;
     border: rgb(0, 0, 0) 1pt solid;
     color: rgb(99, 81, 21);
     background-color: rgb(50, 216, 78);
+    font-family: 'Pangolin', cursive;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.playlist-delete-button {
+    height: 50px;
+    width: 30%;
+    font-size: 20px;
+    border: rgb(0, 0, 0) 1pt solid;
+    color: rgb(99, 81, 21);
+    background-color: rgb(230, 156, 171);
     font-family: 'Pangolin', cursive;
     border-radius: 8px;
     transition-duration: 0.4s;

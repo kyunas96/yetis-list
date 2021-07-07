@@ -10,16 +10,44 @@ import {
 import { openModal } from '../../actions/modal_actions';
 import { removeAllItems } from '../../actions/search_actions';
 import SongListItem from '../song/song_list_item';
+<<<<<<< HEAD
 import './playlist_css/playlist-show-page.css';
 import PlayerWidget from '../player_widget/player_widget'
 
 class PlaylistShowPage extends Component {
+=======
+import './playlist_css/current_playlist_show_page.css';
+import SlidersContainer from '../sliders/sliders_container';
+import { sendSeed } from '../../actions/search_actions';
+import { throttle } from 'underscore';
+
+class PlaylistShowPage extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			seeds: props.playlist.playlist.seeds,
+			options: {}
+		}
+		console.log(this.state);
+		this.sliderToSeeds = this.sliderToSeeds.bind(this);
+		this.sendSeeds = throttle(this.props.sendSeed.bind(this), 500);
+		
+	}
+
+>>>>>>> 1f9e06f3ed05eba651ddefdbc18be4531b8d1f81
 	shouldComponentUpdate(nextProps) {
 		if (this.props !== nextProps) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	sliderToSeeds(options){
+		this.setState({options}, () => {
+			console.log(this.state)
+			this.sendSeeds(this.state)
+		})
 	}
 
 	componentWillUnmount() {
@@ -62,6 +90,7 @@ class PlaylistShowPage extends Component {
 		};
 
 		return (
+<<<<<<< HEAD
 			<section className='playlist-show-page'>
 				<section className='playlist-info'>
 					<div className='playlist-header'>
@@ -104,6 +133,48 @@ class PlaylistShowPage extends Component {
 				</section>
 				<PlayerWidget/>
 				<ul className='playlist-songs'>
+=======
+			<section className='current-page-playlist-info'>
+				<div className='playlist-header'>
+					<div className='playlist-title'>{title}</div>
+					<div className='playlist-description'>{description}</div>
+				</div>
+				<div>
+					<button
+						onClick={() =>
+							this.props.createPlaylist(playlistToSave).then((playlist) => {
+								this.props
+									.fetchPlaylists(this.props.userId)
+									.then((playlists) => {
+										const playlist = playlists[0];
+										this.props.sendPlaylistId(playlist._id);
+										this.props.history.push(
+											`/users/${this.props.userId}/playlist/${playlist._id}`
+										);
+									});
+							})
+						}
+						>
+						Save Whole Playlist
+					</button>
+					<button
+						onClick={() => {
+							this.props.createPlaylist(playlistToSave).then((playlist) => {
+								this.props.sendPlaylistId(playlist._id);
+								this.props.history.push(
+									`/users/${this.props.userId}/playlist/${playlist._id}`
+								);
+							});
+						}}
+						className={klassName}
+						disabled={disabled}
+						>
+						Save Playlist With Selected Songs
+					</button>
+				</div>
+				<SlidersContainer action={this.sliderToSeeds}/>
+				<ul className='current-playlist-list'>
+>>>>>>> 1f9e06f3ed05eba651ddefdbc18be4531b8d1f81
 					{this.props.items.map((song, i) => {
 						return (
 							<SongListItem key={i} song={song} index={i}/>
@@ -132,6 +203,7 @@ const mDTP = (dispatch) => {
 		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
 		openModal: () => dispatch(openModal('add-comment')),
 		removeAllItems: () => dispatch(removeAllItems()),
+		sendSeed: (seedData) => dispatch(sendSeed(seedData))
 	};
 };
 

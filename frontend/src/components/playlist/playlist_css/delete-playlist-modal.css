@@ -64,7 +64,7 @@
 	cursor: pointer;
 }
 
-.delete-button:hover {
+.delete-button:hover, .remove-button:hover {
   color: white;
 	cursor: pointer;
   background-color: crimson

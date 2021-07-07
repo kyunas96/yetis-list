@@ -9,7 +9,7 @@ import ui from './ui_reducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['entities', 'session']
+  whitelist: ['entities', 'session'] 
 }
 
 const rootReducer = combineReducers({
