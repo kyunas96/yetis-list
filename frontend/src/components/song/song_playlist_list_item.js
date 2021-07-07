@@ -20,7 +20,9 @@ const SongListItem = ({ song, removeSongFromPlaylist, isUsersPlaylist, fetchPlay
 
 	if (song.name.length > 25) {
 		song.name = song.name.slice(0, 23) + '...';
-	} else if (song.artists[0].length > 20) {
+	} 
+	
+	if (song.artists[0].length > 20) {
 		song.artists[0] = song.artists[0].slice(0, 17) + '...';
 	}
 

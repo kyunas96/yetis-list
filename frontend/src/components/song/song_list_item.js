@@ -51,6 +51,18 @@ class SongListItem extends Component {
 		return true;
 	}
 
+	formatSongInfo(type, info) {
+		if (type === 'name'&& info.length > 25) {
+			info = info.slice(0, 23) + '...';
+		} 
+		
+		if (type === 'artist' && info.length > 20) {
+			info = info.slice(0, 17) + '...';
+		}
+		
+		return info;
+	}
+
 	render() {
 		const { song, savedItems, receiveSongId } = this.props;
 		return (
@@ -63,8 +75,8 @@ class SongListItem extends Component {
                 <img className="song-album-cover" src={song.image.small} alt='Album Cover'/>
 
                 <div className='song-item-info'>
-                    <div>{song.name}</div>
-                    <div className='song-item-artist'>{song.artists[0]}</div>
+                    <div>{this.formatSongInfo('name', song.name)}</div>
+                    <div className='song-item-artist'>{this.formatSongInfo('artist', song.artists[0])}</div>
                 </div>
                 <img
                     className='spotify-image'
