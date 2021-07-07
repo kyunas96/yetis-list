@@ -14,6 +14,7 @@ import './playlist_css/current_playlist_show_page.css';
 import SlidersContainer from '../sliders/sliders_container';
 import { sendSeed } from '../../actions/search_actions';
 import { throttle } from 'underscore';
+
 class PlaylistShowPage extends Component {
 	constructor(props) {
 		super(props);

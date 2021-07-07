@@ -12,7 +12,6 @@ function packageQueryObject(data) {
       curVal = seed.value;
     }
 
-    
     console.log(seed)
     switch (seed.type) {
       case "ARTIST":
