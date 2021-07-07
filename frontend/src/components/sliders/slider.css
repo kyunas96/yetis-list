@@ -6,6 +6,17 @@
   font-family: 'Pangolin', cursive;
 }
 
+.slider-with-display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-with-display span{
+  width: 45px;
+  text-align: end;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   /* Hides the slider so that custom slider can be made */
