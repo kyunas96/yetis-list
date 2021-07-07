@@ -74,12 +74,12 @@ class PlaylistShowPage extends Component {
 		description = this.formatTitleAndDescription('description', description);
 
 		let songs = this.props.items;
-		let klassName = '';
-		let disabled = true;
+		let klassName = 'song-saved disabled';
+		let buttonStatus = true
 		if (this.props.savedItems.length > 0) {
 			songs = this.props.savedItems;
 			klassName = 'song-saved';
-			disabled = false;
+			buttonStatus = false
 		} 
 		
 		const playlistToSave = {
@@ -98,7 +98,7 @@ class PlaylistShowPage extends Component {
 						<div className='playlist-description'>{description}</div>
 					</div>
 					<div className='save-playlist'>
-						<button
+						<button className='save-whole-playlist-button'
 							onClick={() =>
 								this.props.createPlaylist(playlistToSave).then((playlist) => {
 									this.props
@@ -125,7 +125,7 @@ class PlaylistShowPage extends Component {
 								});
 							}}
 							className={klassName}
-							disabled={disabled}
+							disabled={buttonStatus}
 							>
 							Save Playlist With Selected Songs
 						</button>

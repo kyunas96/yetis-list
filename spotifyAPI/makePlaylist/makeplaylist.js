@@ -28,10 +28,7 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
         res.json(playlist);
       },
       function (err) {
-        console.log(
-          "Something went wrong when retrieving an access token",
-          err
-        );
+        res.json('Do not refresh on playlist generation page')
       }
     );
   });

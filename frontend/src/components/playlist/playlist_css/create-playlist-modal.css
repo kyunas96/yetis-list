@@ -53,3 +53,53 @@
 	color: white;
 	cursor: pointer;
 }
+
+.save-whole-playlist-button {
+    padding: 7px;
+    border-radius: 3px;
+    border: rgb(0, 0, 0) 1pt solid;
+    color: rgb(99, 81, 21);
+    background-color: rgb(50, 216, 78);
+    font-family: 'Pangolin', cursive;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    margin-bottom: 3px;
+}
+
+.save-whole-playlist-button:hover {
+    background-color: rgb(50, 216, 78); /* Green */
+	color: white;
+	cursor: pointer;
+}
+
+.song-saved {
+    padding: 7px;
+    border-radius: 3px;
+    border: rgb(0, 0, 0) 1pt solid;
+    color: rgb(99, 81, 21);
+    background-color: rgb(50, 216, 78);
+    font-family: 'Pangolin', cursive;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    margin-bottom: 3px;
+}
+
+.song-saved:hover {
+    background-color: rgb(50, 216, 78); /* Green */
+	color: white;
+	cursor: pointer;
+}
+
+.disabled {
+    
+    color: gray;
+    background-color: lightgrey;
+    
+}
+
+.disabled:hover {
+    cursor: auto;
+    color: gray;
+    background-color: lightgrey;
+
+}
