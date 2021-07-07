@@ -46,9 +46,12 @@ class SongListItem extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
+    const checkbox = document.getElementById(`select-${this.props.song.id}`);
+
     if (this.props !== nextProps) {
-      const songEle = document.getElementById(`${this.props.song.id}`);
-      songEle.classList.remove("selected-song-item");
+      checkbox.classList.remove("selected");
+      checkbox.classList.add("not-selected");
+      checkbox.src = "https://image.flaticon.com/icons/png/512/61/61221.png";
       return true;
     }
     console.log("hitting component should update-song list item");
