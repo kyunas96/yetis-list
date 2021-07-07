@@ -279,3 +279,6 @@
     background-color: rgb(57, 146, 168);
 }
 
+.selected, .not-selected {
+	margin-left: 15px;
+}
