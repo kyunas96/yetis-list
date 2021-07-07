@@ -10,7 +10,6 @@ import {
 import { openModal } from '../../actions/modal_actions';
 import { removeAllItems } from '../../actions/search_actions';
 import SongListItem from '../song/song_list_item';
-// import './playlist_css/current_playlist_show_page.css';
 import './playlist_css/playlist-show-page.css';
 import PlayerWidget from '../player_widget/player_widget'
 import SlidersContainer from '../sliders/sliders_container';
@@ -86,44 +85,47 @@ class PlaylistShowPage extends Component {
 		};
 
 		return (
-			<section className='current-page-playlist-info'>
-				<div className='playlist-header'>
-					<div className='playlist-title'>{title}</div>
-					<div className='playlist-description'>{description}</div>
-				</div>
-				<div>
-					<button
-						onClick={() =>
-							this.props.createPlaylist(playlistToSave).then((playlist) => {
-								this.props
-									.fetchPlaylists(this.props.userId)
-									.then((playlists) => {
-										const playlist = playlists[0];
-										this.props.sendPlaylistId(playlist._id);
-										this.props.history.push(
-											`/users/${this.props.userId}/playlist/${playlist._id}`
-										);
-									});
-							})
-						}
-						>
-						Save Whole Playlist
-					</button>
-					<button
-						onClick={() => {
-							this.props.createPlaylist(playlistToSave).then((playlist) => {
-								this.props.sendPlaylistId(playlist._id);
-								this.props.history.push(
-									`/users/${this.props.userId}/playlist/${playlist._id}`
-								);
-							});
-						}}
-						className={klassName}
-						disabled={buttonStatus}
-						>
-						Save Playlist With Selected Songs
-					</button>
-				</div>
+			<section className='playlist-show-page'>
+				<section className='playlist-info'>
+					<div className='playlist-header'>
+						<div className='playlist-title'>{title}</div>
+						<div className='playlist-description'>{description}</div>
+					</div>
+					<div className='edit-playlist'>
+						<button
+							onClick={() =>
+								this.props.createPlaylist(playlistToSave).then((playlist) => {
+									this.props
+										.fetchPlaylists(this.props.userId)
+										.then((playlists) => {
+											const playlist = playlists[0];
+											this.props.sendPlaylistId(playlist._id);
+											this.props.history.push(
+												`/users/${this.props.userId}/playlist/${playlist._id}`
+											);
+										});
+								})
+							}
+							className='song-saved'
+							>
+							Save Whole Playlist
+						</button>
+						<button
+							onClick={() => {
+								this.props.createPlaylist(playlistToSave).then((playlist) => {
+									this.props.sendPlaylistId(playlist._id);
+									this.props.history.push(
+										`/users/${this.props.userId}/playlist/${playlist._id}`
+									);
+								});
+							}}
+							className={klassName}
+							disabled={buttonStatus}
+							>
+							Save Playlist With Selected Songs
+						</button>
+					</div>
+				</section>
 				<PlayerWidget/>
 				<SlidersContainer action={this.sliderToSeeds}/>
 				<ul className='current-playlist-list'>
