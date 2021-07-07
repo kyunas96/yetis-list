@@ -1,0 +1,19 @@
+.widget-player-container {
+    position: fixed;
+    top: 40%;
+    right: 2%;
+    width: 320px;
+    height: 100px;
+    background-color: #2f8da5;
+    border-radius: 8px;
+    transition-duration: .3s;
+}
+
+.widget-player {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 80%;
+    width: 93%;
+    border-radius: 8px;
+}
+

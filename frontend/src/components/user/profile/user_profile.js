@@ -37,9 +37,6 @@ class UserProfilePage extends React.Component {
 				{/* <div className='liked-playlist-box'>
 					Your liked playlists listed here
 				</div> */}
-				<div className="average-song-stats">
-					{/* Average song stats from playlists here */}
-				</div>
 			</section>
 		);
 	}
