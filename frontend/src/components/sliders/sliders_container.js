@@ -11,7 +11,6 @@ class SlidersContainer extends React.Component{
       energy: 0.0,
       instrumentalness: 0.0,
       liveness: 0.0,
-      loudness: 0.0,
       popularity: 0.0,
       speechiness: 0.0,
       tempo: 0,
@@ -36,8 +35,12 @@ class SlidersContainer extends React.Component{
 
   setSliderValue(valName){
     const action = this.props.action;
+
     return (e) => {
-      this.setState({[valName]: e.target.value}, action(this.siftStateForParent()));
+      this.setState({[valName]: e.target.value}, () =>{
+        console.log("slider state", this.state)
+        action(this.siftStateForParent());
+      });
     }
   }
 
