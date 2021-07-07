@@ -48,8 +48,10 @@ class PlaylistShowPage extends Component {
 			.playlist
 			? this.props.playlist.playlist
 			: { title: '', description: '', comments: [], songs: [], _id: null };
+		let renderWidget = false;
 		if (songs.length > 0) {
 			songs.forEach((song) => (song.playlistId = _id));
+			renderWidget = true;
 		}
 
 		if (title.length > 30) {
@@ -94,7 +96,7 @@ class PlaylistShowPage extends Component {
 						)}
 					</div>
 				</section>
-				<PlayerWidget />
+				{renderWidget ? <PlayerWidget /> : <></>}
 				{this.props.playlist.currentUsersPlaylist ? (
 					<SearchBarPlaylistShowContainer playlistId={_id} />
 				) : (
