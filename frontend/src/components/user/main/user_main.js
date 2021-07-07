@@ -28,7 +28,6 @@ class UserMainPage extends React.Component {
 						<Tree />
 					</div>
 				</div>
-				<Footer />
 			</>
 		);
 	}

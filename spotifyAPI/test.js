@@ -1,5 +1,6 @@
 var SpotifyAPI = require('./spotifyAPI');
 var searchArtists = require('./search/artists');
+var getTrackAnalysis = require('./trackAnalysis/trackAnalysis');
 
 // SpotifyAPI.getTrack("3Qm86XLflmIXVm1wcwkgDK")
 // SpotifyAPI.getAvailableGenreSeeds()
@@ -11,6 +12,7 @@ var searchArtists = require('./search/artists');
 // console.log(album);
 
 searchArtists('Kendrick Lamar')
+getTrackAnalysis("3Qm86XLflmIXVm1wcwkgDK", null);
 
 
   // .then(data => console.log(data))

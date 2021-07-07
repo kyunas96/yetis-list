@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Song = require('../../models/Song');
 const Playlist = require('../../models/Playlist');
+const getTrackAnalysis = require('../../spotifyAPI/trackAnalysis/trackAnalysis');
 
 // add song to playlist
 // needs...
@@ -17,7 +18,6 @@ router.post('/', (req, res) => {
 		res.json(song)
 	}).catch(() => res.status(500).json({error: 'could not find playlist'}))
 });
-
 
 // remove song from playlist
 // needs...
@@ -39,5 +39,12 @@ router.patch('/', (req, res) => {
 	.catch((err) => res.status(500).json({song: req.body, couldNotDelete: 'could not remove song from playlist'}));
 });
 
+router.post('/analysis', (req, res) => {
+	getTrackAnalysis(req.body.songId, res);
+})
+
 
 module.exports = router;
+
+
+res <- getTrackAnalysis <- '/analysis' <- getTrackAnalysis <- song_actions <- dispatch from current_playlist_show 
