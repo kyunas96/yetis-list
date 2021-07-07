@@ -60,12 +60,13 @@ export const removeAllItems = () => ({
     type: REMOVE_ALL_SONG_ITEMS,
 })
 
-export const sendSeed = (seedData) => dispatch => (
-    APIUtil.submitSeed(seedData).then(
-        (payload) => dispatch(receiveCurrentPlaylist(payload.data)),
-        (err) => dispatch(receiveListErrors(err.response.data))
+export const sendSeed = (seedData) => (dispatch) =>
+  APIUtil.submitSeed(seedData)
+    .then(
+      (payload) => dispatch(receiveCurrentPlaylist(payload.data)),
+      (err) => dispatch(receiveListErrors(err.response.data))
     )
-)
+    .then(() => dispatch(removeAllItems()));
 
 export const requestListItems = (searchItem) => dispatch => (
     APIUtil.getListItems(searchItem).then(

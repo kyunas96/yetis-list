@@ -35,8 +35,13 @@ class SongListItem extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
+        if(this.props !== nextProps){
+            const songEle = document.getElementById(`${this.props.song.id}`);
+            songEle.classList.remove("selected-song-item");
+            return true;
+        }
         console.log('hitting component should update-song list item')
-        return true
+        
     }
  
     render() {

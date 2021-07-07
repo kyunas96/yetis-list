@@ -25,7 +25,6 @@ class PlaylistShowPage extends Component {
 		console.log(this.state);
 		this.sliderToSeeds = this.sliderToSeeds.bind(this);
 		this.sendSeeds = throttle(this.props.sendSeed.bind(this), 500);
-		
 	}
 
 	shouldComponentUpdate(nextProps) {
