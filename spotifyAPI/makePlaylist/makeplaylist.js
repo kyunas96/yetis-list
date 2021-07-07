@@ -28,8 +28,8 @@ module.exports = function makeplaylist(playlistQueryObject, res) {
         res.json(playlist);
       },
       function (err) {
-        res.json('Do not refresh on playlist generation page')
+        console.log(err)
       }
     );
-  });
+  }).catch(err => console.log(err))
 };
