@@ -77,13 +77,8 @@ class PlaylistShowPage extends Component {
 					<div className='edit-playlist'>
 						{this.props.playlist.currentUsersPlaylist ? (
 							<>
-<<<<<<< HEAD
 								<button
 									className='rename-playlist'
-=======
-								<button 
-									className='rename-playlist' 
->>>>>>> 1f9e06f3ed05eba651ddefdbc18be4531b8d1f81
 									onClick={() => this.handleUpdate(_id)}>
 									Rename
 								</button>
@@ -101,7 +96,6 @@ class PlaylistShowPage extends Component {
 						)}
 					</div>
 				</section>
-<<<<<<< HEAD
 				{renderWidget ? <PlayerWidget /> : <></>}
 				{this.props.playlist.currentUsersPlaylist ? (
 					<SearchBarPlaylistShowContainer playlistId={_id} />
@@ -112,13 +106,6 @@ class PlaylistShowPage extends Component {
 					songs={songs}
 					onChange={() => this.props.fetchPlaylists(this.props.userId)}
 				/>
-=======
-
-				
-
-				{this.props.playlist.currentUsersPlaylist ? <SearchBarPlaylistShowContainer playlistId={_id}/> : <></>}
-				<SongPlaylistList songs={songs} onChange={() => this.props.fetchPlaylists(this.props.userId)}/>
->>>>>>> 1f9e06f3ed05eba651ddefdbc18be4531b8d1f81
 			</section>
 		);
 	}
