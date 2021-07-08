@@ -30,17 +30,14 @@
   text-align: center;
   padding-top: 30px;
   margin-bottom: 10px;
-
 }
 
 .login-button {
   margin-left: 20px;
-
 }
 
 .signup-button {
   margin-right: 20px;
-
 }
 
 .login-button, .signup-button {
@@ -70,24 +67,25 @@
 }
 
 .login-button:hover, .signup-button:hover, .demo-button:hover {
-  background-color: rgb(50, 216, 78); 
+  background-color: rgb(50, 216, 78);
   color: white;
   cursor: pointer;
 }
 
 .happy-place {
-    display: flex;
-    align-items: baseline;
-    position: relative;
-    width: 100%;
+  display: flex;
+  align-items: baseline;
+  position: relative;
+  width: 100%;
 }
-/* 
-.yeti {
-  /* position:absolute;
-  bottom: 0px; */
-/* } */
 
-/* .tree { */
-  /* position: absolute;
-  bottom: 0px; */
-/* } */ 
+.yeti {
+  margin-left: 100px;
+  height: 85%;
+  width: 15%;
+}
+
+.tree {
+  height: 100%;
+  width: 15%;
+}
