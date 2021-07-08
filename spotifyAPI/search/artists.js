@@ -34,6 +34,5 @@ module.exports = function searchArtists(value, res) {
           // console.error(err);
         }
       )
-      .then((artists) => console.log(artists));
   })
 };

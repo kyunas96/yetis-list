@@ -89,7 +89,7 @@ class SearchBar extends React.Component {
 		return (
 			<div className='search'>
 				<form className='search-form' onSubmit={this.handleSubmit}>
-          <label for="select-search-value">Search by:</label>
+          <label htmlFor="select-search-value">Search by:</label>
 					<select
             id="select-search-value"
 						className='search-value-dropdown'

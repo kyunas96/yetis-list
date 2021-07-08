@@ -64,14 +64,20 @@ export const sendSeed = (seedData) => (dispatch) =>
   APIUtil.submitSeed(seedData)
     .then(
       (payload) => dispatch(receiveCurrentPlaylist(payload.data)),
-      (err) => dispatch(receiveListErrors(err.response.data))
+      (err) => {
+          console.error("playlist error", err)
+          dispatch(receiveListErrors(err))
+      }
     )
     .then(() => dispatch(removeAllItems()));
 
 export const requestListItems = (searchItem) => dispatch => (
     APIUtil.getListItems(searchItem).then(
         (payload) => dispatch(receiveListItems(payload.data)),
-        (err) => dispatch(receiveListErrors(err.response.data))
+        (err) => {
+            console.error("playlist error", err);
+            dispatch(receiveListErrors(err))
+        }
     )
 )
 

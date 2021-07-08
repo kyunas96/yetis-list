@@ -146,7 +146,7 @@ router.post('/generate', (req, res) => {
 
 router.post('/getlist', (req, res) => {
 	const { searchValue, seedType } = req.body;
-	Search(searchValue, seedType, res);
+	Search(searchValue.toLowerCase(), seedType, res);
 });
 
 module.exports = router;
