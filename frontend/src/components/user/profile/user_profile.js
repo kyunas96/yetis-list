@@ -1,9 +1,8 @@
 import React from 'react';
-import PlaylistIndex from '../../playlist/playlist_index_container'
+import PlaylistProfileList from '../../playlist/playlist_profile_list';
 import './user-profile.css'
 
 class UserProfilePage extends React.Component {
-	
 
 	componentDidMount() {
 		if (!this.props.currentUser.id) {
@@ -33,7 +32,7 @@ class UserProfilePage extends React.Component {
 		return (
 			<section className='profile-page'>
 				<h1 className="user-greeting">Good {this.greeting()} {this.props.currentUser.username}!</h1>
-				<PlaylistIndex />
+				<PlaylistProfileList />
 				{/* <div className='liked-playlist-box'>
 					Your liked playlists listed here
 				</div> */}

@@ -1,14 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { openModal } from '../../actions/modal_actions';
-import {
-	fetchPlaylists,
-	sendPlaylistId,
-	deletePlaylist,
-} from '../../actions/playlist_actions';
+import { fetchPlaylists, sendPlaylistId } from '../../actions/playlist_actions';
 import { withRouter, Link } from 'react-router-dom';
 
-class PlaylistIndex extends React.Component {
+class PlaylistProfileList extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -34,7 +30,7 @@ class PlaylistIndex extends React.Component {
 		if (type === 'title' && info.length > 15) {
 			info = info.slice(0, 14) + '...';
 		}
-		
+
 		if (type === 'description' && info.length > 60) {
 			info = info.slice(0, 57) + '...';
 		}
@@ -59,18 +55,23 @@ class PlaylistIndex extends React.Component {
 									<Link
 										to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}
 										onClick={() => this.props.sendPlaylistId(playlist._id)}>
-										<h3 className='playlist-profile-title'>{this.formatTitleAndDescription('title', playlist.title)}</h3>
+										<h3 className='playlist-profile-title'>
+											{this.formatTitleAndDescription('title', playlist.title)}
+										</h3>
 										<h3 className='playlist-profile-description'>
-											{this.formatTitleAndDescription('description', playlist.description)}
+											{this.formatTitleAndDescription(
+												'description',
+												playlist.description
+											)}
 										</h3>
 									</Link>
-									<button 
-										className="playlist-rename-button"
+									<button
+										className='playlist-rename-button'
 										onClick={() => this.handleUpdate(playlist._id)}>
 										Rename Playlist
 									</button>
 									<button
-										className="playlist-delete-button"
+										className='playlist-delete-button'
 										onClick={() => {
 											this.props.openModal('delete-playlist');
 											this.props.sendPlaylistId(playlist._id);
@@ -95,7 +96,6 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		playlists: state.entities.playlists.playlists,
 		currentUserId: state.session.user,
-		playlistId: state.entities.playlists.id,
 	};
 };
 
@@ -103,11 +103,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchPlaylists: (userId) => dispatch(fetchPlaylists(userId)),
 		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
-		deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
 		openModal: (type) => dispatch(openModal(type)),
 	};
 };
 
 export default withRouter(
-	connect(mapStateToProps, mapDispatchToProps)(PlaylistIndex)
+	connect(mapStateToProps, mapDispatchToProps)(PlaylistProfileList)
 );

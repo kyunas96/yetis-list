@@ -3,7 +3,6 @@ import SearchBarContainer from '../../search/search_bar_container';
 import Yeti from '../../svg/yeti-component';
 import Tree from '../../svg/tree-component';
 import './user_main.css';
-import Footer from '../../footer/footer'
 
 class UserMainPage extends React.Component {
 	componentDidMount() {
@@ -28,7 +27,6 @@ class UserMainPage extends React.Component {
 						<Tree />
 					</div>
 				</div>
-				<Footer />
 			</>
 		);
 	}
