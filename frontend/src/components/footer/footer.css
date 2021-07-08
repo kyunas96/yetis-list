@@ -48,6 +48,7 @@
     font-family: 'Kirang Haerang';
     font-size: x-large;
     color: black;
+    position: relative;
 }
 
 .footer-right-side {
@@ -56,6 +57,31 @@
     margin-right: 10px;
     width: 20%;
     justify-content: space-evenly;
+}
+
+.contact-us-link::before {
+    transform: scaleX(0);
+	transform-origin: bottom right;
+}
+
+.contact-us-link:hover::before {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+.contact-us-link::before {
+    content: ' ';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	inset: 0 0 0 0;
+	border-radius: 5px;
+	background: rgb(76, 211, 245);
+	z-index: -1;
+	transition: transform 0.3s ease;
 }
 
 

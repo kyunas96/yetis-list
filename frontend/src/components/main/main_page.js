@@ -41,7 +41,6 @@ class MainPage extends React.Component {
             <Tree />
           </div>
       </div>
-      {/* <Footer /> */}
       </>
     );
   }
@@ -60,16 +59,16 @@ const mapStateToProps = (state) => {
     //   password: "4328749237fj"
     // },{
     //   email: "sasssssquatch@sasssssquatch.gov",
-    //   password: "34892739jf"
+    //   password: "34892739jfod"
     // },{
     //   email: "smallfoot@smallfoot.gov",
-    //   password: "432847hf"
+    //   password: "432847hfk2a9"
     // },{
     //   email: "abomidable@abomidable.gov",
-    //   password: "324u348"
+    //   password: "624u3480alep"
     // },{
     //   email: "chewbacca@chewbacca.gov",
-    //   password: "342304fs"
+    //   password: "t42304fsbkw7"
     }]
   }
 }

@@ -1,125 +1,84 @@
-import { connect } from "react-redux";
-import React from "react";
+import { connect } from 'react-redux';
+import React from 'react';
 import {
-  fetchAllPlaylists,
-  sendPlaylistId,
-  deletePlaylist,
-} from "../../actions/playlist_actions";
-import { withRouter, Link } from "react-router-dom";
-import "./playlist_css/playlist-feed.css";
+	fetchAllPlaylists,
+	sendPlaylistId,
+} from '../../actions/playlist_actions';
+import { withRouter, Link } from 'react-router-dom';
+import './playlist_css/playlist-feed.css';
+import PlaylistFeedList from './playlist_feed_list';
 
 class PlaylistFeedPage extends React.Component {
-  constructor(props) {
-    super(props);
-    const playlists = this.filterOutOwnPlaylists(this.props.playlists);
-    this.state = { playlists };
-  }
-
-  componentDidMount() {
-    this.props.fetchAllPlaylists();
-  }
-
-  filterOutOwnPlaylists(playlists) {
-    // console.log(playlists)
-    const otherPlaylists = [];
-    for (const [key, playlist] of Object.entries(playlists)) {
-      // console.log(key, playlist)
-      if (playlist.userId !== this.props.currentUserId) {
-        otherPlaylists.push(playlist);
-      }
-    }
-    // console.log(otherPlaylists)
-    return otherPlaylists;
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      (!this.state.playlists && nextState.playlists !== this.state.playlists) ||
-      nextProps !== this.props
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  formatTitleAndDescription(type, info) {
-		if (type === 'title' && info.length > 30) {
-			info = info.slice(0, 27) + '...';
-		}
-		
-		if (type === 'description' && info.length > 52) {
-			info = info.slice(0, 49) + '...';
-		}
-
-		return info;
+	constructor(props) {
+		super(props);
+		const playlists = this.filterOutOwnPlaylists(this.props.playlists);
+		this.state = { playlists };
 	}
 
-  render() {
-    return (
-      <section className="playlist-feed-page">
-        <div className="feed-header">
-          <Link
-            id="view-your-playlists"
-            to={`/users/${this.props.currentUserId}/profile`}
-          >
-            View All Of Your Playlists
-          </Link>
-          <h2 id="view-playlist-text">Select A Playlist Below To View</h2>
-          <div className="description-text">
-            <h2>Playlist Title</h2>
-            <h2>Playlist Description</h2>
-          </div>
-        </div>
-        <ul className="playlist-list-ul">
-          {this.state.playlists.length > 0 ? (
-            this.state.playlists.map((playlist, i) => {
-              return (
-                <li
-                  key={i}
-                  className="playlist-item"
-                  id="feed-item"
-                  onClick={() => this.props.sendPlaylistId(playlist._id)}
-                >
-                  <Link
-                    to={`/users/${this.props.currentUserId}/playlist/${playlist._id}`}
-                  >
-                    <h3 className="playlist-profile-title" id="title-feed">
-                      {this.formatTitleAndDescription('title', playlist.title)}
-                    </h3>
-                    <h3 className="playlist-profile-description">
-                      {this.formatTitleAndDescription('description', playlist.description)}
-                    </h3>
-                  </Link>
-                </li>
-              );
-            })
-          ) : (
-            <li>
-              <h3>No Body Has Any Playlists :(</h3>
-            </li>
-          )}
-        </ul>
-      </section>
-    );
-  }
+	componentDidMount() {
+		this.props.fetchAllPlaylists();
+	}
+
+	filterOutOwnPlaylists(playlists) {
+		const otherPlaylists = [];
+
+		for (const [key, playlist] of Object.entries(playlists)) {
+			if (playlist.userId !== this.props.currentUserId) {
+				otherPlaylists.push(playlist);
+			}
+		}
+
+		return otherPlaylists;
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (
+			(!this.state.playlists && nextState.playlists !== this.state.playlists) ||
+			nextProps !== this.props
+		) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	render() {
+		return (
+			<section className='playlist-feed-page'>
+				<div className='feed-header'>
+					<Link
+						className='view-your-playlists'
+						to={`/users/${this.props.currentUserId}/profile`}>
+						View All Of Your Playlists
+					</Link>
+					<h2 className='view-playlist-text'>Select A Playlist Below To View</h2>
+					<div className='description-text'>
+						<h2>Playlist Title</h2>
+						<h2>Playlist Description</h2>
+					</div>
+				</div>
+				<PlaylistFeedList
+					playlists={this.state.playlists}
+					currentUserId={this.props.currentUserId}
+					sendPlaylistId={sendPlaylistId}
+				/>
+			</section>
+		);
+	}
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    playlists: Object.values(state.entities.playlists.allPlaylists),
-    currentUserId: state.session.user,
-  };
+const mSTP = (state, ownProps) => {
+	return {
+		playlists: Object.values(state.entities.playlists.allPlaylists),
+		currentUserId: state.session.user,
+	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
-    sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
-    deletePlaylist: (playlistId) => dispatch(deletePlaylist(playlistId)),
-  };
+const mDTP = (dispatch) => {
+	return {
+		fetchAllPlaylists: () => dispatch(fetchAllPlaylists()),
+		sendPlaylistId: (playlistId) => dispatch(sendPlaylistId(playlistId)),
+	};
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PlaylistFeedPage)
-);
+export default withRouter(connect(mSTP, mDTP)(PlaylistFeedPage));
