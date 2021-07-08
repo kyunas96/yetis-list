@@ -60,7 +60,7 @@ class PlaylistFeedPage extends React.Component {
 				<PlaylistFeedList
 					playlists={this.state.playlists}
 					currentUserId={this.props.currentUserId}
-					sendPlaylistId={sendPlaylistId}
+					sendPlaylistId={this.props.sendPlaylistId}
 				/>
 			</section>
 		);
