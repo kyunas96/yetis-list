@@ -66,7 +66,7 @@ class NavBar extends React.Component {
 				</>
 			);
 		} else {
-			return <div className='nav-title'>Yeti's List</div>; // make link
+			return <Link className='nav-title' to= {`/`}>Yeti's List</Link> ; // make link
 		}
 	}
 
