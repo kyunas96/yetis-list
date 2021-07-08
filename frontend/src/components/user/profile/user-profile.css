@@ -126,12 +126,16 @@
 .playlist-profile-title {
     margin-left: 12px;
     margin-right: 12px;
-    width: 130px;
+    width: 142px;
 }
 
 .playlist-profile-title:hover {
     cursor: pointer;
     color: white;
+}
+
+.playlist-profile-description {
+    width: 60%;
 }
 
 #make-a-playlist {

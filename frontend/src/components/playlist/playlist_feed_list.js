@@ -42,7 +42,7 @@ const PlaylistFeedList = ({playlists, currentUserId, sendPlaylistId}) => {
                 })
             ) : (
                 <li>
-                    <h3>No Body Has Any Playlists :</h3>
+                    <h3>No Body Has Any Playlists</h3>
                 </li>
             )}
         </ul>

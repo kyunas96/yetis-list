@@ -27,8 +27,8 @@ class PlaylistProfileList extends React.Component {
 	}
 
 	formatTitleAndDescription(type, info) {
-		if (type === 'title' && info.length > 15) {
-			info = info.slice(0, 14) + '...';
+		if (type === 'title' && info.length > 20) {
+			info = info.slice(0, 17) + '...';
 		}
 
 		if (type === 'description' && info.length > 60) {

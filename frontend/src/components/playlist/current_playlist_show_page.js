@@ -46,8 +46,8 @@ class PlaylistShowPage extends Component {
   }
 
   formatTitleAndDescription(type, info) {
-    if (type === "title" && info.length > 20) {
-      info = info.slice(0, 17) + "...";
+    if (type === "title" && info.length > 25) {
+      info = info.slice(0, 22) + "...";
     }
 
     if (type === "description" && info.length > 52) {
@@ -64,8 +64,6 @@ class PlaylistShowPage extends Component {
         ? `${this.props.items[0].name}`
         : "";
     let description = `Playlist made with the ${seedType}: ${searchValue}`;
-    title = this.formatTitleAndDescription("title", title);
-    description = this.formatTitleAndDescription("description", description);
 
     let songs = this.props.items;
     let klassName = "song-saved disabled";
@@ -87,8 +85,8 @@ class PlaylistShowPage extends Component {
       <section className="playlist-show-page">
         <section className="playlist-info">
           <div className="playlist-header">
-            <div className="playlist-title">{title}</div>
-            <div className="playlist-description">{description}</div>
+            <div className="playlist-title">{this.formatTitleAndDescription("title", title)}</div>
+            <div className="playlist-description">{this.formatTitleAndDescription("description", description)}</div>
           </div>
           <div className="edit-playlist">
             <button
@@ -125,7 +123,7 @@ class PlaylistShowPage extends Component {
             </button>
           </div>
         </section>
-        <PlayerWidget />
+        {songs.length > 0 ? <PlayerWidget /> : <></>}
         <SlidersContainer action={this.sliderToSeeds} />
         <ul className="current-playlist-list">
           {this.props.items.map((song, i) => {
