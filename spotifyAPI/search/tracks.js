@@ -19,8 +19,6 @@ module.exports = function searchTracks(value, res) {
 
       spotifyApi.searchTracks(`track:${value}`, { limit: 10 }).then(
         function (data) {
-          // console.log(`Search tracks by "${value}" in the track name and
-          // "Kendrick Lamar" in the artist name: ${data}`);
           let tracks = trackUtils.getTracksForList(data);
           res.json(tracks)
         },
@@ -30,7 +28,7 @@ module.exports = function searchTracks(value, res) {
       );
     },
     function (err) {
-      // console.log("Something went wrong when retrieving an access token", err);
+      console.log("Something went wrong when retrieving an access token", err);
     }
   );
 }

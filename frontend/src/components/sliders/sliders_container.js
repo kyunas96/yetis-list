@@ -25,7 +25,6 @@ class SlidersContainer extends React.Component{
 
     for(const [key, val] of Object.entries(this.state)){
       if(val !== 0 && val !== 0.0){
-        console.log("val", val)
         stateForParent[key] = val;
       }
     }
@@ -38,7 +37,6 @@ class SlidersContainer extends React.Component{
 
     return (e) => {
       this.setState({[valName]: e.target.value}, () =>{
-        console.log("slider state", this.state)
         action(this.siftStateForParent());
       });
     }

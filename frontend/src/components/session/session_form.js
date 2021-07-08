@@ -26,7 +26,6 @@ class SessionForm extends React.Component {
 		this.props.processForm(user)
 		.then((data) => {
 			if (this.props.formType === 'signup') {
-				// console.log(data)
 				this.props.history.push(`/users/${data.currentUser._id}`)
 			} else {
 				this.props.history.push(`/users/${data._id}`)
@@ -35,9 +34,7 @@ class SessionForm extends React.Component {
 		.then(() => {
 			this.props.closeModal()
 			this.props.fetchAllPlaylists()
-		}).catch(err => {
-			console.log(err);
-		})
+		}).catch(err => {})
 	}
 	
 

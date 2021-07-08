@@ -53,9 +53,7 @@ router.get('/:id', (req, res) => {
 
 
 router.delete('/:playlistId/:commentId', async function (req, res) {
-	console.log('params', req.params);
 	let objectID = mongoose.mongo.ObjectID(req.params.commentId)
-	console.log(objectID)
 	try {
 		const playlist = await Playlist.findByIdAndUpdate(
 			req.params.playlistId,

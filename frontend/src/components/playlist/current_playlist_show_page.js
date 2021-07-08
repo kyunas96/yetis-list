@@ -23,7 +23,6 @@ class PlaylistShowPage extends Component {
       seeds: props.playlist.playlist.seeds,
       options: {},
     };
-    console.log(this.state);
     this.sliderToSeeds = this.sliderToSeeds.bind(this);
     this.sendSeeds = throttle(this.props.sendSeed.bind(this), 500);
   }
@@ -38,7 +37,6 @@ class PlaylistShowPage extends Component {
 
   sliderToSeeds(options) {
     this.setState({ options }, () => {
-      console.log("slider to seeds", this.state);
       this.sendSeeds(this.state);
     });
   }

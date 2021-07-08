@@ -25,7 +25,6 @@ class PlaylistShowPage extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log('should-this', nextProps);
 
 		if (
 			nextProps !== this.props ||
@@ -43,7 +42,6 @@ class PlaylistShowPage extends Component {
 	}
 
 	render() {
-		console.log('playlist-show', this.props.playlist);
 		let { title, description, comments, songs, _id } = this.props.playlist
 			.playlist
 			? this.props.playlist.playlist
@@ -131,8 +129,6 @@ const selectPlaylist = (allPlaylists, playlists, playlistId) => {
 };
 
 const mSTP = (state, ownProps) => {
-	console.log(state.entities.playlists);
-	// console.log(ownProps)
 	return {
 		userId: state.session.user,
 		playlist: selectPlaylist(

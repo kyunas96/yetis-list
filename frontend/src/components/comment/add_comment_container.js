@@ -28,7 +28,6 @@ class AddComment extends Component {
 
     handleSubmit(e) {
 		e.preventDefault();
-        // console.log(this.state)
 		this.props.createComment(this.state)
 			.then(() => this.props.closeModal())
 			.then(() => {
@@ -63,9 +62,7 @@ class AddComment extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-	// console.log(ownProps)
 	return {
-		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
 		userId: state.session.user,
 		username: state.entities.users.username

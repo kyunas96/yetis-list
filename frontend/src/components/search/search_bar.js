@@ -40,7 +40,6 @@ class SearchBar extends React.Component {
 	}
 
 	handleSubmit(e) {
-		console.log('submitting', this.state);
 		e.preventDefault();
 		this.props
 			.sendSeed({
@@ -65,7 +64,6 @@ class SearchBar extends React.Component {
 				searchValue: name,
 			},
 			() => {
-				// console.log(this.state);
 				this.props.clearListItems();
 			}
 		);
