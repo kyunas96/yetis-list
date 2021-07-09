@@ -11,7 +11,6 @@ class SlidersContainer extends React.Component{
       energy: 0.0,
       instrumentalness: 0.0,
       liveness: 0.0,
-      popularity: 0.0,
       speechiness: 0.0,
       tempo: 0,
       happiness: 0.0,
