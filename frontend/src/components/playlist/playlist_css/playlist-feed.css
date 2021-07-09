@@ -95,22 +95,15 @@
     border-color: white;
 }
 
-.title-feed {
+.feed-item-title {
     width: 33%;
     display: flex;
     justify-content: center;
 }
 
-.username-feed {
-    width: 33%;
-    display: flex;
-    justify-content: center;
-}
-
-.description-feed {
-    width: 33%;
-    display: flex;
-    justify-content: center;
+.feed-item-title #username{
+    position: relative;
+    left: -25px;
 }
 
 .description-text {
