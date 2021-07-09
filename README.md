@@ -90,8 +90,8 @@ Our application uses Express, Mongoose, and MongoDB along with multiple [other p
 
 * The user signup route with a method of post will sign up a new user. 
 * Once a request is sent, `Validator` is used to check for any missing fields or incorrectly formmatted emails. 
-* We then check to see if the email already exists in our database on `MongoDB`. If there are no duplicates then a new user is created using our schema built with `Mongoose`. 
-* Lastly the password is encrypted using `BCrypt` and upon success, the user is returned as JSON.
+* We then check to see if the email already exists in our database on `MongoDB`. If there are no duplicates a new user is created using the schema we built with `Mongoose`. 
+* Lastly, the password is encrypted using `BCrypt`, the user is saved to `MongoDB` and on success is returned as JSON.
 
 ```js
 router.post('/signup', (req, res) => {
