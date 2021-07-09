@@ -79,8 +79,9 @@ class PlaylistShowPage extends Component {
       title,
       description,
       userId: this.props.userId,
+      username: this.props.username
     };
-
+    console.log(playlistToSave)
     return (
       <section className="playlist-show-page">
         <section className="playlist-info">
@@ -91,11 +92,11 @@ class PlaylistShowPage extends Component {
           <div className="edit-playlist">
             <button
               onClick={() =>
-                this.props.createPlaylist(playlistToSave).then((playlist) => {
-                  this.props
-                    .fetchPlaylists(this.props.userId)
+                this.props.createPlaylist(playlistToSave).then(() => {
+                  this.props.fetchPlaylists(this.props.userId)
                     .then((playlists) => {
                       const playlist = playlists[0];
+                      console.log(playlist)
                       this.props.sendPlaylistId(playlist._id);
                       this.props.history.push(
                         `/users/${this.props.userId}/playlist/${playlist._id}`
@@ -141,6 +142,7 @@ const mSTP = (state, ownProps) => {
     savedItems: state.entities.currentPlaylist.playlist.savedItems,
     items: state.entities.currentPlaylist.playlist.items,
     userId: state.session.user,
+    username: state.entities.users.username
   };
 };
 

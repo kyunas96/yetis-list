@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom';
 
 const PlaylistFeedList = ({playlists, currentUserId, sendPlaylistId}) => {
 
-    const formatTitleAndDescription = (type, info) => {
+    const formatTitleDescriptionUsername = (type, info) => {
 		if (type === 'title' && info.length > 30) {
 			info = info.slice(0, 27) + '...';
 		}
-
-		if (type === 'description' && info.length > 44) {
+        
+		if (type === 'uername' && info.length > 20) {
+			info = info.slice(0, 17) + '...';
+		}
+		
+        if (type === 'description' && info.length > 44) {
 			info = info.slice(0, 41) + '...';
 		}
 
@@ -28,10 +32,13 @@ const PlaylistFeedList = ({playlists, currentUserId, sendPlaylistId}) => {
                                 className="feed-item"
                                 to={`/users/${currentUserId}/playlist/${playlist._id}`}>
                                 <h3 className='title-feed'>
-                                    {formatTitleAndDescription('title', playlist.title)}
+                                    {formatTitleDescriptionUsername('title', playlist.title)}
+                                </h3>
+                                <h3 className='username-feed'>
+                                    {formatTitleDescriptionUsername('username', playlist.username)}
                                 </h3>
                                 <h3 className='description-feed'>
-                                    {formatTitleAndDescription(
+                                    {formatTitleDescriptionUsername(
                                         'description',
                                         playlist.description
                                     )}

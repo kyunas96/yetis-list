@@ -95,8 +95,12 @@
 }
 
 .title-feed {
-    margin-left: 17%;
-	width: 45%;
+    margin-left: 12%;
+    width: 225px;
+}
+
+.username-feed {
+    margin-right: 200px;
 }
 
 .description-text {

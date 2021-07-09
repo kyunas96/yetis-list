@@ -11,7 +11,7 @@ const { playlistsFormatter } = require('../util/playlist_util');
 
 // create playlist
 // needs...
-// in body: title, userId, optional: description
+// in body: title, userId, username, optional: description
 // in params: nothing
 router.post('/', (req, res) => {
 	const { errors, isValid } = validatePlaylistInput(req.body);
@@ -150,8 +150,3 @@ router.post('/getlist', (req, res) => {
 });
 
 module.exports = router;
-
-// {
-// 	seeds: [],
-// 	options: {}
-// }
