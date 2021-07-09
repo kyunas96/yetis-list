@@ -46,7 +46,7 @@ Implementation of Spotify API
 
 Our application makes use of the Spotify Web API node package to retreive customized playlists.
 
-* makePlaylist is called from the backend after receiving the searched item from the frontend.
+* makePlaylist is called from the backend after receiving the searched item from the frontend
 * the searched item is packaged before being passed in to conform to the inputs of the `getRecommendations` api function
 * from the express route the `res` object is also passed in in order to set the content of the response once the newly created playlist is received from the Spotify API
 
