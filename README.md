@@ -92,36 +92,36 @@ Our application uses Express, Mongoose, and MongoDB along with multiple [other p
 
 ```js
 router.post('/signup', (req, res) => {
-	const { errors, isValid } = validateRegisterInput(req.body);
-	if (!isValid) return res.status(400).json(errors)
-	const {email, username, password} = req.body;
+   const { errors, isValid } = validateRegisterInput(req.body);
+   if (!isValid) return res.status(400).json(errors)
+   const {email, username, password} = req.body;
 
-	User.findOne({email}).then((user) => {
-		if (user) {
-			return res
-				.status(400)
-				.json({ email: 'A user has already registered with this address' });
-		} else if (!email.includes('@') || !email.includes('.')) {
-			return res.status(400).json({ email: 'Invalid Email' });
-		} else {
-			const newUser = new User({
-				username,
-				email,
-				password,
-			});
+   User.findOne({email}).then((user) => {
+      if (user) {
+         return res
+	   .status(400)
+	   .json({ email: 'A user has already registered with this address' });
+      } else if (!email.includes('@') || !email.includes('.')) {
+         return res.status(400).json({ email: 'Invalid Email' });
+      } else {
+	 const newUser = new User({
+	    username,
+	    email,
+	    password,
+	 });
 
-			bcrypt.genSalt(10, (err, salt) => {
-				bcrypt.hash(newUser.password, salt, (err, hash) => {
-					if (err) throw err;
-					newUser.password = hash;
-					newUser
-						.save()
-						.then(() => res.json(newUser))
-						.catch((err) => console.log(err));
-				});
-			});
-		}
-	}).catch((err) => console.log(err));
+	 bcrypt.genSalt(10, (err, salt) => {
+	    bcrypt.hash(newUser.password, salt, (err, hash) => {
+	       if (err) throw err;
+	       newUser.password = hash;
+	       newUser
+	          .save()
+		  .then(() => res.json(newUser))
+		  .catch((err) => console.log(err));
+	    });
+	 });
+       }
+   }).catch((err) => console.log(err));
 });
 ```
 
