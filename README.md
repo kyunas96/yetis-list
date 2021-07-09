@@ -88,7 +88,7 @@ Technologies used to create the Backend
 
 Our application uses Express, Mongoose, and MongoDB along with multiple [other packages](#technologies).
 
-* The user post route will sign up a user. Once it has a request, we use Validator to check for any missing fields or incorrectly formmatted emails. 
+* The user signup route with a method of post will sign up a user. Once it has a request, we use Validator to check for any missing fields or incorrectly formmatted emails. 
 * After validating, we check to see if the email already exists in MongoDB. If there are no duplicates then a new user is created using Mongoose, and we encrypt the password * * * using BCrypt. Upon success, the user is returned as JSON.
 
 ```js
