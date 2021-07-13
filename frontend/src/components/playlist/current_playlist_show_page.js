@@ -81,7 +81,7 @@ class PlaylistShowPage extends Component {
       userId: this.props.userId,
       username: this.props.username
     };
-    console.log(playlistToSave)
+
     return (
       <section className="playlist-show-page">
         <section className="playlist-info">
