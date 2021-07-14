@@ -96,7 +96,6 @@ class PlaylistShowPage extends Component {
                   this.props.fetchPlaylists(this.props.userId)
                     .then((playlists) => {
                       const playlist = playlists[0];
-                      console.log(playlist)
                       this.props.sendPlaylistId(playlist._id);
                       this.props.history.push(
                         `/users/${this.props.userId}/playlist/${playlist._id}`
