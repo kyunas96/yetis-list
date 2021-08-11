@@ -19,6 +19,11 @@ class AddComment extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+	componentDidMount() {
+		let textArea = document.getElementsByClassName('text-area')[0];
+		textArea.focus()
+	}
+
     update(field) {
 		return (e) =>
 			this.setState({
@@ -45,7 +50,7 @@ class AddComment extends Component {
 							<div className="form-instruction">
 								Yeti Friend tell Friend what Yeti Friend think of Friend playlist.
 							</div>
-							<label>
+							<label className='comment-label'>
 								<textarea 
 								className="text-area"
 								onChange={this.update('text')} 
