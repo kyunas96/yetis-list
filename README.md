@@ -23,21 +23,21 @@ Yeti's list is an application where users can generate playlists by searching fo
 ### Technologies
 
 * Frontend
-  * React
-  * Redux
-  * Redux-Persist
-  * Axios
-  * Underscore
+  * [React](https://www.npmjs.com/package/react)
+  * [Redux](https://www.npmjs.com/package/redux)
+  * [redux-Persist](https://www.npmjs.com/package/redux-persist)
+  * [axios](https://www.npmjs.com/package/axios)
+  * [Underscore](https://www.npmjs.com/package/underscore)
 
 * Backend
-  * MongoDB
-  * Express
-  * Node.js
-  * Mongoose
-  * JWT
-  * Passport
-  * Validator
-  * BCrypt
+  * [MongoDB](https://www.mongodb.com)
+  * [Express](https://www.npmjs.com/package/express)
+  * [Node.js](https://nodejs.org/en/)
+  * [Mongoose](https://www.npmjs.com/package/mongoose)
+  * [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+  * [Passport](https://www.npmjs.com/package/passport)
+  * [Validator](https://www.npmjs.com/package/validator)
+  * [bcryptjs](https://www.npmjs.com/package/bcryptjs)
   * [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node)
 
 * Integrations
