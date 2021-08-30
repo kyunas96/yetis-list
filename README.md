@@ -23,18 +23,21 @@ Yeti's list is an application where users can generate playlists by searching fo
 ### Technologies
 
 * Frontend
-  * React
-  * Redux
-  * Redux-Persist
-  * Axios
+  * [React](https://www.npmjs.com/package/react)
+  * [Redux](https://www.npmjs.com/package/redux)
+  * [redux-Persist](https://www.npmjs.com/package/redux-persist)
+  * [axios](https://www.npmjs.com/package/axios)
+  * [Underscore](https://www.npmjs.com/package/underscore)
 
 * Backend
-  * MongoDB
-  * Express
-  * Node.js
-  * JWT
-  * Passport
-  * bcrypt
+  * [MongoDB](https://www.mongodb.com)
+  * [Express](https://www.npmjs.com/package/express)
+  * [Node.js](https://nodejs.org/en/)
+  * [Mongoose](https://www.npmjs.com/package/mongoose)
+  * [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+  * [Passport](https://www.npmjs.com/package/passport)
+  * [Validator](https://www.npmjs.com/package/validator)
+  * [bcryptjs](https://www.npmjs.com/package/bcryptjs)
   * [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node)
 
 * Integrations
@@ -79,6 +82,48 @@ function makeplaylist(playlistQueryObject, res) {
   }).catch(err => console.log(err))
 };
 
+```
+
+Technologies used to create the Backend
+
+Our application uses `Express`, Mongoose, and MongoDB along with multiple [other packages](#technologies).
+
+* The user signup route with a method of post will sign up a new user. 
+* Once a request is sent, `Validator` is used to check for any missing fields or incorrectly formmatted emails. 
+* We then check to see if the email already exists in our database on `MongoDB`. If there are no duplicates a new user is created using the schema we built with `Mongoose`. 
+* Lastly, the password is encrypted using `BCrypt`, the user is saved to MongoDB and on success is returned as JSON.
+
+```js
+router.post('/signup', (req, res) => {
+   const { errors, isValid } = validateRegisterInput(req.body);
+   if (!isValid) return res.status(400).json(errors)
+   const {email, username, password} = req.body;
+
+   User.findOne({email}).then((user) => {
+      if (user) {
+         return res
+	   .status(400)
+	   .json({ email: 'A user has already registered with this address' });
+      } else {
+	 const newUser = new User({
+	    username,
+	    email,
+	    password,
+	 });
+
+	 bcrypt.genSalt(10, (err, salt) => {
+	    bcrypt.hash(newUser.password, salt, (err, hash) => {
+	       if (err) throw err;
+	       newUser.password = hash;
+	       newUser
+	          .save()
+		  .then(() => res.json(newUser))
+		  .catch((err) => console.log(err));
+	    });
+	 });
+      }
+   }).catch((err) => console.log(err));
+});
 ```
 
 ### Code Snippets
