@@ -11,7 +11,7 @@ const Footer = () => {
         </Link>
         <a
           className="footer-a"
-          href="https://github.com/yunasty/yetis-list"
+          href="https://github.com/kyunas96/yetis-list"
           target="blank"
         >
           <img

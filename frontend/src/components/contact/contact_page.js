@@ -8,7 +8,7 @@ function ContactPage(props) {
       <div className="dev-box-container">
         <DevBox
           name="Kevin Yunas"
-          gitLink="https://github.com/yunasty"
+          gitLink="https://github.com/kyunas96"
           profilePic="https://avatars.githubusercontent.com/u/22901798?v=4"
           linkedin="templinkforplacement"
           linkedin="https://www.linkedin.com/in/kevin-yunas-987325183/"
