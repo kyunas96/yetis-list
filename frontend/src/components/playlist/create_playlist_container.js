@@ -41,9 +41,12 @@ class CreatePlaylist extends React.Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const newState = Object.assign({}, this.state);
+		newState.username = this.props.currentUser.username;
+		
 		if (newState.description.length < 1) {
 			newState.description = `Playlist #${this.getPlaylistNumber()} for ${this.props.currentUser.username}`
 		} 
+
 		
 		this.props.createPlaylist(newState)
 		.then((playlist) => {

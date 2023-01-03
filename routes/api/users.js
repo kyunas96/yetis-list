@@ -33,29 +33,21 @@ router.get('/:id', (req, res) => {
 // in body: email, username, password
 // in params: nothing
 router.post('/signup', (req, res) => {
-	console.log(req.body)
 	const { errors, isValid } = validateRegisterInput(req.body);
-	if (!isValid) {
-		return res.status(400).json(errors);
-	}
+	if (!isValid) return res.status(400).json(errors)
+	const {email, username, password} = req.body;
 
-	User.findOne({email: req.body.email}).then((user) => {
+	User.findOne({email}).then((user) => {
 		if (user) {
 			return res
 				.status(400)
 				.json({ email: 'A user has already registered with this address' });
-		} else if (!req.body.email.includes('@') || !req.body.email.includes('.')) {
-			return res.status(400).json({ email: 'Invalid Email' });
 		} else {
 			const newUser = new User({
-				username: req.body.username,
-				email: req.body.email,
-				password: req.body.password,
+				username,
+				email,
+				password,
 			});
-
-			// collection
-			// 	.insertOne(newUser)
-			// 	.then((res) => console.log(`successfuly added ${res}!`));
 
 			bcrypt.genSalt(10, (err, salt) => {
 				bcrypt.hash(newUser.password, salt, (err, hash) => {

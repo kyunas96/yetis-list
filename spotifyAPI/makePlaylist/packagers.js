@@ -1,5 +1,4 @@
 function packageQueryObject(data) {
-  console.log("data", data);
   let options = formatProperties(data.options);
   let seed_artists = [];
   let seed_genres = [];
@@ -12,7 +11,6 @@ function packageQueryObject(data) {
       curVal = seed.value;
     }
 
-    console.log(seed)
     switch (seed.type) {
       case "ARTIST":
       case "artist":
@@ -36,8 +34,6 @@ function packageQueryObject(data) {
     ...options
   };
 
-  console.log("ret", ret);
-
   return ret;
 }
 
@@ -49,8 +45,7 @@ function formatProperties(properties) {
       ret["min_valence"] = parseFloat(val);
       continue;
     }
-
-    // console.log("val", val)
+    
     const keyToTargetKey = "min_" + key;
 
     ret[keyToTargetKey] = parseFloat(val);

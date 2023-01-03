@@ -4,16 +4,12 @@ export const addSongToPlaylist = (song) => (dispatch) => (
 	SongAPIUtil.addSongToPlaylist(song).then(
 	(res) => {
 		return res.data
-	}).catch((err) =>{
-		console.log(err.response.data)
-	})
+	}).catch((err) => {})
 )
 
 export const removeSongFromPlaylist = (song) => (dispatch) => (
 	SongAPIUtil.removeSongFromPlaylist(song).then(
 	(res) => {
 		return res.data
-	}).catch((err) =>{
-		console.log(err.response)
-	})
+	}).catch((err) => {})
 )

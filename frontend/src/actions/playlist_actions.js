@@ -31,7 +31,6 @@ export const sendPlaylistId = (playlistId) => {
 export const fetchPlaylists = (userId) => (dispatch) =>
 	APIUtil.fetchPlaylists(userId).then(
 		(res) => {
-			console.log("this is the res", res.data)
 			dispatch(receivePlaylists(res.data))
 			return res.data
 		},

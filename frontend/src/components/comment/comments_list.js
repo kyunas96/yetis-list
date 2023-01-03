@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import CommentItem from './comment_item'
 
 const CommentList = ({comments, openModal }) => {
-	console.log('comment-list',comments)
-
 
     return ( 
         <section className='comments'>
@@ -12,7 +10,6 @@ const CommentList = ({comments, openModal }) => {
                 {(comments && comments.length > 0)? (
                     <>
                         {comments.map((comment, i) => {
-                            console.log(comment)
                             return <CommentItem key={i} comment={comment}/>
                         })}
                     </>

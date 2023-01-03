@@ -29,12 +29,12 @@ router.post('/', (req, res) => {
 						username: comment.username,
 						playlistId: comment.playlistId,
 					});
-					playlist.save()
-						.then(() => res.json("comment posted"))
-						.catch(() => res.json("comment not posted"))
+					playlist
+						.save()
+						.then(() => res.json('comment posted'))
+						.catch(() => res.json('comment not posted'));
 				})
 				.catch(() => res.json('could not find playlist'));
-			
 		})
 		.catch(() => res.json('could not save comment'));
 });
@@ -51,33 +51,26 @@ router.get('/:id', (req, res) => {
 		);
 });
 
-
 router.delete('/:playlistId/:commentId', async function (req, res) {
-	console.log('params', req.params);
-	let objectID = mongoose.mongo.ObjectID(req.params.commentId)
-	console.log(objectID)
+	let objectID = mongoose.mongo.ObjectID(req.params.commentId);
 	try {
-		const playlist = await Playlist.findByIdAndUpdate(
-			req.params.playlistId,
-			{
-				$pull: { 'comments': {'id': objectID } },function(err, comment){
-					if (err) {
-            console.log("ERROR: " + err);
-          }
-          console.log("comments" + comment);
-
+		const playlist = await Playlist.findByIdAndUpdate(req.params.playlistId, {
+			$pull: { comments: { id: objectID } },
+			function(err, comment) {
+				if (err) {
+					console.log('ERROR: ' + err);
 				}
-			}
-		);
+				console.log('comments' + comment);
+			},
+		});
 
 		if (!playlist) {
 			return res.status(400).send('Playlist not found');
 		}
 
-		
 		await Comment.findByIdAndDelete(req.params.commentId).then(() =>
-      res.send("Success")
-    );
+			res.send('Success')
+		);
 	} catch (err) {
 		console.log(err);
 		res.status(500).send('Something went wrong');

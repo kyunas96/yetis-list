@@ -54,7 +54,6 @@ class SongListItem extends Component {
       checkbox.src = "https://image.flaticon.com/icons/png/512/61/61221.png";
       return true;
     }
-    console.log("hitting component should update-song list item");
   }
 
   formatSongInfo(type, info) {

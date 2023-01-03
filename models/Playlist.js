@@ -14,6 +14,10 @@ const PlaylistSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	username: {
+		type: String,
+		required: true,
+	},
 	songs: {
 		type: Array,
 		required: false,

@@ -17,7 +17,6 @@ class MainPage extends React.Component {
 
   handleDemo () {
     let demoUser = this.props.demoUsers[Math.floor(Math.random()*this.props.demoUsers.length)];
-    // console.log(demoUser)
     this.props.demoLogin(demoUser)
       .then((data) => {
         this.props.history.push(`/users/${data._id}`)
@@ -54,21 +53,21 @@ const mapStateToProps = (state) => {
     },{
       email: "bigfoot@bigfoot.gov",
       password: "47289374jjks"
-    // },{
-    //   email: "sasquatch@sasquatch.gov",
-    //   password: "4328749237fj"
-    // },{
-    //   email: "sasssssquatch@sasssssquatch.gov",
-    //   password: "34892739jfod"
-    // },{
-    //   email: "smallfoot@smallfoot.gov",
-    //   password: "432847hfk2a9"
-    // },{
-    //   email: "abomidable@abomidable.gov",
-    //   password: "624u3480alep"
-    // },{
-    //   email: "chewbacca@chewbacca.gov",
-    //   password: "t42304fsbkw7"
+    },{
+      email: "sasquatch@sasquatch.gov",
+      password: "4328749237fj"
+    },{
+      email: "sasssssquatch@sasssssquatch.gov",
+      password: "34892739jfod"
+    },{
+      email: "smallfoot@smallfoot.gov",
+      password: "432847hfk2a9"
+    },{
+      email: "abomidable@abomidable.gov",
+      password: "624u3480alep"
+    },{
+      email: "chewbacca@chewbacca.gov",
+      password: "t42304fsbkw7"
     }]
   }
 }

@@ -54,13 +54,14 @@ class PlaylistFeedPage extends React.Component {
 					<h2 className='view-playlist-text'>Select A Playlist Below To View</h2>
 					<div className='description-text'>
 						<h2>Playlist Title</h2>
+						<h2>Created By</h2>
 						<h2>Playlist Description</h2>
 					</div>
 				</div>
 				<PlaylistFeedList
 					playlists={this.state.playlists}
 					currentUserId={this.props.currentUserId}
-					sendPlaylistId={sendPlaylistId}
+					sendPlaylistId={this.props.sendPlaylistId}
 				/>
 			</section>
 		);

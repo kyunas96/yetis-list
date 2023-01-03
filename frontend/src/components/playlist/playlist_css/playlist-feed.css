@@ -81,6 +81,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     color: black;
     transition-duration: 0.4s;
     border: 1px solid black;
@@ -94,9 +95,15 @@
     border-color: white;
 }
 
-.title-feed {
-    margin-left: 17%;
-	width: 45%;
+.feed-item-title {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}
+
+.feed-item-title #username{
+    position: relative;
+    left: -25px;
 }
 
 .description-text {

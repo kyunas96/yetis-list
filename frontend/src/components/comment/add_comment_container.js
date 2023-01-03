@@ -19,6 +19,11 @@ class AddComment extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+	componentDidMount() {
+		let textArea = document.getElementsByClassName('text-area')[0];
+		textArea.focus()
+	}
+
     update(field) {
 		return (e) =>
 			this.setState({
@@ -28,7 +33,6 @@ class AddComment extends Component {
 
     handleSubmit(e) {
 		e.preventDefault();
-        // console.log(this.state)
 		this.props.createComment(this.state)
 			.then(() => this.props.closeModal())
 			.then(() => {
@@ -46,7 +50,7 @@ class AddComment extends Component {
 							<div className="form-instruction">
 								Yeti Friend tell Friend what Yeti Friend think of Friend playlist.
 							</div>
-							<label>
+							<label className='comment-label'>
 								<textarea 
 								className="text-area"
 								onChange={this.update('text')} 
@@ -63,9 +67,7 @@ class AddComment extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-	// console.log(ownProps)
 	return {
-		// playlist: state.playlists.allPlaylists[],
 		playlistId: ownProps.location.pathname.split('/')[4],
 		userId: state.session.user,
 		username: state.entities.users.username

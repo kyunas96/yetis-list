@@ -1,3 +1,7 @@
+#root{
+  overflow: hidden;
+}
+
 .main-body {
   background-color: rgb(76, 211, 245);
   display: flex;

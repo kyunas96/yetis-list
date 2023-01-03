@@ -153,15 +153,16 @@
 	flex-direction: column;
 	height: 100px;
 	margin-left: 33%;
+	width: 700px;
 }
 
 .playlist-title {
-	font-size: 45px;
+	font-size: 35px;
 	margin-bottom: 10px;
 }
 
 .playlist-description {
-	width: 80%;
+	width: 85%;
 }
 
 .playlist-songs {
@@ -288,4 +289,5 @@
 
 .selected, .not-selected {
 	margin-left: 15px;
+	cursor: pointer;
 }

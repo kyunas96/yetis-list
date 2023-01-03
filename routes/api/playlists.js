@@ -11,7 +11,7 @@ const { playlistsFormatter } = require('../util/playlist_util');
 
 // create playlist
 // needs...
-// in body: title, userId, optional: description
+// in body: title, userId, username, optional: description
 // in params: nothing
 router.post('/', (req, res) => {
 	const { errors, isValid } = validatePlaylistInput(req.body);
@@ -58,7 +58,6 @@ router.get('/user/:user_id', (req, res) => {
 				playlist.songs.reverse();
 				playlist.comments.reverse();
 			})
-			// console.log(playlists)
 			return playlists;
 		})
 		.then((playlists) => res.json(playlists))
@@ -141,22 +140,13 @@ router.patch('/:id', (req, res) => {
 });
 
 router.post('/generate', (req, res) => {
-	console.log('req body:' + JSON.stringify(req.body));
 	let queryObject = packageQueryObject(req.body);
-	console.log("queryObject", queryObject);
 	makePlaylist(queryObject, res);
 });
 
 router.post('/getlist', (req, res) => {
-	// console.log(req.body)
 	const { searchValue, seedType } = req.body;
-	// console.log(searchValue, seedType);
-	Search(searchValue, seedType, res);
+	Search(searchValue.toLowerCase(), seedType, res);
 });
 
 module.exports = router;
-
-// {
-// 	seeds: [],
-// 	options: {}
-// }

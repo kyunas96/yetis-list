@@ -7,16 +7,12 @@ import { deleteComment } from "../../actions/comment_actions";
 class CommentItem extends Component {
   constructor(props) {
     super(props);
-    console.log('comment item props', props)
     this.deleteComment = this.deleteComment.bind(this);
   }
 
 	shouldComponentUpdate(nextProps, nextState){
-		console.log("nextProps", nextProps.comment)
-		console.log("nextState", nextState)
 		if(nextProps.comment !== this.props.comment){
 			this.setState()
-			console.log("should rerender")
 			return true
 		}else{
 			return false;
@@ -27,11 +23,10 @@ class CommentItem extends Component {
     this.props
       .deleteComment(this.props.comment)
       .then((res) => {
-        console.log(res.response);
         this.props.fetchPlaylists(this.props.userId)
         this.props.fetchAllPlaylists();
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => {});
   }
 
   render() {
@@ -42,7 +37,6 @@ class CommentItem extends Component {
       );
     }
     const { text, id, username } = this.props.comment;
-    console.log("id", id);
     return (
       <li className="comment-item">
         <div className='comment-nav'>

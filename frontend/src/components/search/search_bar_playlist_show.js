@@ -18,8 +18,6 @@ class SearchBarPlaylistShow extends React.Component {
 
 	updateSearchValue(e) {
 		e.preventDefault();
-		// console.log("Updating search value");
-		// console.log(this.state);
 		this.setState({ searchValue: e.currentTarget.value }, () => {
 			this.props.requestListItems({
 				searchValue: this.state.searchValue,
@@ -32,7 +30,6 @@ class SearchBarPlaylistShow extends React.Component {
 		e.preventDefault();
         const selectedSong = Object.assign({}, this.state.selectedSeed);
         selectedSong.playlistId = this.props.playlistId;
-        // console.log(selectedSong)
 		this.props.addSongToPlaylist(selectedSong)
 			.then((res) => {
 				this.props.fetchPlaylists(this.props.currentUser)
@@ -47,15 +44,10 @@ class SearchBarPlaylistShow extends React.Component {
 				searchValue: song.name,
 			},
 			() => {
-				// console.log(this.state);
 				this.props.clearListItems();
 			}
 		);
 	}
-
-	// componentWillUnmount(){
-	//   this.props.clearUIState()
-	// }
 
 	render() {
 		let list = null;

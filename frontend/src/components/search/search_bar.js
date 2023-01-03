@@ -17,6 +17,11 @@ class SearchBar extends React.Component {
 		this.setSeed = this.setSeed.bind(this);
 	}
 
+	componentDidMount() {
+		const searchInput = document.getElementsByClassName('search-input')[0];
+		searchInput.focus();
+	}
+
 	updateSearchValue(e) {
 		e.preventDefault();
 
@@ -40,7 +45,6 @@ class SearchBar extends React.Component {
 	}
 
 	handleSubmit(e) {
-		console.log('submitting', this.state);
 		e.preventDefault();
 		this.props
 			.sendSeed({
@@ -65,12 +69,10 @@ class SearchBar extends React.Component {
 				searchValue: name,
 			},
 			() => {
-				// console.log(this.state);
 				this.props.clearListItems();
 			}
 		);
 	}
-
 
 	render() {
 		let list =
@@ -78,22 +80,22 @@ class SearchBar extends React.Component {
 				<List items={this.props.listItems} action={this.setSeed} />
 			) : null;
 
-    let formattedSeedType;
+		let formattedSeedType;
 
-    if (this.state.seedType === 'track') {
-      formattedSeedType = 'songs';
-    } else if (this.state.seedType === 'artist') {
-      formattedSeedType = 'artists';
-    } else if (this.state.seedType === 'genre') {
-      formattedSeedType = 'genres';
-    }
-      
+		if (this.state.seedType === 'track') {
+			formattedSeedType = 'songs';
+		} else if (this.state.seedType === 'artist') {
+			formattedSeedType = 'artists';
+		} else if (this.state.seedType === 'genre') {
+			formattedSeedType = 'genres';
+		}
+
 		return (
 			<div className='search'>
 				<form className='search-form' onSubmit={this.handleSubmit}>
-          <label for="select-search-value">Search by:</label>
+					<label htmlFor='select-search-value'>Search by:</label>
 					<select
-            id="select-search-value"
+						id='select-search-value'
 						className='search-value-dropdown'
 						onChange={this.updateSeedType}>
 						<option className='dropdown-option' value='track'>
